@@ -17,5 +17,10 @@ namespace SkyCoopInstaller
             InitializeComponent();
             GithubManager.PrepareReleasesList();
         }
+
+        private void metroButton1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

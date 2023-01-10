@@ -219,6 +219,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Libs\LightJson\JsonArray.cs" />
+    <Compile Include="Libs\LightJson\JsonObject.cs" />
+    <Compile Include="Libs\LightJson\JsonValue.cs" />
+    <Compile Include="Libs\LightJson\JsonValueType.cs" />
+    <Compile Include="Libs\LightJson\Serialization\JsonParseException.cs" />
+    <Compile Include="Libs\LightJson\Serialization\JsonReader.cs" />
+    <Compile Include="Libs\LightJson\Serialization\JsonSerializationException.cs" />
+    <Compile Include="Libs\LightJson\Serialization\JsonWriter.cs" />
+    <Compile Include="Libs\LightJson\Serialization\TextPosition.cs" />
+    <Compile Include="Libs\LightJson\Serialization\TextScanner.cs" />
     <Compile Include="GithubManager.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
