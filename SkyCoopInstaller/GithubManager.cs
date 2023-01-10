@@ -10,10 +10,12 @@ namespace SkyCoopInstaller
     internal class GithubManager
     {
         public const string MetadataURL = "https://api.github.com/repos/Filigrani/SkyCoop/releases";
+        public const string FilteredURL = "https://raw.githubusercontent.com/RED1cat/SkyCoopInstaller/master/FilteredReleases.json";
         public static string GitJson = "";
+        public static string FilteredJson = "";
         public static List<ReleaseMeta> Releaes = new List<ReleaseMeta>();
-        public static List<AvalibleRelease> AvailableReleaes = new List<AvalibleRelease>();
-        public static List<string> FilteredReleases = new List<string>();
+        public static List<string> GameVersions = new List<string>();
+        public static Dictionary<string, List<AvalibleRelease>> AvailableReleaes = new Dictionary<string, List<AvalibleRelease>>();
 
         public class ReleaseMeta
         {
@@ -47,16 +49,29 @@ namespace SkyCoopInstaller
                 return "";
             }
         }
-
-        public static void BuildReleasesList()
+        public static string RequestFilteredReleases()
         {
-
+            Program.webClient.Headers.Clear();
+            Program.webClient.Headers.Add("User-Agent", "Unity web player");
+            try
+            {
+                return Program.webClient.DownloadString(FilteredURL);
+            }
+            catch
+            {
+                return "";
+            }
         }
 
         public static void PrepareReleasesList() 
         {
             GitJson = RequestGithubData();
             if (string.IsNullOrEmpty(GitJson))
+            {
+                return;
+            }
+            FilteredJson = RequestFilteredReleases();
+            if (string.IsNullOrEmpty(FilteredJson))
             {
                 return;
             }
@@ -77,7 +92,51 @@ namespace SkyCoopInstaller
                 Meta.m_Tag = release["tag_name"].AsString;
                 Meta.m_DownloadURL = assets[0]["browser_download_url"].AsString;
                 Meta.m_ChangeLog = release["body"].AsString;
+                Releaes.Add(Meta);
             }
+            JsonArray FilteredJsonData = JsonValue.Parse(FilteredJson).AsJsonArray;
+            foreach (JsonValue gameversion in FilteredJsonData)
+            {
+                string g_version = gameversion["game_version"].AsString;
+                GameVersions.Add(g_version);
+                List<AvalibleRelease> ReleasesForGameVersion = new List<AvalibleRelease>();
+                foreach (JsonValue modversion in gameversion["mod_versions"].AsJsonArray)
+                {
+                    AvalibleRelease AvRelease = new AvalibleRelease();
+                    foreach (ReleaseMeta Meta in Releaes)
+                    {
+                        if(Meta.m_Tag == modversion["tag_name"].AsString)
+                        {
+                            AvRelease.m_ReleaseMeta = Meta;
+                            break;
+                        }
+                    }
+                    foreach (JsonValue Dependence in modversion["dependencies"].AsJsonArray)
+                    {
+                        DependenceMeta DepMeta = new DependenceMeta();
+                        DepMeta.m_Name = Dependence["name"].AsString;
+                        DepMeta.m_DownloadURL = Dependence["url"].AsString;
+
+                        AvRelease.m_Dependencies.Add(DepMeta);
+                    }
+                    ReleasesForGameVersion.Add(AvRelease);
+                }
+                AvailableReleaes.Add(g_version, ReleasesForGameVersion);
+            }
+        }
+
+        public static List<AvalibleRelease> GetReleasesForGameVersion(string game_version)
+        {
+            List<AvalibleRelease> Releases;
+            if(AvailableReleaes.TryGetValue(game_version, out Releases))
+            {
+                return Releases;
+            }
+            return null;
+        }
+        public static List<string> GetGameVersions()
+        {
+            return GameVersions;
         }
     }
 }
