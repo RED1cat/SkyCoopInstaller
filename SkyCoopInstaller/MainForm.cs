@@ -20,7 +20,17 @@ namespace SkyCoopInstaller
 
         private void metroButton1_Click(object sender, EventArgs e)
         {
-
+            using (OpenFileDialog ofd = new OpenFileDialog())
+            {
+                ofd.Filter = "tld.exe (*.exe)|*.exe";
+                ofd.RestoreDirectory = true;
+                ofd.Multiselect = false;
+                ofd.DereferenceLinks = false;
+                if(ofd.ShowDialog() == DialogResult.OK)
+                {
+                    string gamePath = ofd.FileName;
+                }
+            }
         }
     }
 }

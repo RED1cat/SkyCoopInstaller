@@ -31,19 +31,19 @@
             this.components = new System.ComponentModel.Container();
             this.StyleManager = new MetroFramework.Components.MetroStyleManager(this.components);
             this.SkyCoopLogo = new System.Windows.Forms.PictureBox();
-            this.metroTabControl1 = new MetroFramework.Controls.MetroTabControl();
-            this.metroTabPage1 = new MetroFramework.Controls.MetroTabPage();
-            this.metroTextBox1 = new MetroFramework.Controls.MetroTextBox();
+            this.TabControl1 = new MetroFramework.Controls.MetroTabControl();
+            this.SelectGameTab = new MetroFramework.Controls.MetroTabPage();
+            this.GamePath = new MetroFramework.Controls.MetroTextBox();
             this.GameVersion = new MetroFramework.Controls.MetroComboBox();
             this.NextButton = new MetroFramework.Controls.MetroButton();
             this.SelectButton = new MetroFramework.Controls.MetroButton();
-            this.metroTabPage2 = new MetroFramework.Controls.MetroTabPage();
-            this.metroTabPage3 = new MetroFramework.Controls.MetroTabPage();
+            this.SelectModVersionTab = new MetroFramework.Controls.MetroTabPage();
+            this.InstallationTab = new MetroFramework.Controls.MetroTabPage();
             this.NewsPanel = new MetroFramework.Controls.MetroPanel();
             ((System.ComponentModel.ISupportInitialize)(this.StyleManager)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SkyCoopLogo)).BeginInit();
-            this.metroTabControl1.SuspendLayout();
-            this.metroTabPage1.SuspendLayout();
+            this.TabControl1.SuspendLayout();
+            this.SelectGameTab.SuspendLayout();
             this.SuspendLayout();
             // 
             // StyleManager
@@ -62,54 +62,54 @@
             this.SkyCoopLogo.TabIndex = 0;
             this.SkyCoopLogo.TabStop = false;
             // 
-            // metroTabControl1
+            // TabControl1
             // 
-            this.metroTabControl1.Appearance = System.Windows.Forms.TabAppearance.Buttons;
-            this.metroTabControl1.Controls.Add(this.metroTabPage1);
-            this.metroTabControl1.Controls.Add(this.metroTabPage2);
-            this.metroTabControl1.Controls.Add(this.metroTabPage3);
-            this.metroTabControl1.FontSize = MetroFramework.MetroTabControlSize.Tall;
-            this.metroTabControl1.FontWeight = MetroFramework.MetroTabControlWeight.Bold;
-            this.metroTabControl1.ItemSize = new System.Drawing.Size(186, 34);
-            this.metroTabControl1.Location = new System.Drawing.Point(20, 223);
-            this.metroTabControl1.Name = "metroTabControl1";
-            this.metroTabControl1.SelectedIndex = 0;
-            this.metroTabControl1.Size = new System.Drawing.Size(573, 384);
-            this.metroTabControl1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
-            this.metroTabControl1.Style = MetroFramework.MetroColorStyle.Purple;
-            this.metroTabControl1.TabIndex = 1;
-            this.metroTabControl1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.metroTabControl1.Theme = MetroFramework.MetroThemeStyle.Dark;
-            this.metroTabControl1.UseStyleColors = true;
+            this.TabControl1.Appearance = System.Windows.Forms.TabAppearance.Buttons;
+            this.TabControl1.Controls.Add(this.SelectGameTab);
+            this.TabControl1.Controls.Add(this.SelectModVersionTab);
+            this.TabControl1.Controls.Add(this.InstallationTab);
+            this.TabControl1.FontSize = MetroFramework.MetroTabControlSize.Tall;
+            this.TabControl1.FontWeight = MetroFramework.MetroTabControlWeight.Bold;
+            this.TabControl1.ItemSize = new System.Drawing.Size(186, 34);
+            this.TabControl1.Location = new System.Drawing.Point(20, 223);
+            this.TabControl1.Name = "TabControl1";
+            this.TabControl1.SelectedIndex = 0;
+            this.TabControl1.Size = new System.Drawing.Size(573, 384);
+            this.TabControl1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
+            this.TabControl1.Style = MetroFramework.MetroColorStyle.Purple;
+            this.TabControl1.TabIndex = 1;
+            this.TabControl1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.TabControl1.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.TabControl1.UseStyleColors = true;
             // 
-            // metroTabPage1
+            // SelectGameTab
             // 
-            this.metroTabPage1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.metroTabPage1.Controls.Add(this.metroTextBox1);
-            this.metroTabPage1.Controls.Add(this.GameVersion);
-            this.metroTabPage1.Controls.Add(this.NextButton);
-            this.metroTabPage1.Controls.Add(this.SelectButton);
-            this.metroTabPage1.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.metroTabPage1.HorizontalScrollbarBarColor = true;
-            this.metroTabPage1.Location = new System.Drawing.Point(4, 38);
-            this.metroTabPage1.Name = "metroTabPage1";
-            this.metroTabPage1.Size = new System.Drawing.Size(565, 342);
-            this.metroTabPage1.Style = MetroFramework.MetroColorStyle.Purple;
-            this.metroTabPage1.TabIndex = 0;
-            this.metroTabPage1.Text = "Select Game";
-            this.metroTabPage1.Theme = MetroFramework.MetroThemeStyle.Dark;
-            this.metroTabPage1.VerticalScrollbarBarColor = true;
+            this.SelectGameTab.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.SelectGameTab.Controls.Add(this.GamePath);
+            this.SelectGameTab.Controls.Add(this.GameVersion);
+            this.SelectGameTab.Controls.Add(this.NextButton);
+            this.SelectGameTab.Controls.Add(this.SelectButton);
+            this.SelectGameTab.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.SelectGameTab.HorizontalScrollbarBarColor = true;
+            this.SelectGameTab.Location = new System.Drawing.Point(4, 38);
+            this.SelectGameTab.Name = "SelectGameTab";
+            this.SelectGameTab.Size = new System.Drawing.Size(565, 342);
+            this.SelectGameTab.Style = MetroFramework.MetroColorStyle.Purple;
+            this.SelectGameTab.TabIndex = 0;
+            this.SelectGameTab.Text = "Select Game";
+            this.SelectGameTab.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.SelectGameTab.VerticalScrollbarBarColor = true;
             // 
-            // metroTextBox1
+            // GamePath
             // 
-            this.metroTextBox1.FontSize = MetroFramework.MetroTextBoxSize.Medium;
-            this.metroTextBox1.Location = new System.Drawing.Point(130, 30);
-            this.metroTextBox1.Name = "metroTextBox1";
-            this.metroTextBox1.Size = new System.Drawing.Size(409, 25);
-            this.metroTextBox1.Style = MetroFramework.MetroColorStyle.Purple;
-            this.metroTextBox1.TabIndex = 5;
-            this.metroTextBox1.Text = "Select your TLD.exe directory";
-            this.metroTextBox1.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.GamePath.FontSize = MetroFramework.MetroTextBoxSize.Medium;
+            this.GamePath.Location = new System.Drawing.Point(130, 30);
+            this.GamePath.Name = "GamePath";
+            this.GamePath.Size = new System.Drawing.Size(409, 25);
+            this.GamePath.Style = MetroFramework.MetroColorStyle.Purple;
+            this.GamePath.TabIndex = 5;
+            this.GamePath.Text = "Select your TLD.exe directory";
+            this.GamePath.Theme = MetroFramework.MetroThemeStyle.Dark;
             // 
             // GameVersion
             // 
@@ -143,30 +143,30 @@
             this.SelectButton.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.SelectButton.Click += new System.EventHandler(this.metroButton1_Click);
             // 
-            // metroTabPage2
+            // SelectModVersionTab
             // 
-            this.metroTabPage2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.metroTabPage2.HorizontalScrollbarBarColor = true;
-            this.metroTabPage2.Location = new System.Drawing.Point(4, 38);
-            this.metroTabPage2.Name = "metroTabPage2";
-            this.metroTabPage2.Size = new System.Drawing.Size(565, 342);
-            this.metroTabPage2.TabIndex = 1;
-            this.metroTabPage2.Text = "Select Mod Version";
-            this.metroTabPage2.Theme = MetroFramework.MetroThemeStyle.Dark;
-            this.metroTabPage2.VerticalScrollbarBarColor = true;
+            this.SelectModVersionTab.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.SelectModVersionTab.HorizontalScrollbarBarColor = true;
+            this.SelectModVersionTab.Location = new System.Drawing.Point(4, 38);
+            this.SelectModVersionTab.Name = "SelectModVersionTab";
+            this.SelectModVersionTab.Size = new System.Drawing.Size(565, 342);
+            this.SelectModVersionTab.TabIndex = 1;
+            this.SelectModVersionTab.Text = "Select Mod Version";
+            this.SelectModVersionTab.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.SelectModVersionTab.VerticalScrollbarBarColor = true;
             // 
-            // metroTabPage3
+            // InstallationTab
             // 
-            this.metroTabPage3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.metroTabPage3.HorizontalScrollbarBarColor = true;
-            this.metroTabPage3.Location = new System.Drawing.Point(4, 38);
-            this.metroTabPage3.Name = "metroTabPage3";
-            this.metroTabPage3.Size = new System.Drawing.Size(565, 342);
-            this.metroTabPage3.Style = MetroFramework.MetroColorStyle.Purple;
-            this.metroTabPage3.TabIndex = 2;
-            this.metroTabPage3.Text = "Installation";
-            this.metroTabPage3.Theme = MetroFramework.MetroThemeStyle.Dark;
-            this.metroTabPage3.VerticalScrollbarBarColor = true;
+            this.InstallationTab.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.InstallationTab.HorizontalScrollbarBarColor = true;
+            this.InstallationTab.Location = new System.Drawing.Point(4, 38);
+            this.InstallationTab.Name = "InstallationTab";
+            this.InstallationTab.Size = new System.Drawing.Size(565, 342);
+            this.InstallationTab.Style = MetroFramework.MetroColorStyle.Purple;
+            this.InstallationTab.TabIndex = 2;
+            this.InstallationTab.Text = "Installation";
+            this.InstallationTab.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.InstallationTab.VerticalScrollbarBarColor = true;
             // 
             // NewsPanel
             // 
@@ -190,7 +190,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(962, 630);
             this.Controls.Add(this.NewsPanel);
-            this.Controls.Add(this.metroTabControl1);
+            this.Controls.Add(this.TabControl1);
             this.Controls.Add(this.SkyCoopLogo);
             this.DisplayHeader = false;
             this.MaximizeBox = false;
@@ -202,8 +202,8 @@
             this.Theme = MetroFramework.MetroThemeStyle.Dark;
             ((System.ComponentModel.ISupportInitialize)(this.StyleManager)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SkyCoopLogo)).EndInit();
-            this.metroTabControl1.ResumeLayout(false);
-            this.metroTabPage1.ResumeLayout(false);
+            this.TabControl1.ResumeLayout(false);
+            this.SelectGameTab.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -212,12 +212,12 @@
 
         private MetroFramework.Components.MetroStyleManager StyleManager;
         private System.Windows.Forms.PictureBox SkyCoopLogo;
-        private MetroFramework.Controls.MetroTabControl metroTabControl1;
-        private MetroFramework.Controls.MetroTabPage metroTabPage1;
-        private MetroFramework.Controls.MetroTabPage metroTabPage2;
-        private MetroFramework.Controls.MetroTabPage metroTabPage3;
+        private MetroFramework.Controls.MetroTabControl TabControl1;
+        private MetroFramework.Controls.MetroTabPage SelectGameTab;
+        private MetroFramework.Controls.MetroTabPage SelectModVersionTab;
+        private MetroFramework.Controls.MetroTabPage InstallationTab;
         private MetroFramework.Controls.MetroPanel NewsPanel;
-        private MetroFramework.Controls.MetroTextBox metroTextBox1;
+        private MetroFramework.Controls.MetroTextBox GamePath;
         private MetroFramework.Controls.MetroComboBox GameVersion;
         private MetroFramework.Controls.MetroButton NextButton;
         private MetroFramework.Controls.MetroButton SelectButton;
