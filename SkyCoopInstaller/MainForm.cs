@@ -15,7 +15,7 @@ namespace SkyCoopInstaller
         public MainForm()
         {
             InitializeComponent();
+            GithubManager.PrepareReleasesList();
         }
-
     }
 }
