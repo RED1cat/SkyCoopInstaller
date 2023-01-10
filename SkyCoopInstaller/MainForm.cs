@@ -28,9 +28,14 @@ namespace SkyCoopInstaller
                 ofd.DereferenceLinks = false;
                 if(ofd.ShowDialog() == DialogResult.OK)
                 {
-                    string gamePath = ofd.FileName;
+                    GamePath.Text = ofd.FileName;
                 }
             }
+        }
+
+        private void NextButton_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
