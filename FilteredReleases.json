@@ -1,0 +1,42 @@
+[
+  {
+    "game_version": "2.01-2.02",
+	"mod_versions": 
+	[
+	  {
+	    "tag_name": "v10.4",
+	    "dependencies":
+	    [
+	      {
+		    "name": "ModSettings",
+		    "url": "https://github.com/zeobviouslyfakeacc/ModSettings/releases/download/v1.8.2/ModSettings.dll"
+		  },
+	      {
+		    "name": "KeyboardUtilities",
+		    "url": "https://github.com/ds5678/KeyboardUtilities/releases/download/1.3.0/KeyboardUtilities.dll"
+		  },
+	      {
+		    "name": "ModComponent",
+		    "url": "https://github.com/ds5678/ModComponent/releases/download/5.1.4/ModComponent.dll"
+		  },	
+	      {
+		    "name": "LocalizationUtilities",
+		    "url": "https://github.com/ds5678/LocalizationUtilities/releases/download/1.0.0/LocalizationUtilities.dll"
+		  },	
+	      {
+		    "name": "GearSpawner",
+		    "url": "https://github.com/ds5678/GearSpawner/releases/download/1.0.1/GearSpawner.dll"
+		  },	
+	      {
+		    "name": "CraftingRevisions",
+		    "url": "https://github.com/ds5678/CraftingRevisions/releases/download/1.0.1/CraftingRevisions.dll"
+		  },
+	      {
+		    "name": "IncreaseSaveSlotLimit",
+		    "url": "https://github.com/ds5678/IncreaseSaveSlotLimit/releases/download/1.1/IncreaseSaveSlotLimit.dll"
+		  }		  
+	    ]			   
+      }		   
+	]
+  }
+]
