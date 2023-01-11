@@ -316,6 +316,7 @@
             this.HidePreReleaseCheckBox.Text = "Hide Pre-Release";
             this.HidePreReleaseCheckBox.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.HidePreReleaseCheckBox.UseVisualStyleBackColor = true;
+            this.HidePreReleaseCheckBox.CheckStateChanged += new System.EventHandler(this.HidePreReleaseCheckBox_CheckStateChanged);
             // 
             // MainForm
             // 
