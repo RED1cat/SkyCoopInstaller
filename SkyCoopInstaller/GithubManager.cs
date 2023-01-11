@@ -12,11 +12,13 @@ namespace SkyCoopInstaller
     {
         public const string MetadataURL = "https://api.github.com/repos/Filigrani/SkyCoop/releases";
         public const string FilteredURL = "https://raw.githubusercontent.com/RED1cat/SkyCoopInstaller/master/FilteredReleases.json";
+        public const string NewsURL = "https://raw.githubusercontent.com/RED1cat/SkyCoopInstaller/master/News.txt";
         public static string GitJson = "";
         public static string FilteredJson = "";
         public static List<ReleaseMeta> Releaes = new List<ReleaseMeta>();
         public static List<string> GameVersions = new List<string>();
         public static Dictionary<string, List<AvalibleRelease>> AvailableReleaes = new Dictionary<string, List<AvalibleRelease>>();
+        public static string News = "";
 
         public class ReleaseMeta
         {
@@ -36,9 +38,10 @@ namespace SkyCoopInstaller
         {
             public ReleaseMeta m_ReleaseMeta = new ReleaseMeta();
             public List<DependenceMeta> m_Dependencies = new List<DependenceMeta>();
+            public bool m_IsPreRelease = false;
         }
 
-        public static string RequestGithubData()
+        public static string RequestRemoteFile(string URL)
         {
             Program.webClient.Headers.Clear();
             Program.webClient.Headers.Add("Cache-Control", "no-cache");
@@ -46,22 +49,7 @@ namespace SkyCoopInstaller
             Program.webClient.CachePolicy = new System.Net.Cache.RequestCachePolicy(System.Net.Cache.RequestCacheLevel.BypassCache);
             try
             {
-                return Program.webClient.DownloadString(MetadataURL);
-            }
-            catch
-            {
-                return "";
-            }
-        }
-        public static string RequestFilteredReleases()
-        {
-            Program.webClient.Headers.Clear();
-            Program.webClient.Headers.Add("Cache-Control", "no-cache");
-            Program.webClient.Headers.Add("User-Agent", "Unity web player");
-            Program.webClient.CachePolicy = new System.Net.Cache.RequestCachePolicy(System.Net.Cache.RequestCacheLevel.BypassCache);
-            try
-            {
-                return Program.webClient.DownloadString(FilteredURL);
+                return Program.webClient.DownloadString(URL);
             }
             catch
             {
@@ -71,24 +59,21 @@ namespace SkyCoopInstaller
 
         public static void PrepareReleasesList() 
         {
-            GitJson = RequestGithubData();
+            GitJson = RequestRemoteFile(MetadataURL);
             if (string.IsNullOrEmpty(GitJson))
             {
                 return;
             }
-            FilteredJson = RequestFilteredReleases();
+            FilteredJson = RequestRemoteFile(FilteredURL);
             if (string.IsNullOrEmpty(FilteredJson))
             {
                 return;
             }
+            News = RequestRemoteFile(NewsURL);
             JsonArray JsonData = JsonValue.Parse(GitJson).AsJsonArray;
             foreach (JsonValue release in JsonData)
             {
                 ReleaseMeta Meta = new ReleaseMeta();
-                if (release["prerelease"].AsBoolean)
-                {
-                    continue;
-                }
                 JsonArray assets = release["assets"].AsJsonArray;
                 if (assets.Count <= 0)
                 {
@@ -141,18 +126,36 @@ namespace SkyCoopInstaller
             }
         }
 
-        public static List<AvalibleRelease> GetReleasesForGameVersion(string game_version)
+        public static List<AvalibleRelease> GetReleasesForGameVersion(string game_version, bool HidePreReleases = true)
         {
-            List<AvalibleRelease> Releases;
-            if(AvailableReleaes.TryGetValue(game_version, out Releases))
+            List<AvalibleRelease> AllReleases;
+            if(AvailableReleaes.TryGetValue(game_version, out AllReleases))
             {
-                return Releases;
+                if (!HidePreReleases)
+                {
+                    return AllReleases;
+                } else
+                {
+                    List<AvalibleRelease> OnlyStable = new List<AvalibleRelease>();
+                    foreach (AvalibleRelease Release in AllReleases)
+                    {
+                        if (!Release.m_IsPreRelease)
+                        {
+                            OnlyStable.Add(Release);
+                        }
+                    }
+                    return OnlyStable;
+                }
             }
             return null;
         }
         public static List<string> GetGameVersions()
         {
             return GameVersions;
+        }
+        public static string GetNews()
+        {
+            return News;
         }
     }
 }
