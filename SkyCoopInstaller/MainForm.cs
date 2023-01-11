@@ -64,9 +64,14 @@ namespace SkyCoopInstaller
             ModVersions.Enabled = true;
             gameVersionSelected = true;
 
-            List<GithubManager.AvalibleRelease> avalibleReleases = GithubManager.GetReleasesForGameVersion(GameVersion.SelectedItem.ToString());
-            if(avalibleReleases != null)
+            UpdateReleaseList();
+        }
+        private void UpdateReleaseList()
+        {
+            List<GithubManager.AvalibleRelease> avalibleReleases = GithubManager.GetReleasesForGameVersion(GameVersion.SelectedItem.ToString(), HidePreReleaseCheckBox.Checked);
+            if (avalibleReleases != null)
             {
+                ModVersions.Items.Clear();
                 lastSelectetAvalibleReleases = avalibleReleases;
                 foreach (GithubManager.AvalibleRelease release in avalibleReleases)
                 {
@@ -74,11 +79,12 @@ namespace SkyCoopInstaller
                 }
                 ModVersions.SelectedItem = ModVersions.Items[0];
 
-                if(modAlreadyInstalled == false)
+                if (modAlreadyInstalled == false)
                 {
                     InstallUninsallButton.Text = "INSTALL";
                 }
             }
+            UpdateReleaseInfo(this, EventArgs.Empty);
         }
         private void UpdateReleaseInfo(object sender, EventArgs e)
         {
@@ -124,6 +130,11 @@ namespace SkyCoopInstaller
                 ChangeLogTextBox.Visible = true;
                 NewsTextBox.Visible = false;
             }
+        }
+
+        private void HidePreReleaseCheckBox_CheckStateChanged(object sender, EventArgs e)
+        {
+            UpdateReleaseList();
         }
     }
 }

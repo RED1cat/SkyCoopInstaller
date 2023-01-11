@@ -5,6 +5,7 @@
 	[
 	 {
 	    "tag_name": "v10.4",
+		"melon_version": "0.5.7",
 		"is_prerelease": false,
 	    "dependencies":
 	    [
@@ -52,6 +53,7 @@
 	 },
 	 {
 	    "tag_name": "v9.7",
+		"melon_version": "0.5.7",
 		"is_prerelease": true,
 	    "dependencies":
 	    [
