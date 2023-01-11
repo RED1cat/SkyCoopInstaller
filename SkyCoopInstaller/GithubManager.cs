@@ -94,6 +94,8 @@ namespace SkyCoopInstaller
                 foreach (JsonValue modversion in gameversion["mod_versions"].AsJsonArray)
                 {
                     AvalibleRelease AvRelease = new AvalibleRelease();
+                    AvRelease.m_IsPreRelease = modversion["is_prerelease"].AsBoolean;
+
                     foreach (ReleaseMeta Meta in Releaes)
                     {
                         if(Meta.m_Tag == modversion["tag_name"].AsString)
