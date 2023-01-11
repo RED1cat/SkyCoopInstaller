@@ -33,7 +33,11 @@ namespace SkyCoopInstaller
                 ofd.DereferenceLinks = false;
                 if(ofd.ShowDialog() == DialogResult.OK)
                 {
-                    GamePath.Text = ofd.FileName;
+                    string[] Slices = ofd.FileName.Split('\\');
+                    string LastSlice = Slices[Slices.Length - 1];
+                    string RightPath = ofd.FileName.Replace(LastSlice,"");
+
+                    GamePath.Text = RightPath;
                     GameVersion.Enabled = true;
                     FillGameVersionBox();
                 }
