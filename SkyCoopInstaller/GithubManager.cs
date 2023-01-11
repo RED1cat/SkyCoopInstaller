@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using MelonLoader.LightJson;
@@ -39,7 +40,9 @@ namespace SkyCoopInstaller
         public static string RequestGithubData()
         {
             Program.webClient.Headers.Clear();
+            Program.webClient.Headers.Add("Cache-Control", "no-cache");
             Program.webClient.Headers.Add("User-Agent", "Unity web player");
+            Program.webClient.CachePolicy = new System.Net.Cache.RequestCachePolicy(System.Net.Cache.RequestCacheLevel.BypassCache);
             try
             {
                 return Program.webClient.DownloadString(MetadataURL);
@@ -52,7 +55,9 @@ namespace SkyCoopInstaller
         public static string RequestFilteredReleases()
         {
             Program.webClient.Headers.Clear();
+            Program.webClient.Headers.Add("Cache-Control", "no-cache");
             Program.webClient.Headers.Add("User-Agent", "Unity web player");
+            Program.webClient.CachePolicy = new System.Net.Cache.RequestCachePolicy(System.Net.Cache.RequestCacheLevel.BypassCache);
             try
             {
                 return Program.webClient.DownloadString(FilteredURL);
