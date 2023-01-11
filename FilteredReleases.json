@@ -9,34 +9,41 @@
 	    [
 	      {
 		    "name": "ModSettings",
-		    "url": "https://github.com/zeobviouslyfakeacc/ModSettings/releases/download/v1.8.2/ModSettings.dll"
+		    "url": "https://github.com/zeobviouslyfakeacc/ModSettings/releases/download/v1.8.2/ModSettings.dll",
+		    "path": "Mods"
 		  },
 	      {
 		    "name": "KeyboardUtilities",
-		    "url": "https://github.com/ds5678/KeyboardUtilities/releases/download/1.3.0/KeyboardUtilities.dll"
+		    "url": "https://github.com/ds5678/KeyboardUtilities/releases/download/1.3.0/KeyboardUtilities.dll",
+		    "path": "Mods"
 		  },
 	      {
 		    "name": "ModComponent",
-		    "url": "https://github.com/ds5678/ModComponent/releases/download/5.1.4/ModComponent.dll"
+		    "url": "https://github.com/ds5678/ModComponent/releases/download/5.1.4/ModComponent.dll",
+		    "path": "Mods"
 		  },	
 	      {
 		    "name": "LocalizationUtilities",
-		    "url": "https://github.com/ds5678/LocalizationUtilities/releases/download/1.0.0/LocalizationUtilities.dll"
+		    "url": "https://github.com/ds5678/LocalizationUtilities/releases/download/1.0.0/LocalizationUtilities.dll",
+		    "path": "Mods"
 		  },	
 	      {
 		    "name": "GearSpawner",
-		    "url": "https://github.com/ds5678/GearSpawner/releases/download/1.0.1/GearSpawner.dll"
+		    "url": "https://github.com/ds5678/GearSpawner/releases/download/1.0.1/GearSpawner.dll",
+	            "path": "Mods"
 		  },	
 	      {
 		    "name": "CraftingRevisions",
-		    "url": "https://github.com/ds5678/CraftingRevisions/releases/download/1.0.1/CraftingRevisions.dll"
+		    "url": "https://github.com/ds5678/CraftingRevisions/releases/download/1.0.1/CraftingRevisions.dll",
+		    "path": "Mods"
 		  },
 	      {
 		    "name": "IncreaseSaveSlotLimit",
-		    "url": "https://github.com/ds5678/IncreaseSaveSlotLimit/releases/download/1.1/IncreaseSaveSlotLimit.dll"
-		  }		  
-	    ]			   
-      }		   
-	]
+		    "url": "https://github.com/ds5678/IncreaseSaveSlotLimit/releases/download/1.1/IncreaseSaveSlotLimit.dll",
+		    "path": "Mods"
+	      }		  
+	  ]			   
+       }		   
+     ]
   }
 ]
