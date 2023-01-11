@@ -38,16 +38,22 @@
             this.NextButton = new MetroFramework.Controls.MetroButton();
             this.SelectButton = new MetroFramework.Controls.MetroButton();
             this.SelectModVersionTab = new MetroFramework.Controls.MetroTabPage();
+            this.InstallUninsallButton = new MetroFramework.Controls.MetroButton();
+            this.ModVersions = new MetroFramework.Controls.MetroComboBox();
+            this.AvalibleModVersion = new MetroFramework.Controls.MetroLabel();
             this.InstallationTab = new MetroFramework.Controls.MetroTabPage();
             this.NewsPanel = new MetroFramework.Controls.MetroPanel();
-            this.AvalibleModVersion = new MetroFramework.Controls.MetroLabel();
-            this.ModVersions = new MetroFramework.Controls.MetroComboBox();
-            this.InstallUninsallButton = new MetroFramework.Controls.MetroButton();
+            this.ChangeLogLabel = new MetroFramework.Controls.MetroLabel();
+            this.NewsTextBox = new MetroFramework.Controls.MetroTextBox();
+            this.GameVersionLabel = new MetroFramework.Controls.MetroLabel();
+            this.ChangeLogTextBox = new MetroFramework.Controls.MetroTextBox();
+            this.HidePreReleaseCheckBox = new MetroFramework.Controls.MetroCheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.StyleManager)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SkyCoopLogo)).BeginInit();
             this.TabControl1.SuspendLayout();
             this.SelectGameTab.SuspendLayout();
             this.SelectModVersionTab.SuspendLayout();
+            this.NewsPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // StyleManager
@@ -77,7 +83,7 @@
             this.TabControl1.ItemSize = new System.Drawing.Size(186, 34);
             this.TabControl1.Location = new System.Drawing.Point(20, 223);
             this.TabControl1.Name = "TabControl1";
-            this.TabControl1.SelectedIndex = 0;
+            this.TabControl1.SelectedIndex = 1;
             this.TabControl1.Size = new System.Drawing.Size(573, 384);
             this.TabControl1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.TabControl1.Style = MetroFramework.MetroColorStyle.Purple;
@@ -85,10 +91,12 @@
             this.TabControl1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.TabControl1.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.TabControl1.UseStyleColors = true;
+            this.TabControl1.SelectedIndexChanged += new System.EventHandler(this.TabControl1_SelectedIndexChanged);
             // 
             // SelectGameTab
             // 
             this.SelectGameTab.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.SelectGameTab.Controls.Add(this.GameVersionLabel);
             this.SelectGameTab.Controls.Add(this.GamePath);
             this.SelectGameTab.Controls.Add(this.GameVersion);
             this.SelectGameTab.Controls.Add(this.NextButton);
@@ -126,6 +134,7 @@
             this.GameVersion.Style = MetroFramework.MetroColorStyle.Purple;
             this.GameVersion.TabIndex = 4;
             this.GameVersion.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.GameVersion.TextChanged += new System.EventHandler(this.EnableNextButton);
             // 
             // NextButton
             // 
@@ -153,6 +162,7 @@
             // SelectModVersionTab
             // 
             this.SelectModVersionTab.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.SelectModVersionTab.Controls.Add(this.HidePreReleaseCheckBox);
             this.SelectModVersionTab.Controls.Add(this.InstallUninsallButton);
             this.SelectModVersionTab.Controls.Add(this.ModVersions);
             this.SelectModVersionTab.Controls.Add(this.AvalibleModVersion);
@@ -165,6 +175,43 @@
             this.SelectModVersionTab.Text = "Select Mod Version";
             this.SelectModVersionTab.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.SelectModVersionTab.VerticalScrollbarBarColor = true;
+            // 
+            // InstallUninsallButton
+            // 
+            this.InstallUninsallButton.Enabled = false;
+            this.InstallUninsallButton.Location = new System.Drawing.Point(185, 219);
+            this.InstallUninsallButton.Name = "InstallUninsallButton";
+            this.InstallUninsallButton.Size = new System.Drawing.Size(173, 48);
+            this.InstallUninsallButton.Style = MetroFramework.MetroColorStyle.Purple;
+            this.InstallUninsallButton.TabIndex = 6;
+            this.InstallUninsallButton.Text = "INSTALL/UNINSTALL";
+            this.InstallUninsallButton.Theme = MetroFramework.MetroThemeStyle.Dark;
+            // 
+            // ModVersions
+            // 
+            this.ModVersions.Enabled = false;
+            this.ModVersions.FormattingEnabled = true;
+            this.ModVersions.ItemHeight = 23;
+            this.ModVersions.Location = new System.Drawing.Point(139, 45);
+            this.ModVersions.Name = "ModVersions";
+            this.ModVersions.Size = new System.Drawing.Size(294, 29);
+            this.ModVersions.Style = MetroFramework.MetroColorStyle.Purple;
+            this.ModVersions.TabIndex = 5;
+            this.ModVersions.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.ModVersions.TextChanged += new System.EventHandler(this.UpdateReleaseInfo);
+            // 
+            // AvalibleModVersion
+            // 
+            this.AvalibleModVersion.AutoSize = true;
+            this.AvalibleModVersion.FontSize = MetroFramework.MetroLabelSize.Tall;
+            this.AvalibleModVersion.FontWeight = MetroFramework.MetroLabelWeight.Bold;
+            this.AvalibleModVersion.Location = new System.Drawing.Point(177, 17);
+            this.AvalibleModVersion.Name = "AvalibleModVersion";
+            this.AvalibleModVersion.Size = new System.Drawing.Size(214, 25);
+            this.AvalibleModVersion.Style = MetroFramework.MetroColorStyle.Purple;
+            this.AvalibleModVersion.TabIndex = 2;
+            this.AvalibleModVersion.Text = "Available mod versions:";
+            this.AvalibleModVersion.Theme = MetroFramework.MetroThemeStyle.Dark;
             // 
             // InstallationTab
             // 
@@ -181,8 +228,10 @@
             // 
             // NewsPanel
             // 
-            this.NewsPanel.BorderStyle = MetroFramework.Drawing.MetroBorderStyle.FixedSingle;
-            this.NewsPanel.HorizontalScrollbarBarColor = true;
+            this.NewsPanel.Controls.Add(this.ChangeLogTextBox);
+            this.NewsPanel.Controls.Add(this.ChangeLogLabel);
+            this.NewsPanel.Controls.Add(this.NewsTextBox);
+            this.NewsPanel.HorizontalScrollbarBarColor = false;
             this.NewsPanel.HorizontalScrollbarHighlightOnWheel = false;
             this.NewsPanel.HorizontalScrollbarSize = 10;
             this.NewsPanel.Location = new System.Drawing.Point(613, 33);
@@ -191,45 +240,82 @@
             this.NewsPanel.Style = MetroFramework.MetroColorStyle.Purple;
             this.NewsPanel.TabIndex = 2;
             this.NewsPanel.Theme = MetroFramework.MetroThemeStyle.Dark;
-            this.NewsPanel.VerticalScrollbarBarColor = true;
+            this.NewsPanel.VerticalScrollbarBarColor = false;
             this.NewsPanel.VerticalScrollbarHighlightOnWheel = false;
             this.NewsPanel.VerticalScrollbarSize = 10;
             // 
-            // AvalibleModVersion
+            // ChangeLogLabel
             // 
-            this.AvalibleModVersion.AutoSize = true;
-            this.AvalibleModVersion.FontSize = MetroFramework.MetroLabelSize.Tall;
-            this.AvalibleModVersion.FontWeight = MetroFramework.MetroLabelWeight.Bold;
-            this.AvalibleModVersion.Location = new System.Drawing.Point(177, 17);
-            this.AvalibleModVersion.Name = "AvalibleModVersion";
-            this.AvalibleModVersion.Size = new System.Drawing.Size(214, 25);
-            this.AvalibleModVersion.Style = MetroFramework.MetroColorStyle.Purple;
-            this.AvalibleModVersion.TabIndex = 2;
-            this.AvalibleModVersion.Text = "Available mod versions:";
-            this.AvalibleModVersion.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.ChangeLogLabel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ChangeLogLabel.Location = new System.Drawing.Point(0, 0);
+            this.ChangeLogLabel.Name = "ChangeLogLabel";
+            this.ChangeLogLabel.Size = new System.Drawing.Size(326, 19);
+            this.ChangeLogLabel.Style = MetroFramework.MetroColorStyle.Purple;
+            this.ChangeLogLabel.TabIndex = 4;
+            this.ChangeLogLabel.Text = "ChangeLog";
+            this.ChangeLogLabel.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.ChangeLogLabel.Visible = false;
             // 
-            // ModVersions
+            // NewsTextBox
             // 
-            this.ModVersions.Enabled = false;
-            this.ModVersions.FormattingEnabled = true;
-            this.ModVersions.ItemHeight = 23;
-            this.ModVersions.Location = new System.Drawing.Point(139, 45);
-            this.ModVersions.Name = "ModVersions";
-            this.ModVersions.Size = new System.Drawing.Size(294, 29);
-            this.ModVersions.Style = MetroFramework.MetroColorStyle.Purple;
-            this.ModVersions.TabIndex = 5;
-            this.ModVersions.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.NewsTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.NewsTextBox.FontSize = MetroFramework.MetroTextBoxSize.Medium;
+            this.NewsTextBox.Location = new System.Drawing.Point(0, 0);
+            this.NewsTextBox.Multiline = true;
+            this.NewsTextBox.Name = "NewsTextBox";
+            this.NewsTextBox.ReadOnly = true;
+            this.NewsTextBox.Size = new System.Drawing.Size(326, 570);
+            this.NewsTextBox.Style = MetroFramework.MetroColorStyle.Purple;
+            this.NewsTextBox.TabIndex = 3;
+            this.NewsTextBox.Text = "News";
+            this.NewsTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.NewsTextBox.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.NewsTextBox.UseStyleColors = true;
             // 
-            // InstallUninsallButton
+            // GameVersionLabel
             // 
-            this.InstallUninsallButton.Enabled = false;
-            this.InstallUninsallButton.Location = new System.Drawing.Point(185, 219);
-            this.InstallUninsallButton.Name = "InstallUninsallButton";
-            this.InstallUninsallButton.Size = new System.Drawing.Size(173, 48);
-            this.InstallUninsallButton.Style = MetroFramework.MetroColorStyle.Purple;
-            this.InstallUninsallButton.TabIndex = 6;
-            this.InstallUninsallButton.Text = "INSTALL/UNINSTALL";
-            this.InstallUninsallButton.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.GameVersionLabel.AutoSize = true;
+            this.GameVersionLabel.FontSize = MetroFramework.MetroLabelSize.Tall;
+            this.GameVersionLabel.FontWeight = MetroFramework.MetroLabelWeight.Bold;
+            this.GameVersionLabel.Location = new System.Drawing.Point(25, 85);
+            this.GameVersionLabel.Name = "GameVersionLabel";
+            this.GameVersionLabel.Size = new System.Drawing.Size(141, 25);
+            this.GameVersionLabel.Style = MetroFramework.MetroColorStyle.Purple;
+            this.GameVersionLabel.TabIndex = 6;
+            this.GameVersionLabel.Text = "Game versions:";
+            this.GameVersionLabel.Theme = MetroFramework.MetroThemeStyle.Dark;
+            // 
+            // ChangeLogTextBox
+            // 
+            this.ChangeLogTextBox.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.ChangeLogTextBox.FontSize = MetroFramework.MetroTextBoxSize.Medium;
+            this.ChangeLogTextBox.FontWeight = MetroFramework.MetroTextBoxWeight.Bold;
+            this.ChangeLogTextBox.Location = new System.Drawing.Point(0, 22);
+            this.ChangeLogTextBox.Multiline = true;
+            this.ChangeLogTextBox.Name = "ChangeLogTextBox";
+            this.ChangeLogTextBox.ReadOnly = true;
+            this.ChangeLogTextBox.Size = new System.Drawing.Size(326, 548);
+            this.ChangeLogTextBox.Style = MetroFramework.MetroColorStyle.Purple;
+            this.ChangeLogTextBox.TabIndex = 5;
+            this.ChangeLogTextBox.Text = "ChangeLog";
+            this.ChangeLogTextBox.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.ChangeLogTextBox.UseStyleColors = true;
+            this.ChangeLogTextBox.Visible = false;
+            // 
+            // HidePreReleaseCheckBox
+            // 
+            this.HidePreReleaseCheckBox.AutoSize = true;
+            this.HidePreReleaseCheckBox.Checked = true;
+            this.HidePreReleaseCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.HidePreReleaseCheckBox.FontSize = MetroFramework.MetroLinkSize.Medium;
+            this.HidePreReleaseCheckBox.Location = new System.Drawing.Point(224, 80);
+            this.HidePreReleaseCheckBox.Name = "HidePreReleaseCheckBox";
+            this.HidePreReleaseCheckBox.Size = new System.Drawing.Size(128, 19);
+            this.HidePreReleaseCheckBox.Style = MetroFramework.MetroColorStyle.Purple;
+            this.HidePreReleaseCheckBox.TabIndex = 7;
+            this.HidePreReleaseCheckBox.Text = "Hide Pre-Release";
+            this.HidePreReleaseCheckBox.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.HidePreReleaseCheckBox.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
@@ -251,8 +337,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.SkyCoopLogo)).EndInit();
             this.TabControl1.ResumeLayout(false);
             this.SelectGameTab.ResumeLayout(false);
+            this.SelectGameTab.PerformLayout();
             this.SelectModVersionTab.ResumeLayout(false);
             this.SelectModVersionTab.PerformLayout();
+            this.NewsPanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -273,6 +361,11 @@
         private MetroFramework.Controls.MetroButton InstallUninsallButton;
         private MetroFramework.Controls.MetroComboBox ModVersions;
         private MetroFramework.Controls.MetroLabel AvalibleModVersion;
+        private MetroFramework.Controls.MetroTextBox NewsTextBox;
+        private MetroFramework.Controls.MetroLabel ChangeLogLabel;
+        private MetroFramework.Controls.MetroLabel GameVersionLabel;
+        private MetroFramework.Controls.MetroTextBox ChangeLogTextBox;
+        private MetroFramework.Controls.MetroCheckBox HidePreReleaseCheckBox;
     }
 }
 
