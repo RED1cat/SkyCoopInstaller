@@ -3,7 +3,7 @@
     "game_version": "2.01-2.02",
 	"mod_versions": 
 	[
-	  {
+	 {
 	    "tag_name": "v10.4",
 	    "dependencies":
 	    [
@@ -41,14 +41,14 @@
 		    "name": "IncreaseSaveSlotLimit",
 		    "url": "https://github.com/ds5678/IncreaseSaveSlotLimit/releases/download/1.1/IncreaseSaveSlotLimit.dll",
 		    "path": "Mods"
-	      }
+	      },
 	      {
 		    "name": "AudioCore",
 		    "url": "https://github.com/DigitalzombieTLD/AudioCore/releases/download/1.0/AudioCore_PLUGIN_1.0.zip",
 		    "path": "Plugins"
 	      }
-	  ]			   
-    }		   
+	    ]
+	  }
    ]
   }
 ]
