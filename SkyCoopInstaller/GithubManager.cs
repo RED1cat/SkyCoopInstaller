@@ -40,6 +40,7 @@ namespace SkyCoopInstaller
             public List<DependenceMeta> m_Dependencies = new List<DependenceMeta>();
             public bool m_IsPreRelease = false;
             public string m_RequiredMelon = "";
+            public string m_MelonURL = "";
         }
 
         public static string RequestRemoteFile(string URL)
@@ -97,6 +98,7 @@ namespace SkyCoopInstaller
                     AvalibleRelease AvRelease = new AvalibleRelease();
                     AvRelease.m_IsPreRelease = modversion["is_prerelease"].AsBoolean;
                     AvRelease.m_RequiredMelon = modversion["melon_version"].AsString;
+                    AvRelease.m_MelonURL = modversion["melon_url"].AsString;
 
                     foreach (ReleaseMeta Meta in Releaes)
                     {
