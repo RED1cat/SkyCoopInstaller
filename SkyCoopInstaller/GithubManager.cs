@@ -30,6 +30,7 @@ namespace SkyCoopInstaller
             public string m_Name = "";
             public string m_DownloadURL = "";
             public string m_Path = "";
+            public bool m_IsZip = false;
         }
         public class AvalibleRelease
         {
@@ -122,6 +123,15 @@ namespace SkyCoopInstaller
                         DepMeta.m_Name = Dependence["name"].AsString;
                         DepMeta.m_DownloadURL = Dependence["url"].AsString;
                         DepMeta.m_Path = @"\"+ Dependence["path"].AsString;
+
+                        string[] Slices = DepMeta.m_DownloadURL.Split('.');
+                        if(Slices.Length > 1)
+                        {
+                            if(Slices[Slices.Length-1].ToLower() == "zip")
+                            {
+                                DepMeta.m_IsZip = true;
+                            }
+                        }
 
                         AvRelease.m_Dependencies.Add(DepMeta);
                     }
