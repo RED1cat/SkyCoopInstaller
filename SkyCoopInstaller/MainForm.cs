@@ -15,12 +15,14 @@ namespace SkyCoopInstaller
         List<GithubManager.AvalibleRelease> lastSelectetAvalibleReleases;
         bool gameVersionSelected = false;
         bool modReadyToInstall = false;
+        bool modInstalling = false;
         bool modAlreadyInstalled = false;
 
         public MainForm()
         {
             InitializeComponent();
             GithubManager.PrepareReleasesList();
+            NewsTextBox.Text = GithubManager.GetNews();
         }
 
         private void metroButton1_Click(object sender, EventArgs e)
@@ -93,6 +95,7 @@ namespace SkyCoopInstaller
                 ChangeLogTextBox.Text = lastSelectetAvalibleReleases[ModVersions.SelectedIndex].m_ReleaseMeta.m_ChangeLog;
                 ChangeLogLabel.Text = lastSelectetAvalibleReleases[ModVersions.SelectedIndex].m_ReleaseMeta.m_ReleaseName;
                 InstallUninsallButton.Enabled = true;
+                modReadyToInstall = true;
             }
         }
         private void NextButton_Click(object sender, EventArgs e)
@@ -102,7 +105,29 @@ namespace SkyCoopInstaller
 
         private void TabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(gameVersionSelected == false && modReadyToInstall == false)
+            if (TabControl1.SelectedIndex == 0)
+            {
+                ChangeLogLabel.Visible = false;
+                ChangeLogTextBox.Visible = false;
+                NewsTextBox.Visible = true;
+                InstallationLogTextBox.Visible = false;
+            }
+            else if (TabControl1.SelectedIndex == 1)
+            {
+                ChangeLogLabel.Visible = true;
+                ChangeLogTextBox.Visible = true;
+                NewsTextBox.Visible = false;
+                InstallationLogTextBox.Visible = false;
+            }
+            else if (TabControl1.SelectedIndex == 2)
+            {
+                ChangeLogLabel.Visible = false;
+                ChangeLogTextBox.Visible = false;
+                NewsTextBox.Visible = false;
+                InstallationLogTextBox.Visible = true;
+            }
+
+            if (gameVersionSelected == false && modReadyToInstall == false)
             {
                 if(TabControl1.SelectedIndex == 1 || TabControl1.SelectedIndex == 2)
                 {
@@ -110,7 +135,7 @@ namespace SkyCoopInstaller
                     TabControl1.SelectedIndex = 0;
                 }
             }
-            if(gameVersionSelected == true && modReadyToInstall == false) 
+            if(gameVersionSelected == true && modInstalling == false) 
             {
                 if (TabControl1.SelectedIndex == 2)
                 {
@@ -118,23 +143,39 @@ namespace SkyCoopInstaller
                     TabControl1.SelectedIndex = 1;
                 }
             }
-            if(TabControl1.SelectedIndex == 0)
-            {
-                ChangeLogLabel.Visible = false;
-                ChangeLogTextBox.Visible = false;
-                NewsTextBox.Visible = true;
-            }
-            if (TabControl1.SelectedIndex == 1)
-            {
-                ChangeLogLabel.Visible = true;
-                ChangeLogTextBox.Visible = true;
-                NewsTextBox.Visible = false;
-            }
         }
 
         private void HidePreReleaseCheckBox_CheckStateChanged(object sender, EventArgs e)
         {
             UpdateReleaseList();
+        }
+
+        private void InstallUninsallButton_Click(object sender, EventArgs e)
+        {
+            if (modReadyToInstall)
+            {
+                modInstalling = true;
+                TabControl1.SelectedIndex = 2;
+
+                GameVersion.Enabled = false;
+                ModVersions.Enabled = false;
+                SelectButton.Enabled = false;
+                NextButton.Enabled = false;
+                InstallUninsallButton.Enabled = false;
+                HidePreReleaseCheckBox.Enabled = false;
+
+                GithubManager.AvalibleRelease releae = lastSelectetAvalibleReleases[ModVersions.SelectedIndex];
+                TotalProggressBar.Maximum = releae.m_Dependencies.Count + 2;
+                Downloader.Start(releae, GamePath.Text);
+            }
+        }
+        public void UpdateTotalProgressBar(int value)
+        {
+            TotalProggressBar.Value = value;
+        }
+        public void UpdateCurrentFileProgressBar(int value)
+        {
+            CurrentFileProgessBar.Value = value;
         }
     }
 }
