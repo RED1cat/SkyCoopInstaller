@@ -18,7 +18,10 @@ namespace SkyCoopInstaller
         {
             selectedToDownload = release;
 
-            
+            if(MelonChecker.CheckInstalledMelonVersion(gamePath, melonVersion))
+            {
+
+            }
         }
         private static void DownloadFromUrl(string url, string path, string name,  bool isZip) 
         {

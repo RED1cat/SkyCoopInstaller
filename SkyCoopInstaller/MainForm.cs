@@ -166,7 +166,7 @@ namespace SkyCoopInstaller
 
                 GithubManager.AvalibleRelease releae = lastSelectetAvalibleReleases[ModVersions.SelectedIndex];
                 TotalProggressBar.Maximum = releae.m_Dependencies.Count + 2;
-                Downloader.Start(releae, GamePath.Text);
+                Downloader.Start(releae, GamePath.Text, releae.m_RequiredMelon);
             }
         }
         public void UpdateTotalProgressBar(int value)

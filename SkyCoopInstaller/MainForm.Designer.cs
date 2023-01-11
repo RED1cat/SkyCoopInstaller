@@ -48,9 +48,6 @@
             this.ChangeLogTextBox = new MetroFramework.Controls.MetroTextBox();
             this.ChangeLogLabel = new MetroFramework.Controls.MetroLabel();
             this.NewsTextBox = new MetroFramework.Controls.MetroTextBox();
-            this.GameVersionLabel = new MetroFramework.Controls.MetroLabel();
-            this.ChangeLogTextBox = new MetroFramework.Controls.MetroTextBox();
-            this.HidePreReleaseCheckBox = new MetroFramework.Controls.MetroCheckBox();
             this.TotalProggressBar = new MetroFramework.Controls.MetroProgressBar();
             this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
             this.CurrentFileProgessBar = new MetroFramework.Controls.MetroProgressBar();
@@ -200,21 +197,6 @@
             this.SelectModVersionTab.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.SelectModVersionTab.VerticalScrollbarBarColor = true;
             // 
-            // HidePreReleaseCheckBox
-            // 
-            this.HidePreReleaseCheckBox.AutoSize = true;
-            this.HidePreReleaseCheckBox.Checked = true;
-            this.HidePreReleaseCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.HidePreReleaseCheckBox.FontSize = MetroFramework.MetroLinkSize.Medium;
-            this.HidePreReleaseCheckBox.Location = new System.Drawing.Point(224, 80);
-            this.HidePreReleaseCheckBox.Name = "HidePreReleaseCheckBox";
-            this.HidePreReleaseCheckBox.Size = new System.Drawing.Size(128, 19);
-            this.HidePreReleaseCheckBox.Style = MetroFramework.MetroColorStyle.Purple;
-            this.HidePreReleaseCheckBox.TabIndex = 7;
-            this.HidePreReleaseCheckBox.Text = "Hide Pre-Release";
-            this.HidePreReleaseCheckBox.Theme = MetroFramework.MetroThemeStyle.Dark;
-            this.HidePreReleaseCheckBox.UseVisualStyleBackColor = true;
-            // 
             // InstallUninsallButton
             // 
             this.InstallUninsallButton.Enabled = false;
@@ -334,37 +316,6 @@
             this.NewsTextBox.Text = "News";
             this.NewsTextBox.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.NewsTextBox.UseStyleColors = true;
-            // 
-            // GameVersionLabel
-            // 
-            this.GameVersionLabel.AutoSize = true;
-            this.GameVersionLabel.FontSize = MetroFramework.MetroLabelSize.Tall;
-            this.GameVersionLabel.FontWeight = MetroFramework.MetroLabelWeight.Bold;
-            this.GameVersionLabel.Location = new System.Drawing.Point(25, 85);
-            this.GameVersionLabel.Name = "GameVersionLabel";
-            this.GameVersionLabel.Size = new System.Drawing.Size(141, 25);
-            this.GameVersionLabel.Style = MetroFramework.MetroColorStyle.Purple;
-            this.GameVersionLabel.TabIndex = 6;
-            this.GameVersionLabel.Text = "Game versions:";
-            this.GameVersionLabel.Theme = MetroFramework.MetroThemeStyle.Dark;
-            // 
-            // ChangeLogTextBox
-            // 
-            this.ChangeLogTextBox.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.ChangeLogTextBox.FontSize = MetroFramework.MetroTextBoxSize.Medium;
-            this.ChangeLogTextBox.FontWeight = MetroFramework.MetroTextBoxWeight.Bold;
-            this.ChangeLogTextBox.Location = new System.Drawing.Point(0, 22);
-            this.ChangeLogTextBox.Multiline = true;
-            this.ChangeLogTextBox.Name = "ChangeLogTextBox";
-            this.ChangeLogTextBox.ReadOnly = true;
-            this.ChangeLogTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.ChangeLogTextBox.Size = new System.Drawing.Size(326, 548);
-            this.ChangeLogTextBox.Style = MetroFramework.MetroColorStyle.Purple;
-            this.ChangeLogTextBox.TabIndex = 5;
-            this.ChangeLogTextBox.Text = "ChangeLog";
-            this.ChangeLogTextBox.Theme = MetroFramework.MetroThemeStyle.Dark;
-            this.ChangeLogTextBox.UseStyleColors = true;
-            this.ChangeLogTextBox.Visible = false;
             // 
             // HidePreReleaseCheckBox
             // 
