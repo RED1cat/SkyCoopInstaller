@@ -116,6 +116,7 @@ namespace SkyCoopInstaller
                         DependenceMeta DepMeta = new DependenceMeta();
                         DepMeta.m_Name = Dependence["name"].AsString;
                         DepMeta.m_DownloadURL = Dependence["url"].AsString;
+                        DepMeta.m_Path = @"\"+ Dependence["path"].AsString;
 
                         AvRelease.m_Dependencies.Add(DepMeta);
                     }
