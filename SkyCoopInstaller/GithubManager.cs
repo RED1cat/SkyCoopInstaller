@@ -28,7 +28,7 @@ namespace SkyCoopInstaller
         {
             public string m_Name = "";
             public string m_DownloadURL = "";
-            public string m_Path = @"\Mods";
+            public string m_Path = "";
         }
         public class AvalibleRelease
         {
