@@ -233,7 +233,7 @@
             this.NewsPanel.Controls.Add(this.NewsTextBox);
             this.NewsPanel.HorizontalScrollbarBarColor = false;
             this.NewsPanel.HorizontalScrollbarHighlightOnWheel = false;
-            this.NewsPanel.HorizontalScrollbarSize = 10;
+            this.NewsPanel.HorizontalScrollbarSize = 0;
             this.NewsPanel.Location = new System.Drawing.Point(613, 33);
             this.NewsPanel.Name = "NewsPanel";
             this.NewsPanel.Size = new System.Drawing.Size(326, 570);
@@ -242,7 +242,7 @@
             this.NewsPanel.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.NewsPanel.VerticalScrollbarBarColor = false;
             this.NewsPanel.VerticalScrollbarHighlightOnWheel = false;
-            this.NewsPanel.VerticalScrollbarSize = 10;
+            this.NewsPanel.VerticalScrollbarSize = 0;
             // 
             // ChangeLogLabel
             // 
