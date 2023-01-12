@@ -39,12 +39,12 @@ namespace SkyCoopInstaller
                 {
                     GamePath.Text = Directory.GetParent(ofd.FileName).FullName;
                     GameVersion.Enabled = true;
-                    FillGameVersionBox();
+                    FillGameVersionBox(GameVersionChecker.GetGameVersion(GamePath.Text));
                 }
             }
         }
 
-        private void FillGameVersionBox()
+        private void FillGameVersionBox(string _version)
         {
             List<string> gameVersions = GithubManager.GetGameVersions();
             foreach(string version in gameVersions)
@@ -165,8 +165,8 @@ namespace SkyCoopInstaller
                 GithubManager.AvalibleRelease releae = lastSelectetAvalibleReleases[ModVersions.SelectedIndex];
                 TotalProggressBar.Maximum = releae.m_Dependencies.Count + 2;
                 CurrentFileProgessBar.Maximum = 100;
-                TotalProggressBar.ProgressBarStyle = ProgressBarStyle.Continuous;
-                CurrentFileProgessBar.ProgressBarStyle = ProgressBarStyle.Continuous;
+                //TotalProggressBar.ProgressBarStyle = ProgressBarStyle.Continuous;
+                //CurrentFileProgessBar.ProgressBarStyle = ProgressBarStyle.Continuous;
                 Downloader.Start(releae, GamePath.Text, releae.m_RequiredMelon);
             }
         }

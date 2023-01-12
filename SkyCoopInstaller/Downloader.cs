@@ -89,6 +89,7 @@ namespace SkyCoopInstaller
                 {
                     Program.webClient.DownloadFileCompleted += new AsyncCompletedEventHandler(Completed);
                     Program.webClient.DownloadProgressChanged += new DownloadProgressChangedEventHandler(ProgressChanged);
+                    EventSubscribbed = true;
                 }
                 DownloadNextFileFromQueue();
             }
