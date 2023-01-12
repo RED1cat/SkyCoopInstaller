@@ -241,7 +241,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Downloader.cs" />
-    <Compile Include="GameVersionChecker.cs" />
     <Compile Include="Libs\LightJson\JsonArray.cs" />
     <Compile Include="Libs\LightJson\JsonObject.cs" />
     <Compile Include="Libs\LightJson\JsonValue.cs" />

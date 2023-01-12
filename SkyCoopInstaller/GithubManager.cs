@@ -13,12 +13,14 @@ namespace SkyCoopInstaller
         public const string MetadataURL = "https://api.github.com/repos/Filigrani/SkyCoop/releases";
         public const string FilteredURL = "https://raw.githubusercontent.com/RED1cat/SkyCoopInstaller/master/FilteredReleases.json";
         public const string NewsURL = "https://raw.githubusercontent.com/RED1cat/SkyCoopInstaller/master/News.txt";
+        public const string LatestInstllaerVersionURL = "https://raw.githubusercontent.com/RED1cat/SkyCoopInstaller/master/Version.txt";
         public static string GitJson = "";
         public static string FilteredJson = "";
         public static List<ReleaseMeta> Releaes = new List<ReleaseMeta>();
         public static List<string> GameVersions = new List<string>();
         public static Dictionary<string, List<AvalibleRelease>> AvailableReleaes = new Dictionary<string, List<AvalibleRelease>>();
         public static string News = "";
+        public static string LatestInstallerVersion = "";
 
         public class ReleaseMeta
         {
@@ -34,7 +36,6 @@ namespace SkyCoopInstaller
             public string m_DownloadURL = "";
             public string m_Path = "";
             public bool m_IsZip = false;
-            //target_commitish
         }
         public class AvalibleRelease
         {
@@ -75,6 +76,7 @@ namespace SkyCoopInstaller
                 return;
             }
             News = RequestRemoteFile(NewsURL);
+            LatestInstallerVersion = RequestRemoteFile(LatestInstllaerVersionURL);
             JsonArray JsonData = JsonValue.Parse(GitJson).AsJsonArray;
             foreach (JsonValue release in JsonData)
             {

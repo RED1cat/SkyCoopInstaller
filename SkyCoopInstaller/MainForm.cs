@@ -39,12 +39,12 @@ namespace SkyCoopInstaller
                 {
                     GamePath.Text = Directory.GetParent(ofd.FileName).FullName;
                     GameVersion.Enabled = true;
-                    FillGameVersionBox(GameVersionChecker.GetGameVersion(GamePath.Text));
+                    FillGameVersionBox();
                 }
             }
         }
 
-        private void FillGameVersionBox(string _version)
+        private void FillGameVersionBox()
         {
             List<string> gameVersions = GithubManager.GetGameVersions();
             foreach(string version in gameVersions)
