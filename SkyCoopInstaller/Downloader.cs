@@ -39,6 +39,15 @@ namespace SkyCoopInstaller
         {
             DownloadQueue.Clear();
             Program.mainForm.ClearInstallLog();
+
+            if (Directory.Exists(gamePath + @"\Plugins"))
+            {
+                if (File.Exists(gamePath + @"\Plugins\AutoUpdatingPlugin.dll"))
+                {
+                    MessageBox.Show("Sky Co-Op " + release.m_ReleaseMeta.m_ReleaseName + " using specific versions of the dependency mods.\r\nAutoUpdatingPlugin will be deleted.");
+                    File.Delete(gamePath + @"\Plugins\AutoUpdatingPlugin.dll");
+                }
+            }
             Program.mainForm.AddInstallLog("Checking currently installed Melonloader...");
             if (MelonChecker.CheckInstalledMelonVersion(gamePath, melonVersion) == false)
             {

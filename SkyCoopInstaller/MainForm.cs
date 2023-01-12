@@ -24,6 +24,7 @@ namespace SkyCoopInstaller
             InitializeComponent();
             GithubManager.PrepareReleasesList();
             NewsTextBox.Text = GithubManager.GetNews();
+            TabControl1.SelectedIndex = 0;
         }
 
         private void metroButton1_Click(object sender, EventArgs e)
@@ -208,6 +209,7 @@ namespace SkyCoopInstaller
             NextButton.Enabled = true;
             InstallUninsallButton.Enabled = true;
             HidePreReleaseCheckBox.Enabled = true;
+            MessageBox.Show("Installation completed!");
         }
     }
 }
