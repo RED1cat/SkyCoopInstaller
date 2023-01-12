@@ -16,9 +16,9 @@ namespace SkyCoopInstaller
 {
     internal class Downloader
     {
-        private static List<DownloadQueueElement> DownloadQueue = new List<DownloadQueueElement>();
-        public static DownloadQueueElement CurrentlyDownloadingFile = null;
-        private static bool EventSubscribbed = false;
+        private static List<DownloadQueueElement> DownloadQueue;
+        public static DownloadQueueElement CurrentlyDownloadingFile;
+        private static bool EventSubscribbed;
         public class DownloadQueueElement
         {
             public string m_URL = "";
@@ -37,6 +37,9 @@ namespace SkyCoopInstaller
 
         public static void Start(GithubManager.AvalibleRelease release, string gamePath, string melonVersion)
         {
+            DownloadQueue = new List<DownloadQueueElement>();
+            CurrentlyDownloadingFile = null;
+            EventSubscribbed = false;
             DownloadQueue.Clear();
             Program.mainForm.ClearInstallLog();
 

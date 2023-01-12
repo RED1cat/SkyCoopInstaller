@@ -22,9 +22,14 @@ namespace SkyCoopInstaller
         public MainForm()
         {
             InitializeComponent();
+            if (DateTime.Now.Month == 12 || DateTime.Now.Month < 3)
+            {
+                SkyCoopLogo.Image = SkyCoopInstaller.Properties.Resources.InstallerBanner2;
+            }
+            CheckProgramVersion();
             GithubManager.PrepareReleasesList();
             NewsTextBox.Text = GithubManager.GetNews();
-            TabControl1.SelectedIndex = 0;
+            MainTabControl.SelectedIndex = 0;
         }
 
         private void metroButton1_Click(object sender, EventArgs e)
@@ -98,26 +103,26 @@ namespace SkyCoopInstaller
         }
         private void NextButton_Click(object sender, EventArgs e)
         {
-            TabControl1.SelectTab(1);
+            MainTabControl.SelectTab(1);
         }
 
         private void TabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (TabControl1.SelectedIndex == 0)
+            if (MainTabControl.SelectedIndex == 0)
             {
                 ChangeLogLabel.Visible = false;
                 ChangeLogTextBox.Visible = false;
                 NewsTextBox.Visible = true;
                 InstallationLogTextBox.Visible = false;
             }
-            else if (TabControl1.SelectedIndex == 1)
+            else if (MainTabControl.SelectedIndex == 1)
             {
                 ChangeLogLabel.Visible = true;
                 ChangeLogTextBox.Visible = true;
                 NewsTextBox.Visible = false;
                 InstallationLogTextBox.Visible = false;
             }
-            else if (TabControl1.SelectedIndex == 2)
+            else if (MainTabControl.SelectedIndex == 2)
             {
                 ChangeLogLabel.Visible = false;
                 ChangeLogTextBox.Visible = false;
@@ -127,18 +132,18 @@ namespace SkyCoopInstaller
 
             if (gameVersionSelected == false && modReadyToInstall == false)
             {
-                if(TabControl1.SelectedIndex == 1 || TabControl1.SelectedIndex == 2)
+                if(MainTabControl.SelectedIndex == 1 || MainTabControl.SelectedIndex == 2)
                 {
                     MessageBox.Show("Game version is not selected");
-                    TabControl1.SelectedIndex = 0;
+                    MainTabControl.SelectedIndex = 0;
                 }
             }
             if(gameVersionSelected == true && modInstalling == false) 
             {
-                if (TabControl1.SelectedIndex == 2)
+                if (MainTabControl.SelectedIndex == 2)
                 {
                     MessageBox.Show("Installation has not started");
-                    TabControl1.SelectedIndex = 1;
+                    MainTabControl.SelectedIndex = 1;
                 }
             }
         }
@@ -153,7 +158,7 @@ namespace SkyCoopInstaller
             if (modReadyToInstall)
             {
                 modInstalling = true;
-                TabControl1.SelectedIndex = 2;
+                MainTabControl.SelectedIndex = 2;
 
                 GameVersion.Enabled = false;
                 ModVersions.Enabled = false;
@@ -164,23 +169,21 @@ namespace SkyCoopInstaller
 
                 GithubManager.AvalibleRelease releae = lastSelectetAvalibleReleases[ModVersions.SelectedIndex];
                 TotalProggressBar.Maximum = releae.m_Dependencies.Count + 2;
-                CurrentFileProgessBar.Maximum = 100;
-                //TotalProggressBar.ProgressBarStyle = ProgressBarStyle.Continuous;
-                //CurrentFileProgessBar.ProgressBarStyle = ProgressBarStyle.Continuous;
+
                 Downloader.Start(releae, GamePath.Text, releae.m_RequiredMelon);
             }
         }
         public void UpdateTotalProgressBar(int value)
         {
             TotalProggressBar.Value += value;
-            metroLabel1.Text =  "Total Progress: " + TotalProggressBar.Value.ToString() + "/" + TotalProggressBar.Maximum +" Files";
+            TotalProggressLabel.Text =  "Total Progress: " + TotalProggressBar.Value.ToString() + "/" + TotalProggressBar.Maximum +" Files";
         }
         public void UpdateCurrentFileProgressBar(int value)
         {
             CurrentFileProgessBar.Value = value;
             if(Downloader.CurrentlyDownloadingFile != null)
             {
-                metroLabel2.Text = Downloader.CurrentlyDownloadingFile.m_FileName +" "+ value+"%";
+                ProggressLabel.Text = Downloader.CurrentlyDownloadingFile.m_FileName +" "+ value+"%";
             }
         }
         public void AddInstallLog(string Message)
@@ -200,8 +203,8 @@ namespace SkyCoopInstaller
 
         public void InstallFinished()
         {
-            metroLabel1.Text = "Total Progress: Done";
-            metroLabel2.Text = "Installation completed";
+            TotalProggressLabel.Text = "Total Progress: Done";
+            ProggressLabel.Text = "Installation completed";
             AddInstallLog("Installation completed!");
             GameVersion.Enabled = true;
             ModVersions.Enabled = true;
@@ -209,7 +212,16 @@ namespace SkyCoopInstaller
             NextButton.Enabled = true;
             InstallUninsallButton.Enabled = true;
             HidePreReleaseCheckBox.Enabled = true;
+            TotalProggressBar.Value = 0;
+            CurrentFileProgessBar.Value = 0;
+            TotalProggressLabel.Text = "Total Proggress:";
+            ProggressLabel.Text = "Proggress:";
+
             MessageBox.Show("Installation completed!");
+        }
+        private void CheckProgramVersion()
+        {
+
         }
     }
 }

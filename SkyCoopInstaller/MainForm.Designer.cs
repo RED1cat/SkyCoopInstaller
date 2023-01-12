@@ -31,7 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.StyleManager = new MetroFramework.Components.MetroStyleManager(this.components);
             this.SkyCoopLogo = new System.Windows.Forms.PictureBox();
-            this.TabControl1 = new MetroFramework.Controls.MetroTabControl();
+            this.MainTabControl = new MetroFramework.Controls.MetroTabControl();
             this.SelectGameTab = new MetroFramework.Controls.MetroTabPage();
             this.GameVersionLabel = new MetroFramework.Controls.MetroLabel();
             this.GamePath = new MetroFramework.Controls.MetroTextBox();
@@ -39,9 +39,9 @@
             this.NextButton = new MetroFramework.Controls.MetroButton();
             this.SelectButton = new MetroFramework.Controls.MetroButton();
             this.InstallationTab = new MetroFramework.Controls.MetroTabPage();
-            this.metroLabel2 = new MetroFramework.Controls.MetroLabel();
+            this.ProggressLabel = new MetroFramework.Controls.MetroLabel();
             this.CurrentFileProgessBar = new MetroFramework.Controls.MetroProgressBar();
-            this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
+            this.TotalProggressLabel = new MetroFramework.Controls.MetroLabel();
             this.TotalProggressBar = new MetroFramework.Controls.MetroProgressBar();
             this.SelectModVersionTab = new MetroFramework.Controls.MetroTabPage();
             this.HidePreReleaseCheckBox = new MetroFramework.Controls.MetroCheckBox();
@@ -55,7 +55,7 @@
             this.InstallationLogTextBox = new MetroFramework.Controls.MetroTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.StyleManager)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SkyCoopLogo)).BeginInit();
-            this.TabControl1.SuspendLayout();
+            this.MainTabControl.SuspendLayout();
             this.SelectGameTab.SuspendLayout();
             this.InstallationTab.SuspendLayout();
             this.SelectModVersionTab.SuspendLayout();
@@ -78,26 +78,26 @@
             this.SkyCoopLogo.TabIndex = 0;
             this.SkyCoopLogo.TabStop = false;
             // 
-            // TabControl1
+            // MainTabControl
             // 
-            this.TabControl1.Appearance = System.Windows.Forms.TabAppearance.Buttons;
-            this.TabControl1.Controls.Add(this.SelectGameTab);
-            this.TabControl1.Controls.Add(this.SelectModVersionTab);
-            this.TabControl1.Controls.Add(this.InstallationTab);
-            this.TabControl1.FontSize = MetroFramework.MetroTabControlSize.Tall;
-            this.TabControl1.FontWeight = MetroFramework.MetroTabControlWeight.Bold;
-            this.TabControl1.ItemSize = new System.Drawing.Size(186, 34);
-            this.TabControl1.Location = new System.Drawing.Point(20, 223);
-            this.TabControl1.Name = "TabControl1";
-            this.TabControl1.SelectedIndex = 2;
-            this.TabControl1.Size = new System.Drawing.Size(573, 343);
-            this.TabControl1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
-            this.TabControl1.Style = MetroFramework.MetroColorStyle.Purple;
-            this.TabControl1.TabIndex = 1;
-            this.TabControl1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.TabControl1.Theme = MetroFramework.MetroThemeStyle.Dark;
-            this.TabControl1.UseStyleColors = true;
-            this.TabControl1.SelectedIndexChanged += new System.EventHandler(this.TabControl1_SelectedIndexChanged);
+            this.MainTabControl.Appearance = System.Windows.Forms.TabAppearance.Buttons;
+            this.MainTabControl.Controls.Add(this.SelectGameTab);
+            this.MainTabControl.Controls.Add(this.SelectModVersionTab);
+            this.MainTabControl.Controls.Add(this.InstallationTab);
+            this.MainTabControl.FontSize = MetroFramework.MetroTabControlSize.Tall;
+            this.MainTabControl.FontWeight = MetroFramework.MetroTabControlWeight.Bold;
+            this.MainTabControl.ItemSize = new System.Drawing.Size(186, 34);
+            this.MainTabControl.Location = new System.Drawing.Point(20, 223);
+            this.MainTabControl.Name = "MainTabControl";
+            this.MainTabControl.SelectedIndex = 2;
+            this.MainTabControl.Size = new System.Drawing.Size(573, 343);
+            this.MainTabControl.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
+            this.MainTabControl.Style = MetroFramework.MetroColorStyle.Purple;
+            this.MainTabControl.TabIndex = 1;
+            this.MainTabControl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.MainTabControl.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.MainTabControl.UseStyleColors = true;
+            this.MainTabControl.SelectedIndexChanged += new System.EventHandler(this.TabControl1_SelectedIndexChanged);
             // 
             // SelectGameTab
             // 
@@ -182,8 +182,8 @@
             // InstallationTab
             // 
             this.InstallationTab.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.InstallationTab.Controls.Add(this.metroLabel2);
-            this.InstallationTab.Controls.Add(this.metroLabel1);
+            this.InstallationTab.Controls.Add(this.ProggressLabel);
+            this.InstallationTab.Controls.Add(this.TotalProggressLabel);
             this.InstallationTab.Controls.Add(this.CurrentFileProgessBar);
             this.InstallationTab.Controls.Add(this.TotalProggressBar);
             this.InstallationTab.HorizontalScrollbarBarColor = true;
@@ -196,23 +196,22 @@
             this.InstallationTab.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.InstallationTab.VerticalScrollbarBarColor = true;
             // 
-            // metroLabel2
+            // ProggressLabel
             // 
-            this.metroLabel2.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.metroLabel2.Location = new System.Drawing.Point(3, 91);
-            this.metroLabel2.Name = "metroLabel2";
-            this.metroLabel2.Size = new System.Drawing.Size(557, 25);
-            this.metroLabel2.Style = MetroFramework.MetroColorStyle.Purple;
-            this.metroLabel2.TabIndex = 5;
-            this.metroLabel2.Text = "Proggress:";
-            this.metroLabel2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.metroLabel2.Theme = MetroFramework.MetroThemeStyle.Dark;
-            this.metroLabel2.UseStyleColors = true;
+            this.ProggressLabel.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.ProggressLabel.Location = new System.Drawing.Point(3, 91);
+            this.ProggressLabel.Name = "ProggressLabel";
+            this.ProggressLabel.Size = new System.Drawing.Size(557, 25);
+            this.ProggressLabel.Style = MetroFramework.MetroColorStyle.Purple;
+            this.ProggressLabel.TabIndex = 5;
+            this.ProggressLabel.Text = "Proggress:";
+            this.ProggressLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.ProggressLabel.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.ProggressLabel.UseStyleColors = true;
             // 
             // CurrentFileProgessBar
             // 
             this.CurrentFileProgessBar.Location = new System.Drawing.Point(3, 119);
-            this.CurrentFileProgessBar.Maximum = 10;
             this.CurrentFileProgessBar.Name = "CurrentFileProgessBar";
             this.CurrentFileProgessBar.Size = new System.Drawing.Size(557, 23);
             this.CurrentFileProgessBar.Step = 1;
@@ -220,19 +219,19 @@
             this.CurrentFileProgessBar.TabIndex = 4;
             this.CurrentFileProgessBar.Theme = MetroFramework.MetroThemeStyle.Dark;
             // 
-            // metroLabel1
+            // TotalProggressLabel
             // 
-            this.metroLabel1.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.metroLabel1.Location = new System.Drawing.Point(3, 145);
-            this.metroLabel1.Name = "metroLabel1";
-            this.metroLabel1.Size = new System.Drawing.Size(557, 25);
-            this.metroLabel1.Style = MetroFramework.MetroColorStyle.Purple;
-            this.metroLabel1.TabIndex = 3;
-            this.metroLabel1.Text = "Total Proggress: 100%";
-            this.metroLabel1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.metroLabel1.Theme = MetroFramework.MetroThemeStyle.Dark;
-            this.metroLabel1.UseMnemonic = false;
-            this.metroLabel1.UseStyleColors = true;
+            this.TotalProggressLabel.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.TotalProggressLabel.Location = new System.Drawing.Point(3, 145);
+            this.TotalProggressLabel.Name = "TotalProggressLabel";
+            this.TotalProggressLabel.Size = new System.Drawing.Size(557, 25);
+            this.TotalProggressLabel.Style = MetroFramework.MetroColorStyle.Purple;
+            this.TotalProggressLabel.TabIndex = 3;
+            this.TotalProggressLabel.Text = "Total Proggress:";
+            this.TotalProggressLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.TotalProggressLabel.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.TotalProggressLabel.UseMnemonic = false;
+            this.TotalProggressLabel.UseStyleColors = true;
             // 
             // TotalProggressBar
             // 
@@ -347,7 +346,6 @@
             this.ChangeLogTextBox.Size = new System.Drawing.Size(326, 548);
             this.ChangeLogTextBox.Style = MetroFramework.MetroColorStyle.Purple;
             this.ChangeLogTextBox.TabIndex = 5;
-            this.ChangeLogTextBox.Text = "ChangeLog";
             this.ChangeLogTextBox.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.ChangeLogTextBox.UseStyleColors = true;
             this.ChangeLogTextBox.Visible = false;
@@ -360,7 +358,6 @@
             this.ChangeLogLabel.Size = new System.Drawing.Size(326, 19);
             this.ChangeLogLabel.Style = MetroFramework.MetroColorStyle.Purple;
             this.ChangeLogLabel.TabIndex = 4;
-            this.ChangeLogLabel.Text = "ChangeLog";
             this.ChangeLogLabel.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.ChangeLogLabel.Visible = false;
             // 
@@ -376,7 +373,6 @@
             this.NewsTextBox.Size = new System.Drawing.Size(326, 570);
             this.NewsTextBox.Style = MetroFramework.MetroColorStyle.Purple;
             this.NewsTextBox.TabIndex = 3;
-            this.NewsTextBox.Text = "News";
             this.NewsTextBox.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.NewsTextBox.UseStyleColors = true;
             // 
@@ -392,7 +388,6 @@
             this.InstallationLogTextBox.Style = MetroFramework.MetroColorStyle.Magenta;
             this.InstallationLogTextBox.TabIndex = 6;
             this.InstallationLogTextBox.TabStop = false;
-            this.InstallationLogTextBox.Text = "metroTextBox1";
             this.InstallationLogTextBox.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.InstallationLogTextBox.UseStyleColors = true;
             this.InstallationLogTextBox.Visible = false;
@@ -403,7 +398,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(962, 630);
             this.Controls.Add(this.NewsPanel);
-            this.Controls.Add(this.TabControl1);
+            this.Controls.Add(this.MainTabControl);
             this.Controls.Add(this.SkyCoopLogo);
             this.DisplayHeader = false;
             this.MaximizeBox = false;
@@ -415,7 +410,7 @@
             this.Theme = MetroFramework.MetroThemeStyle.Dark;
             ((System.ComponentModel.ISupportInitialize)(this.StyleManager)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SkyCoopLogo)).EndInit();
-            this.TabControl1.ResumeLayout(false);
+            this.MainTabControl.ResumeLayout(false);
             this.SelectGameTab.ResumeLayout(false);
             this.SelectGameTab.PerformLayout();
             this.InstallationTab.ResumeLayout(false);
@@ -430,7 +425,7 @@
 
         private MetroFramework.Components.MetroStyleManager StyleManager;
         private System.Windows.Forms.PictureBox SkyCoopLogo;
-        private MetroFramework.Controls.MetroTabControl TabControl1;
+        private MetroFramework.Controls.MetroTabControl MainTabControl;
         private MetroFramework.Controls.MetroTabPage SelectGameTab;
         private MetroFramework.Controls.MetroTabPage SelectModVersionTab;
         private MetroFramework.Controls.MetroTabPage InstallationTab;
@@ -449,8 +444,8 @@
         private MetroFramework.Controls.MetroCheckBox HidePreReleaseCheckBox;
         private MetroFramework.Controls.MetroProgressBar TotalProggressBar;
         private MetroFramework.Controls.MetroProgressBar CurrentFileProgessBar;
-        private MetroFramework.Controls.MetroLabel metroLabel1;
-        private MetroFramework.Controls.MetroLabel metroLabel2;
+        private MetroFramework.Controls.MetroLabel TotalProggressLabel;
+        private MetroFramework.Controls.MetroLabel ProggressLabel;
         private MetroFramework.Controls.MetroTextBox InstallationLogTextBox;
     }
 }
