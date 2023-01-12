@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -35,11 +36,7 @@ namespace SkyCoopInstaller
                 ofd.DereferenceLinks = false;
                 if(ofd.ShowDialog() == DialogResult.OK)
                 {
-                    string[] Slices = ofd.FileName.Split('\\');
-                    string LastSlice = Slices[Slices.Length - 1];
-                    string RightPath = ofd.FileName.Replace(LastSlice,"");
-
-                    GamePath.Text = RightPath;
+                    GamePath.Text = Directory.GetParent(ofd.FileName).FullName;
                     GameVersion.Enabled = true;
                     FillGameVersionBox();
                 }
@@ -166,12 +163,15 @@ namespace SkyCoopInstaller
 
                 GithubManager.AvalibleRelease releae = lastSelectetAvalibleReleases[ModVersions.SelectedIndex];
                 TotalProggressBar.Maximum = releae.m_Dependencies.Count + 2;
+
+
+
                 Downloader.Start(releae, GamePath.Text, releae.m_RequiredMelon);
             }
         }
         public void UpdateTotalProgressBar(int value)
         {
-            TotalProggressBar.Value = value;
+            TotalProggressBar.Value += value;
         }
         public void UpdateCurrentFileProgressBar(int value)
         {

@@ -14,14 +14,15 @@ namespace SkyCoopInstaller
         /// </summary>
         /// 
         public static WebClient webClient;
-
+        public static MainForm mainForm;
         [STAThread]
         static void Main()
         {
             webClient = new WebClient();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainForm());
+            mainForm = new MainForm();
+            Application.Run(mainForm);
         }
     }
 }
