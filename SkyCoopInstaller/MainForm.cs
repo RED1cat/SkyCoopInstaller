@@ -134,7 +134,7 @@ namespace SkyCoopInstaller
             {
                 if(MainTabControl.SelectedIndex == 1 || MainTabControl.SelectedIndex == 2)
                 {
-                    MessageBox.Show("Game version is not selected");
+                    MessageBox.Show("Please select game version first.");
                     MainTabControl.SelectedIndex = 0;
                 }
             }
@@ -142,7 +142,7 @@ namespace SkyCoopInstaller
             {
                 if (MainTabControl.SelectedIndex == 2)
                 {
-                    MessageBox.Show("Installation has not started");
+                    MessageBox.Show("Please select mod version first.");
                     MainTabControl.SelectedIndex = 1;
                 }
             }
@@ -223,7 +223,7 @@ namespace SkyCoopInstaller
         {
             if (GithubManager.LatestInstallerVersion.Replace("\n", "") == BuildInfo.Version)
             {
-                MessageBox.Show("The program has been updated, you need to update");
+                MessageBox.Show("A newer version of the installer is available, please download the latest version.");
                 System.Diagnostics.Process.Start("https://github.com/RED1cat/SkyCoopInstaller/releases/latest");
                 this.Close();
             }
