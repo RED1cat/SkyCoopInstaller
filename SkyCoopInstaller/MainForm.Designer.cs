@@ -30,7 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             this.StyleManager = new MetroFramework.Components.MetroStyleManager(this.components);
-            this.SkyCoopLogo = new System.Windows.Forms.PictureBox();
             this.MainTabControl = new MetroFramework.Controls.MetroTabControl();
             this.SelectGameTab = new MetroFramework.Controls.MetroTabPage();
             this.GameVersionLabel = new MetroFramework.Controls.MetroLabel();
@@ -53,13 +52,22 @@
             this.ChangeLogLabel = new MetroFramework.Controls.MetroLabel();
             this.NewsTextBox = new MetroFramework.Controls.MetroTextBox();
             this.InstallationLogTextBox = new MetroFramework.Controls.MetroTextBox();
+            this.SkyCoopLogo = new System.Windows.Forms.PictureBox();
+            this.GithubIcon = new System.Windows.Forms.PictureBox();
+            this.DiscordIcon = new System.Windows.Forms.PictureBox();
+            this.Patreon = new System.Windows.Forms.PictureBox();
+            this.BoostyIcon = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.StyleManager)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.SkyCoopLogo)).BeginInit();
             this.MainTabControl.SuspendLayout();
             this.SelectGameTab.SuspendLayout();
             this.InstallationTab.SuspendLayout();
             this.SelectModVersionTab.SuspendLayout();
             this.NewsPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.SkyCoopLogo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GithubIcon)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DiscordIcon)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Patreon)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BoostyIcon)).BeginInit();
             this.SuspendLayout();
             // 
             // StyleManager
@@ -67,16 +75,6 @@
             this.StyleManager.Owner = this;
             this.StyleManager.Style = MetroFramework.MetroColorStyle.Purple;
             this.StyleManager.Theme = MetroFramework.MetroThemeStyle.Dark;
-            // 
-            // SkyCoopLogo
-            // 
-            this.SkyCoopLogo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.SkyCoopLogo.Image = global::SkyCoopInstaller.Properties.Resources.InstallerBanner1;
-            this.SkyCoopLogo.Location = new System.Drawing.Point(20, 30);
-            this.SkyCoopLogo.Name = "SkyCoopLogo";
-            this.SkyCoopLogo.Size = new System.Drawing.Size(571, 177);
-            this.SkyCoopLogo.TabIndex = 0;
-            this.SkyCoopLogo.TabStop = false;
             // 
             // MainTabControl
             // 
@@ -393,11 +391,65 @@
             this.InstallationLogTextBox.UseStyleColors = true;
             this.InstallationLogTextBox.Visible = false;
             // 
+            // SkyCoopLogo
+            // 
+            this.SkyCoopLogo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.SkyCoopLogo.Image = global::SkyCoopInstaller.Properties.Resources.InstallerBanner1;
+            this.SkyCoopLogo.Location = new System.Drawing.Point(20, 30);
+            this.SkyCoopLogo.Name = "SkyCoopLogo";
+            this.SkyCoopLogo.Size = new System.Drawing.Size(571, 177);
+            this.SkyCoopLogo.TabIndex = 0;
+            this.SkyCoopLogo.TabStop = false;
+            // 
+            // GithubIcon
+            // 
+            this.GithubIcon.Image = global::SkyCoopInstaller.Properties.Resources.Github;
+            this.GithubIcon.Location = new System.Drawing.Point(24, 568);
+            this.GithubIcon.Name = "GithubIcon";
+            this.GithubIcon.Size = new System.Drawing.Size(48, 48);
+            this.GithubIcon.TabIndex = 3;
+            this.GithubIcon.TabStop = false;
+            this.GithubIcon.Click += new System.EventHandler(this.GithubIcon_Click);
+            // 
+            // DiscordIcon
+            // 
+            this.DiscordIcon.Image = global::SkyCoopInstaller.Properties.Resources.Discord;
+            this.DiscordIcon.Location = new System.Drawing.Point(78, 568);
+            this.DiscordIcon.Name = "DiscordIcon";
+            this.DiscordIcon.Size = new System.Drawing.Size(48, 48);
+            this.DiscordIcon.TabIndex = 4;
+            this.DiscordIcon.TabStop = false;
+            this.DiscordIcon.Click += new System.EventHandler(this.DiscordIcon_Click);
+            // 
+            // Patreon
+            // 
+            this.Patreon.Image = global::SkyCoopInstaller.Properties.Resources.Patreon;
+            this.Patreon.Location = new System.Drawing.Point(132, 568);
+            this.Patreon.Name = "Patreon";
+            this.Patreon.Size = new System.Drawing.Size(48, 48);
+            this.Patreon.TabIndex = 5;
+            this.Patreon.TabStop = false;
+            this.Patreon.Click += new System.EventHandler(this.Patreon_Click);
+            // 
+            // BoostyIcon
+            // 
+            this.BoostyIcon.Image = global::SkyCoopInstaller.Properties.Resources.Boosty;
+            this.BoostyIcon.Location = new System.Drawing.Point(186, 568);
+            this.BoostyIcon.Name = "BoostyIcon";
+            this.BoostyIcon.Size = new System.Drawing.Size(48, 48);
+            this.BoostyIcon.TabIndex = 6;
+            this.BoostyIcon.TabStop = false;
+            this.BoostyIcon.Click += new System.EventHandler(this.BoostyIcon_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(962, 630);
+            this.Controls.Add(this.BoostyIcon);
+            this.Controls.Add(this.Patreon);
+            this.Controls.Add(this.DiscordIcon);
+            this.Controls.Add(this.GithubIcon);
             this.Controls.Add(this.NewsPanel);
             this.Controls.Add(this.MainTabControl);
             this.Controls.Add(this.SkyCoopLogo);
@@ -410,7 +462,6 @@
             this.Style = MetroFramework.MetroColorStyle.Purple;
             this.Theme = MetroFramework.MetroThemeStyle.Dark;
             ((System.ComponentModel.ISupportInitialize)(this.StyleManager)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.SkyCoopLogo)).EndInit();
             this.MainTabControl.ResumeLayout(false);
             this.SelectGameTab.ResumeLayout(false);
             this.SelectGameTab.PerformLayout();
@@ -418,6 +469,11 @@
             this.SelectModVersionTab.ResumeLayout(false);
             this.SelectModVersionTab.PerformLayout();
             this.NewsPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.SkyCoopLogo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GithubIcon)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DiscordIcon)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Patreon)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BoostyIcon)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -448,6 +504,10 @@
         private MetroFramework.Controls.MetroLabel TotalProggressLabel;
         private MetroFramework.Controls.MetroLabel ProggressLabel;
         private MetroFramework.Controls.MetroTextBox InstallationLogTextBox;
+        private System.Windows.Forms.PictureBox BoostyIcon;
+        private System.Windows.Forms.PictureBox Patreon;
+        private System.Windows.Forms.PictureBox DiscordIcon;
+        private System.Windows.Forms.PictureBox GithubIcon;
     }
 }
 

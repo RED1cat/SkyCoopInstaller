@@ -63,6 +63,36 @@ namespace SkyCoopInstaller.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Boosty {
+            get {
+                object obj = ResourceManager.GetObject("Boosty", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Discord {
+            get {
+                object obj = ResourceManager.GetObject("Discord", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Github {
+            get {
+                object obj = ResourceManager.GetObject("Github", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap InstallerBanner1 {
             get {
                 object obj = ResourceManager.GetObject("InstallerBanner1", resourceCulture);
@@ -76,6 +106,16 @@ namespace SkyCoopInstaller.Properties {
         internal static System.Drawing.Bitmap InstallerBanner2 {
             get {
                 object obj = ResourceManager.GetObject("InstallerBanner2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Patreon {
+            get {
+                object obj = ResourceManager.GetObject("Patreon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

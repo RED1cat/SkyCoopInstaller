@@ -50,6 +50,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>SkyCoopInstaller.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="AssetsTools.NET, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\AssetsTools.NET.3.0.0-preview1\lib\net40\AssetsTools.NET.dll</HintPath>
@@ -291,6 +294,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="MetroFramework.txt" />
+    <Content Include="SkyCoopInstaller.ico" />
+    <None Include="Resources\Patreon.png" />
+    <None Include="Resources\Github.png" />
+    <None Include="Resources\Discord.png" />
+    <None Include="Resources\Boosty.png" />
     <None Include="Resources\InstallerBanner2.png" />
     <None Include="Resources\InstallerBanner1.png" />
   </ItemGroup>

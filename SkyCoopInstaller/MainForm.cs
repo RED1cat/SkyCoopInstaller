@@ -1,12 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SkyCoopInstaller
@@ -225,8 +219,28 @@ namespace SkyCoopInstaller
             {
                 MessageBox.Show("A newer version of the installer is available, please download the latest version.");
                 System.Diagnostics.Process.Start("https://github.com/RED1cat/SkyCoopInstaller/releases/latest");
-                this.Close();
+                Environment.Exit(0);
             }
+        }
+
+        private void GithubIcon_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://github.com/Filigrani/SkyCoop");
+        }
+
+        private void DiscordIcon_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://discord.gg/ydmufU2HHj");
+        }
+
+        private void Patreon_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://www.patreon.com/Filigrani");
+        }
+
+        private void BoostyIcon_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://boosty.to/filigrani");
         }
     }
 }
