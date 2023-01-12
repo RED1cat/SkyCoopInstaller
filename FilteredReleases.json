@@ -4,8 +4,8 @@
 	"mod_versions": 
 	[
 	 {
-	    "tag_name": "v10.4",
-		"branch": "main",
+	    "tag_name": "v11.0",
+		"branch": "BeforeTFTFT",
 		"melon_version": "0.5.7",
 		"is_prerelease": false,
 		"melon_url": "https://github.com/LavaGang/MelonLoader/releases/download/v0.5.7/MelonLoader.x64.zip",
