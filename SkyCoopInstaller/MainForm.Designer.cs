@@ -199,7 +199,7 @@
             // metroLabel2
             // 
             this.metroLabel2.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.metroLabel2.Location = new System.Drawing.Point(3, 191);
+            this.metroLabel2.Location = new System.Drawing.Point(3, 91);
             this.metroLabel2.Name = "metroLabel2";
             this.metroLabel2.Size = new System.Drawing.Size(557, 25);
             this.metroLabel2.Style = MetroFramework.MetroColorStyle.Purple;
@@ -211,7 +211,7 @@
             // 
             // CurrentFileProgessBar
             // 
-            this.CurrentFileProgessBar.Location = new System.Drawing.Point(3, 219);
+            this.CurrentFileProgessBar.Location = new System.Drawing.Point(3, 119);
             this.CurrentFileProgessBar.Maximum = 10;
             this.CurrentFileProgessBar.Name = "CurrentFileProgessBar";
             this.CurrentFileProgessBar.Size = new System.Drawing.Size(557, 23);
@@ -223,7 +223,7 @@
             // metroLabel1
             // 
             this.metroLabel1.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.metroLabel1.Location = new System.Drawing.Point(3, 245);
+            this.metroLabel1.Location = new System.Drawing.Point(3, 145);
             this.metroLabel1.Name = "metroLabel1";
             this.metroLabel1.Size = new System.Drawing.Size(557, 25);
             this.metroLabel1.Style = MetroFramework.MetroColorStyle.Purple;
@@ -236,7 +236,7 @@
             // 
             // TotalProggressBar
             // 
-            this.TotalProggressBar.Location = new System.Drawing.Point(3, 273);
+            this.TotalProggressBar.Location = new System.Drawing.Point(3, 173);
             this.TotalProggressBar.Maximum = 10;
             this.TotalProggressBar.Name = "TotalProggressBar";
             this.TotalProggressBar.Size = new System.Drawing.Size(557, 23);
