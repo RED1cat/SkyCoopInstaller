@@ -40,8 +40,8 @@
             this.SelectButton = new MetroFramework.Controls.MetroButton();
             this.InstallationTab = new MetroFramework.Controls.MetroTabPage();
             this.ProggressLabel = new MetroFramework.Controls.MetroLabel();
-            this.CurrentFileProgessBar = new MetroFramework.Controls.MetroProgressBar();
             this.TotalProggressLabel = new MetroFramework.Controls.MetroLabel();
+            this.CurrentFileProgessBar = new MetroFramework.Controls.MetroProgressBar();
             this.TotalProggressBar = new MetroFramework.Controls.MetroProgressBar();
             this.SelectModVersionTab = new MetroFramework.Controls.MetroTabPage();
             this.HidePreReleaseCheckBox = new MetroFramework.Controls.MetroCheckBox();
@@ -89,7 +89,7 @@
             this.MainTabControl.ItemSize = new System.Drawing.Size(186, 34);
             this.MainTabControl.Location = new System.Drawing.Point(20, 223);
             this.MainTabControl.Name = "MainTabControl";
-            this.MainTabControl.SelectedIndex = 2;
+            this.MainTabControl.SelectedIndex = 0;
             this.MainTabControl.Size = new System.Drawing.Size(573, 343);
             this.MainTabControl.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.MainTabControl.Style = MetroFramework.MetroColorStyle.Purple;
@@ -209,16 +209,6 @@
             this.ProggressLabel.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.ProggressLabel.UseStyleColors = true;
             // 
-            // CurrentFileProgessBar
-            // 
-            this.CurrentFileProgessBar.Location = new System.Drawing.Point(3, 119);
-            this.CurrentFileProgessBar.Name = "CurrentFileProgessBar";
-            this.CurrentFileProgessBar.Size = new System.Drawing.Size(557, 23);
-            this.CurrentFileProgessBar.Step = 1;
-            this.CurrentFileProgessBar.Style = MetroFramework.MetroColorStyle.Magenta;
-            this.CurrentFileProgessBar.TabIndex = 4;
-            this.CurrentFileProgessBar.Theme = MetroFramework.MetroThemeStyle.Dark;
-            // 
             // TotalProggressLabel
             // 
             this.TotalProggressLabel.FontWeight = MetroFramework.MetroLabelWeight.Regular;
@@ -232,6 +222,16 @@
             this.TotalProggressLabel.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.TotalProggressLabel.UseMnemonic = false;
             this.TotalProggressLabel.UseStyleColors = true;
+            // 
+            // CurrentFileProgessBar
+            // 
+            this.CurrentFileProgessBar.Location = new System.Drawing.Point(3, 119);
+            this.CurrentFileProgessBar.Name = "CurrentFileProgessBar";
+            this.CurrentFileProgessBar.Size = new System.Drawing.Size(557, 23);
+            this.CurrentFileProgessBar.Step = 1;
+            this.CurrentFileProgessBar.Style = MetroFramework.MetroColorStyle.Magenta;
+            this.CurrentFileProgessBar.TabIndex = 4;
+            this.CurrentFileProgessBar.Theme = MetroFramework.MetroThemeStyle.Dark;
             // 
             // TotalProggressBar
             // 
@@ -343,6 +343,7 @@
             this.ChangeLogTextBox.Multiline = true;
             this.ChangeLogTextBox.Name = "ChangeLogTextBox";
             this.ChangeLogTextBox.ReadOnly = true;
+            this.ChangeLogTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.ChangeLogTextBox.Size = new System.Drawing.Size(326, 548);
             this.ChangeLogTextBox.Style = MetroFramework.MetroColorStyle.Purple;
             this.ChangeLogTextBox.TabIndex = 5;
