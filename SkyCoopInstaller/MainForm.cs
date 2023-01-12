@@ -221,7 +221,7 @@ namespace SkyCoopInstaller
         }
         private void CheckProgramVersion()
         {
-            if (GithubManager.LatestInstallerVersion.Replace("\n", "") == BuildInfo.Version)
+            if (GithubManager.LatestInstallerVersion.Replace("\n", "") != BuildInfo.Version)
             {
                 MessageBox.Show("The program has been updated, you need to update");
                 System.Diagnostics.Process.Start("https://github.com/RED1cat/SkyCoopInstaller/releases/latest");
