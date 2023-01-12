@@ -163,19 +163,51 @@ namespace SkyCoopInstaller
 
                 GithubManager.AvalibleRelease releae = lastSelectetAvalibleReleases[ModVersions.SelectedIndex];
                 TotalProggressBar.Maximum = releae.m_Dependencies.Count + 2;
-
-
-
+                CurrentFileProgessBar.Maximum = 100;
+                TotalProggressBar.ProgressBarStyle = ProgressBarStyle.Continuous;
+                CurrentFileProgessBar.ProgressBarStyle = ProgressBarStyle.Continuous;
                 Downloader.Start(releae, GamePath.Text, releae.m_RequiredMelon);
             }
         }
         public void UpdateTotalProgressBar(int value)
         {
             TotalProggressBar.Value += value;
+            metroLabel1.Text =  "Total Progress: " + value + "/" + TotalProggressBar.Maximum +" Files";
         }
         public void UpdateCurrentFileProgressBar(int value)
         {
             CurrentFileProgessBar.Value = value;
+            if(Downloader.CurrentlyDownloadingFile != null)
+            {
+                metroLabel2.Text = Downloader.CurrentlyDownloadingFile.m_FileName +" "+ value+"%";
+            }
+        }
+        public void AddInstallLog(string Message)
+        {
+            if (string.IsNullOrEmpty(InstallationLogTextBox.Text))
+            {
+                InstallationLogTextBox.Text = Message;
+            } else
+            {
+                InstallationLogTextBox.Text += "\r\n"+Message;
+            }
+        }
+        public void ClearInstallLog()
+        {
+            InstallationLogTextBox.Text = string.Empty;
+        }
+
+        public void InstallFinished()
+        {
+            metroLabel1.Text = "Total Progress: Done";
+            metroLabel2.Text = "Installation completed";
+            AddInstallLog("Installation completed!");
+            GameVersion.Enabled = true;
+            ModVersions.Enabled = true;
+            SelectButton.Enabled = true;
+            NextButton.Enabled = true;
+            InstallUninsallButton.Enabled = true;
+            HidePreReleaseCheckBox.Enabled = true;
         }
     }
 }

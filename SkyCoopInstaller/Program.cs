@@ -9,10 +9,6 @@ namespace SkyCoopInstaller
 {
     internal static class Program
     {
-        /// <summary>
-        /// Главная точка входа для приложения.
-        /// </summary>
-        /// 
         public static WebClient webClient;
         public static MainForm mainForm;
         [STAThread]

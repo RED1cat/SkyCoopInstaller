@@ -26,6 +26,7 @@ namespace SkyCoopInstaller
             public string m_Tag = "";
             public string m_DownloadURL = "";
             public string m_ChangeLog = "";
+            public string m_TargetBranch = "";
         }
         public class DependenceMeta
         {
@@ -33,6 +34,7 @@ namespace SkyCoopInstaller
             public string m_DownloadURL = "";
             public string m_Path = "";
             public bool m_IsZip = false;
+            //target_commitish
         }
         public class AvalibleRelease
         {
@@ -41,6 +43,7 @@ namespace SkyCoopInstaller
             public bool m_IsPreRelease = false;
             public string m_RequiredMelon = "";
             public string m_MelonURL = "";
+            public string m_FromBranch = "";
         }
 
         public static string RequestRemoteFile(string URL)
@@ -85,6 +88,7 @@ namespace SkyCoopInstaller
                 Meta.m_Tag = release["tag_name"].AsString;
                 Meta.m_DownloadURL = assets[0]["browser_download_url"].AsString;
                 Meta.m_ChangeLog = release["body"].AsString;
+                Meta.m_TargetBranch = release["target_commitish"].AsString;
                 Releaes.Add(Meta);
             }
             JsonArray FilteredJsonData = JsonValue.Parse(FilteredJson).AsJsonArray;
@@ -99,10 +103,11 @@ namespace SkyCoopInstaller
                     AvRelease.m_IsPreRelease = modversion["is_prerelease"].AsBoolean;
                     AvRelease.m_RequiredMelon = modversion["melon_version"].AsString;
                     AvRelease.m_MelonURL = modversion["melon_url"].AsString;
+                    AvRelease.m_FromBranch = modversion["branch"].AsString;
 
                     foreach (ReleaseMeta Meta in Releaes)
                     {
-                        if(Meta.m_Tag == modversion["tag_name"].AsString)
+                        if(Meta.m_Tag == modversion["tag_name"].AsString && Meta.m_TargetBranch == modversion["branch"].AsString)
                         {
                             AvRelease.m_ReleaseMeta = Meta;
                             break;
