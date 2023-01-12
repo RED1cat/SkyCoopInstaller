@@ -173,7 +173,7 @@ namespace SkyCoopInstaller
         public void UpdateTotalProgressBar(int value)
         {
             TotalProggressBar.Value += value;
-            metroLabel1.Text =  "Total Progress: " + value + "/" + TotalProggressBar.Maximum +" Files";
+            metroLabel1.Text =  "Total Progress: " + TotalProggressBar.Value.ToString() + "/" + TotalProggressBar.Maximum +" Files";
         }
         public void UpdateCurrentFileProgressBar(int value)
         {

@@ -38,28 +38,27 @@
             this.GameVersion = new MetroFramework.Controls.MetroComboBox();
             this.NextButton = new MetroFramework.Controls.MetroButton();
             this.SelectButton = new MetroFramework.Controls.MetroButton();
+            this.InstallationTab = new MetroFramework.Controls.MetroTabPage();
+            this.metroLabel2 = new MetroFramework.Controls.MetroLabel();
+            this.CurrentFileProgessBar = new MetroFramework.Controls.MetroProgressBar();
+            this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
+            this.TotalProggressBar = new MetroFramework.Controls.MetroProgressBar();
             this.SelectModVersionTab = new MetroFramework.Controls.MetroTabPage();
             this.HidePreReleaseCheckBox = new MetroFramework.Controls.MetroCheckBox();
             this.InstallUninsallButton = new MetroFramework.Controls.MetroButton();
             this.ModVersions = new MetroFramework.Controls.MetroComboBox();
             this.AvalibleModVersion = new MetroFramework.Controls.MetroLabel();
-            this.InstallationTab = new MetroFramework.Controls.MetroTabPage();
             this.NewsPanel = new MetroFramework.Controls.MetroPanel();
             this.ChangeLogTextBox = new MetroFramework.Controls.MetroTextBox();
             this.ChangeLogLabel = new MetroFramework.Controls.MetroLabel();
             this.NewsTextBox = new MetroFramework.Controls.MetroTextBox();
-            this.TotalProggressBar = new MetroFramework.Controls.MetroProgressBar();
-            this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
-            this.CurrentFileProgessBar = new MetroFramework.Controls.MetroProgressBar();
-            this.metroLabel2 = new MetroFramework.Controls.MetroLabel();
-            this.metroProgressSpinner1 = new MetroFramework.Controls.MetroProgressSpinner();
             this.InstallationLogTextBox = new MetroFramework.Controls.MetroTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.StyleManager)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SkyCoopLogo)).BeginInit();
             this.TabControl1.SuspendLayout();
             this.SelectGameTab.SuspendLayout();
-            this.SelectModVersionTab.SuspendLayout();
             this.InstallationTab.SuspendLayout();
+            this.SelectModVersionTab.SuspendLayout();
             this.NewsPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -180,6 +179,72 @@
             this.SelectButton.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.SelectButton.Click += new System.EventHandler(this.metroButton1_Click);
             // 
+            // InstallationTab
+            // 
+            this.InstallationTab.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.InstallationTab.Controls.Add(this.metroLabel2);
+            this.InstallationTab.Controls.Add(this.metroLabel1);
+            this.InstallationTab.Controls.Add(this.CurrentFileProgessBar);
+            this.InstallationTab.Controls.Add(this.TotalProggressBar);
+            this.InstallationTab.HorizontalScrollbarBarColor = true;
+            this.InstallationTab.Location = new System.Drawing.Point(4, 38);
+            this.InstallationTab.Name = "InstallationTab";
+            this.InstallationTab.Size = new System.Drawing.Size(565, 301);
+            this.InstallationTab.Style = MetroFramework.MetroColorStyle.Purple;
+            this.InstallationTab.TabIndex = 2;
+            this.InstallationTab.Text = "Installation";
+            this.InstallationTab.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.InstallationTab.VerticalScrollbarBarColor = true;
+            // 
+            // metroLabel2
+            // 
+            this.metroLabel2.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel2.Location = new System.Drawing.Point(3, 91);
+            this.metroLabel2.Name = "metroLabel2";
+            this.metroLabel2.Size = new System.Drawing.Size(557, 25);
+            this.metroLabel2.Style = MetroFramework.MetroColorStyle.Purple;
+            this.metroLabel2.TabIndex = 5;
+            this.metroLabel2.Text = "Proggress:";
+            this.metroLabel2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.metroLabel2.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.metroLabel2.UseStyleColors = true;
+            // 
+            // CurrentFileProgessBar
+            // 
+            this.CurrentFileProgessBar.Location = new System.Drawing.Point(3, 119);
+            this.CurrentFileProgessBar.Maximum = 10;
+            this.CurrentFileProgessBar.Name = "CurrentFileProgessBar";
+            this.CurrentFileProgessBar.Size = new System.Drawing.Size(557, 23);
+            this.CurrentFileProgessBar.Step = 1;
+            this.CurrentFileProgessBar.Style = MetroFramework.MetroColorStyle.Magenta;
+            this.CurrentFileProgessBar.TabIndex = 4;
+            this.CurrentFileProgessBar.Theme = MetroFramework.MetroThemeStyle.Dark;
+            // 
+            // metroLabel1
+            // 
+            this.metroLabel1.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel1.Location = new System.Drawing.Point(3, 145);
+            this.metroLabel1.Name = "metroLabel1";
+            this.metroLabel1.Size = new System.Drawing.Size(557, 25);
+            this.metroLabel1.Style = MetroFramework.MetroColorStyle.Purple;
+            this.metroLabel1.TabIndex = 3;
+            this.metroLabel1.Text = "Total Proggress: 100%";
+            this.metroLabel1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.metroLabel1.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.metroLabel1.UseMnemonic = false;
+            this.metroLabel1.UseStyleColors = true;
+            // 
+            // TotalProggressBar
+            // 
+            this.TotalProggressBar.Location = new System.Drawing.Point(3, 173);
+            this.TotalProggressBar.Maximum = 10;
+            this.TotalProggressBar.Name = "TotalProggressBar";
+            this.TotalProggressBar.Size = new System.Drawing.Size(557, 23);
+            this.TotalProggressBar.Step = 1;
+            this.TotalProggressBar.Style = MetroFramework.MetroColorStyle.Magenta;
+            this.TotalProggressBar.TabIndex = 2;
+            this.TotalProggressBar.Theme = MetroFramework.MetroThemeStyle.Dark;
+            // 
             // SelectModVersionTab
             // 
             this.SelectModVersionTab.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -196,6 +261,22 @@
             this.SelectModVersionTab.Text = "Select Mod Version";
             this.SelectModVersionTab.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.SelectModVersionTab.VerticalScrollbarBarColor = true;
+            // 
+            // HidePreReleaseCheckBox
+            // 
+            this.HidePreReleaseCheckBox.AutoSize = true;
+            this.HidePreReleaseCheckBox.Checked = true;
+            this.HidePreReleaseCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.HidePreReleaseCheckBox.FontSize = MetroFramework.MetroLinkSize.Medium;
+            this.HidePreReleaseCheckBox.Location = new System.Drawing.Point(224, 80);
+            this.HidePreReleaseCheckBox.Name = "HidePreReleaseCheckBox";
+            this.HidePreReleaseCheckBox.Size = new System.Drawing.Size(128, 19);
+            this.HidePreReleaseCheckBox.Style = MetroFramework.MetroColorStyle.Purple;
+            this.HidePreReleaseCheckBox.TabIndex = 7;
+            this.HidePreReleaseCheckBox.Text = "Hide Pre-Release";
+            this.HidePreReleaseCheckBox.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.HidePreReleaseCheckBox.UseVisualStyleBackColor = true;
+            this.HidePreReleaseCheckBox.CheckStateChanged += new System.EventHandler(this.HidePreReleaseCheckBox_CheckStateChanged);
             // 
             // InstallUninsallButton
             // 
@@ -234,24 +315,6 @@
             this.AvalibleModVersion.TabIndex = 2;
             this.AvalibleModVersion.Text = "Available mod versions:";
             this.AvalibleModVersion.Theme = MetroFramework.MetroThemeStyle.Dark;
-            // 
-            // InstallationTab
-            // 
-            this.InstallationTab.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.InstallationTab.Controls.Add(this.metroProgressSpinner1);
-            this.InstallationTab.Controls.Add(this.metroLabel2);
-            this.InstallationTab.Controls.Add(this.CurrentFileProgessBar);
-            this.InstallationTab.Controls.Add(this.metroLabel1);
-            this.InstallationTab.Controls.Add(this.TotalProggressBar);
-            this.InstallationTab.HorizontalScrollbarBarColor = true;
-            this.InstallationTab.Location = new System.Drawing.Point(4, 38);
-            this.InstallationTab.Name = "InstallationTab";
-            this.InstallationTab.Size = new System.Drawing.Size(565, 301);
-            this.InstallationTab.Style = MetroFramework.MetroColorStyle.Purple;
-            this.InstallationTab.TabIndex = 2;
-            this.InstallationTab.Text = "Installation";
-            this.InstallationTab.Theme = MetroFramework.MetroThemeStyle.Dark;
-            this.InstallationTab.VerticalScrollbarBarColor = true;
             // 
             // NewsPanel
             // 
@@ -317,82 +380,6 @@
             this.NewsTextBox.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.NewsTextBox.UseStyleColors = true;
             // 
-            // HidePreReleaseCheckBox
-            // 
-            this.HidePreReleaseCheckBox.AutoSize = true;
-            this.HidePreReleaseCheckBox.Checked = true;
-            this.HidePreReleaseCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.HidePreReleaseCheckBox.FontSize = MetroFramework.MetroLinkSize.Medium;
-            this.HidePreReleaseCheckBox.Location = new System.Drawing.Point(224, 80);
-            this.HidePreReleaseCheckBox.Name = "HidePreReleaseCheckBox";
-            this.HidePreReleaseCheckBox.Size = new System.Drawing.Size(128, 19);
-            this.HidePreReleaseCheckBox.Style = MetroFramework.MetroColorStyle.Purple;
-            this.HidePreReleaseCheckBox.TabIndex = 7;
-            this.HidePreReleaseCheckBox.Text = "Hide Pre-Release";
-            this.HidePreReleaseCheckBox.Theme = MetroFramework.MetroThemeStyle.Dark;
-            this.HidePreReleaseCheckBox.UseVisualStyleBackColor = true;
-            this.HidePreReleaseCheckBox.CheckStateChanged += new System.EventHandler(this.HidePreReleaseCheckBox_CheckStateChanged);
-            // 
-            // TotalProggressBar
-            // 
-            this.TotalProggressBar.Location = new System.Drawing.Point(3, 273);
-            this.TotalProggressBar.Maximum = 10;
-            this.TotalProggressBar.Name = "TotalProggressBar";
-            this.TotalProggressBar.ProgressBarStyle = System.Windows.Forms.ProgressBarStyle.Marquee;
-            this.TotalProggressBar.Size = new System.Drawing.Size(557, 23);
-            this.TotalProggressBar.Step = 1;
-            this.TotalProggressBar.Style = MetroFramework.MetroColorStyle.Magenta;
-            this.TotalProggressBar.TabIndex = 2;
-            this.TotalProggressBar.Theme = MetroFramework.MetroThemeStyle.Dark;
-            // 
-            // metroLabel1
-            // 
-            this.metroLabel1.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.metroLabel1.Location = new System.Drawing.Point(3, 245);
-            this.metroLabel1.Name = "metroLabel1";
-            this.metroLabel1.Size = new System.Drawing.Size(557, 25);
-            this.metroLabel1.Style = MetroFramework.MetroColorStyle.Purple;
-            this.metroLabel1.TabIndex = 3;
-            this.metroLabel1.Text = "Total Proggress: 100%";
-            this.metroLabel1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.metroLabel1.Theme = MetroFramework.MetroThemeStyle.Dark;
-            this.metroLabel1.UseStyleColors = true;
-            // 
-            // CurrentFileProgessBar
-            // 
-            this.CurrentFileProgessBar.Location = new System.Drawing.Point(3, 219);
-            this.CurrentFileProgessBar.Maximum = 10;
-            this.CurrentFileProgessBar.Name = "CurrentFileProgessBar";
-            this.CurrentFileProgessBar.ProgressBarStyle = System.Windows.Forms.ProgressBarStyle.Marquee;
-            this.CurrentFileProgessBar.Size = new System.Drawing.Size(557, 23);
-            this.CurrentFileProgessBar.Step = 1;
-            this.CurrentFileProgessBar.Style = MetroFramework.MetroColorStyle.Magenta;
-            this.CurrentFileProgessBar.TabIndex = 4;
-            this.CurrentFileProgessBar.Theme = MetroFramework.MetroThemeStyle.Dark;
-            // 
-            // metroLabel2
-            // 
-            this.metroLabel2.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.metroLabel2.Location = new System.Drawing.Point(3, 191);
-            this.metroLabel2.Name = "metroLabel2";
-            this.metroLabel2.Size = new System.Drawing.Size(557, 25);
-            this.metroLabel2.Style = MetroFramework.MetroColorStyle.Purple;
-            this.metroLabel2.TabIndex = 5;
-            this.metroLabel2.Text = "Proggress:";
-            this.metroLabel2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.metroLabel2.Theme = MetroFramework.MetroThemeStyle.Dark;
-            this.metroLabel2.UseStyleColors = true;
-            // 
-            // metroProgressSpinner1
-            // 
-            this.metroProgressSpinner1.Location = new System.Drawing.Point(3, 3);
-            this.metroProgressSpinner1.Maximum = 100;
-            this.metroProgressSpinner1.Name = "metroProgressSpinner1";
-            this.metroProgressSpinner1.Size = new System.Drawing.Size(557, 185);
-            this.metroProgressSpinner1.Speed = 10F;
-            this.metroProgressSpinner1.TabIndex = 6;
-            this.metroProgressSpinner1.Value = 50;
-            // 
             // InstallationLogTextBox
             // 
             this.InstallationLogTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -404,6 +391,7 @@
             this.InstallationLogTextBox.Size = new System.Drawing.Size(326, 570);
             this.InstallationLogTextBox.Style = MetroFramework.MetroColorStyle.Magenta;
             this.InstallationLogTextBox.TabIndex = 6;
+            this.InstallationLogTextBox.TabStop = false;
             this.InstallationLogTextBox.Text = "metroTextBox1";
             this.InstallationLogTextBox.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.InstallationLogTextBox.UseStyleColors = true;
@@ -430,9 +418,9 @@
             this.TabControl1.ResumeLayout(false);
             this.SelectGameTab.ResumeLayout(false);
             this.SelectGameTab.PerformLayout();
+            this.InstallationTab.ResumeLayout(false);
             this.SelectModVersionTab.ResumeLayout(false);
             this.SelectModVersionTab.PerformLayout();
-            this.InstallationTab.ResumeLayout(false);
             this.NewsPanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -462,7 +450,6 @@
         private MetroFramework.Controls.MetroProgressBar TotalProggressBar;
         private MetroFramework.Controls.MetroProgressBar CurrentFileProgessBar;
         private MetroFramework.Controls.MetroLabel metroLabel1;
-        private MetroFramework.Controls.MetroProgressSpinner metroProgressSpinner1;
         private MetroFramework.Controls.MetroLabel metroLabel2;
         private MetroFramework.Controls.MetroTextBox InstallationLogTextBox;
     }
