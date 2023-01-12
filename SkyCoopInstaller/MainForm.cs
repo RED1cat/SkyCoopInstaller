@@ -26,9 +26,9 @@ namespace SkyCoopInstaller
             {
                 SkyCoopLogo.Image = SkyCoopInstaller.Properties.Resources.InstallerBanner2;
             }
-            CheckProgramVersion();
             GithubManager.PrepareReleasesList();
             NewsTextBox.Text = GithubManager.GetNews();
+            CheckProgramVersion();
             MainTabControl.SelectedIndex = 0;
         }
 
@@ -221,7 +221,12 @@ namespace SkyCoopInstaller
         }
         private void CheckProgramVersion()
         {
-
+            if (GithubManager.LatestInstallerVersion.Replace("\n", "") == BuildInfo.Version)
+            {
+                MessageBox.Show("The program has been updated, you need to update");
+                System.Diagnostics.Process.Start("https://github.com/RED1cat/SkyCoopInstaller/releases/latest");
+                this.Close();
+            }
         }
     }
 }
