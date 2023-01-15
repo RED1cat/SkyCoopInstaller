@@ -3,6 +3,6 @@
 This brand new installer will help you to install right version of melonloader and correct builds of all dependencies for release of Sky Co-op Mod you are selected.
 
 
-Sky Co-Op 11.0 is already out!
+Sky Co-Op 11.1 is already out!
 
 Enjoy frash new mod release for game version 2.01-2.02 when we busy with porting mod to 2.06 version of the game!
