@@ -52,7 +52,19 @@
 		    "url": "https://github.com/DigitalzombieTLD/AudioCore/releases/download/1.0/AudioCore_PLUGIN_1.0.zip",
 		    "path": "Plugins"
 	      }
-	    ]
+	    ],
+	    "uninstall_resources":
+	    [
+	      "Mods/ExpeditionTemplates",
+		  "Mods/SkyCoop.dll",
+		  "Mods/Steamworks.NET.dll",
+		  "Mods/README.txt",
+		  "Mods/SkyCoop.modcomponent",
+		  "Mods/multiplayerstuff.unity3d",
+		  "Plugins/AudioCore.dll",
+		  "Plugins/AudioCoreData.tpk",
+		  "Plugins/_License"
+	    ]		
 	 },	
 	 {
 	    "tag_name": "v11.1",
@@ -103,7 +115,19 @@
 		    "url": "https://github.com/DigitalzombieTLD/AudioCore/releases/download/1.0/AudioCore_PLUGIN_1.0.zip",
 		    "path": "Plugins"
 	      }
-	    ]
+	    ],
+	    "uninstall_resources":
+	    [
+	      "Mods/ExpeditionTemplates",
+		  "Mods/SkyCoop.dll",
+		  "Mods/Steamworks.NET.dll",
+		  "Mods/README.txt",
+		  "Mods/SkyCoop.modcomponent",
+		  "Mods/multiplayerstuff.unity3d",
+		  "Plugins/AudioCore.dll",
+		  "Plugins/AudioCoreData.tpk",
+		  "Plugins/_License"
+	    ]	
 	 },
 	 {
 	    "tag_name": "v11.0",
@@ -154,7 +178,19 @@
 		    "url": "https://github.com/DigitalzombieTLD/AudioCore/releases/download/1.0/AudioCore_PLUGIN_1.0.zip",
 		    "path": "Plugins"
 	      }
-	    ]
+	    ],
+	    "uninstall_resources":
+	    [
+	      "Mods/ExpeditionTemplates",
+		  "Mods/SkyCoop.dll",
+		  "Mods/Steamworks.NET.dll",
+		  "Mods/README.txt",
+		  "Mods/SkyCoop.modcomponent",
+		  "Mods/multiplayerstuff.unity3d",
+		  "Plugins/AudioCore.dll",
+		  "Plugins/AudioCoreData.tpk",
+		  "Plugins/_License"
+	    ]		
 	 }		 
    ]
   }  
