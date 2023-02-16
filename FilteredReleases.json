@@ -5,6 +5,7 @@
 	[
 	 {
 	    "tag_name": "v11.2",
+		"eternal_version": "1.0.0.0",
 		"branch": "BeforeTFTFT",
 		"melon_version": "0.5.7",
 		"is_prerelease": false,
@@ -55,6 +56,7 @@
 	 },	
 	 {
 	    "tag_name": "v11.1",
+		"eternal_version": "1.0.0.0",
 		"branch": "BeforeTFTFT",
 		"melon_version": "0.5.7",
 		"is_prerelease": false,
@@ -105,6 +107,7 @@
 	 },
 	 {
 	    "tag_name": "v11.0",
+		"eternal_version": "1.0.0.0",
 		"branch": "BeforeTFTFT",
 		"melon_version": "0.5.7",
 		"is_prerelease": false,
