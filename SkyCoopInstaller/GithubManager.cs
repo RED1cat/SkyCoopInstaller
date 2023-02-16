@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.IO;
+using System.Runtime.Remoting.Lifetime;
 using MelonLoader.LightJson;
 
 namespace SkyCoopInstaller
@@ -107,6 +109,7 @@ namespace SkyCoopInstaller
                     foreach (JsonValue Uninstall in modversion["uninstall_resources"].AsJsonArray)
                     {
                         AvRelease.m_UninstallContent.Add(Uninstall.AsString);
+                        //AvRelease.m_UninstallContent.Add(Uninstall.AsString.Replace(@"/", @"\"));
                     }
                     foreach (ReleaseMeta Meta in Releaes)
                     {
