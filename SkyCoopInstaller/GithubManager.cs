@@ -40,6 +40,8 @@ namespace SkyCoopInstaller
             public string m_RequiredMelon = "";
             public string m_MelonURL = "";
             public string m_FromBranch = "";
+            public string m_EternalVersion = "";
+            public List<string> m_UninstallContent = new List<string>();
         }
 
         public static string RequestRemoteFile(string URL)
@@ -101,7 +103,11 @@ namespace SkyCoopInstaller
                     AvRelease.m_RequiredMelon = modversion["melon_version"].AsString;
                     AvRelease.m_MelonURL = modversion["melon_url"].AsString;
                     AvRelease.m_FromBranch = modversion["branch"].AsString;
-
+                    AvRelease.m_EternalVersion = modversion["eternal_version"].AsString;
+                    foreach (JsonValue Uninstall in modversion["uninstall_resources"].AsJsonArray)
+                    {
+                        AvRelease.m_UninstallContent.Add(Uninstall.AsString);
+                    }
                     foreach (ReleaseMeta Meta in Releaes)
                     {
                         if(Meta.m_Tag == modversion["tag_name"].AsString && Meta.m_TargetBranch == modversion["branch"].AsString)
@@ -153,6 +159,22 @@ namespace SkyCoopInstaller
                         }
                     }
                     return OnlyStable;
+                }
+            }
+            return null;
+        }
+
+        public static AvalibleRelease GetReleasesByEternalVersion(string game_version, string EternalVersion)
+        {
+            List<AvalibleRelease> AllReleases;
+            if (AvailableReleaes.TryGetValue(game_version, out AllReleases))
+            {
+                foreach (AvalibleRelease Release in AllReleases)
+                {
+                    if (Release.m_EternalVersion == EternalVersion)
+                    {
+                        return Release;
+                    }
                 }
             }
             return null;
