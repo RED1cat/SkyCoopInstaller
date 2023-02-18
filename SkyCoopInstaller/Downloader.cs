@@ -40,7 +40,12 @@ namespace SkyCoopInstaller
             {
                 if (File.Exists(gamePath + @"\Plugins\AutoUpdatingPlugin.dll"))
                 {
-                    MessageBox.Show("Sky Co-Op " + release.m_ReleaseMeta.m_ReleaseName + " using specific versions of the dependency mods.\r\nAutoUpdatingPlugin will be deleted.");
+                    MessageBox.Show("Sky Co-Op " + release.m_ReleaseMeta.m_ReleaseName + " using specific versions of the dependency mods.\r\nAutoUpdatingPlugin will be deleted.",
+                        "Information",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning,
+                        MessageBoxDefaultButton.Button1,
+                        MessageBoxOptions.ServiceNotification);
                     File.Delete(gamePath + @"\Plugins\AutoUpdatingPlugin.dll");
                 }
             }
@@ -74,6 +79,7 @@ namespace SkyCoopInstaller
                 DownloadQueue.Add(new DownloadQueueElement(dependenceMeta.m_DownloadURL, gamePath + dependenceMeta.m_Path, dependenceMeta.m_Name, dependenceMeta.m_IsZip));
             }
             Program.mainForm.AddInstallLog("Found " + release.m_Dependencies.Count + " dependencies needed to be installed");
+            Program.mainForm.SetMaximumValueProgressBar(release.m_Dependencies.Count + 2);
             BeginDownload();
         }
 
@@ -127,7 +133,7 @@ namespace SkyCoopInstaller
         {
             Program.webClient.Dispose();
             Program.webClient = new WebClient();
-            Program.mainForm.InstallFinished();
+            Program.mainForm.InstallFinished("Installation");
         }
 
         private static void ProgressChanged(object sender, DownloadProgressChangedEventArgs e)
@@ -139,12 +145,22 @@ namespace SkyCoopInstaller
         {
             if (e.Cancelled)
             {
-                MessageBox.Show("Downloading cancled");
+                MessageBox.Show("Downloading cancled",
+                    "Information",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information,
+                    MessageBoxDefaultButton.Button1,
+                    MessageBoxOptions.ServiceNotification);
                 return;
             }
             if (e.Error != null)
             {
-                MessageBox.Show("Downloading error");
+                MessageBox.Show("Downloading error",
+                    "Information",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error,
+                    MessageBoxDefaultButton.Button1,
+                    MessageBoxOptions.ServiceNotification);
                 return;
             }
 
