@@ -182,6 +182,17 @@ namespace SkyCoopInstaller
             }
             return null;
         }
+        public static AvalibleRelease GetLatestReleaseMeta(string game_version, bool HidePreReleases)
+        {
+            List<AvalibleRelease> AllReleases = GetReleasesForGameVersion(game_version, HidePreReleases);
+            if(AllReleases.Count > 0)
+            {
+                return AllReleases[0];
+            }
+            return null;
+        }
+
+
         public static List<string> GetGameVersions()
         {
             return GameVersions;
