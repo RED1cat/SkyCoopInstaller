@@ -39,6 +39,7 @@
             this.NextButton = new MetroFramework.Controls.MetroButton();
             this.SelectButton = new MetroFramework.Controls.MetroButton();
             this.SelectModVersionTab = new MetroFramework.Controls.MetroTabPage();
+            this.UnInstallButton = new MetroFramework.Controls.MetroButton();
             this.HidePreReleaseCheckBox = new MetroFramework.Controls.MetroCheckBox();
             this.InstallButton = new MetroFramework.Controls.MetroButton();
             this.ModVersions = new MetroFramework.Controls.MetroComboBox();
@@ -59,7 +60,6 @@
             this.Patreon = new System.Windows.Forms.PictureBox();
             this.BoostyIcon = new System.Windows.Forms.PictureBox();
             this.ProgramVersionLabel = new MetroFramework.Controls.MetroLabel();
-            this.UnInstallButton = new MetroFramework.Controls.MetroButton();
             ((System.ComponentModel.ISupportInitialize)(this.StyleManager)).BeginInit();
             this.MainTabControl.SuspendLayout();
             this.SelectGameTab.SuspendLayout();
@@ -197,6 +197,19 @@
             this.SelectModVersionTab.Text = "Select Mod Version";
             this.SelectModVersionTab.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.SelectModVersionTab.VerticalScrollbarBarColor = true;
+            // 
+            // UnInstallButton
+            // 
+            this.UnInstallButton.Enabled = false;
+            this.UnInstallButton.Location = new System.Drawing.Point(196, 162);
+            this.UnInstallButton.Name = "UnInstallButton";
+            this.UnInstallButton.Size = new System.Drawing.Size(173, 48);
+            this.UnInstallButton.Style = MetroFramework.MetroColorStyle.Purple;
+            this.UnInstallButton.TabIndex = 8;
+            this.UnInstallButton.Text = "UNINSTALL";
+            this.UnInstallButton.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.UnInstallButton.Visible = false;
+            this.UnInstallButton.Click += new System.EventHandler(this.UnInstallButton_Click);
             // 
             // HidePreReleaseCheckBox
             // 
@@ -456,19 +469,6 @@
             this.ProgramVersionLabel.Text = "Version:";
             this.ProgramVersionLabel.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.ProgramVersionLabel.UseStyleColors = true;
-            // 
-            // UnInstallButton
-            // 
-            this.UnInstallButton.Enabled = false;
-            this.UnInstallButton.Location = new System.Drawing.Point(195, 162);
-            this.UnInstallButton.Name = "UnInstallButton";
-            this.UnInstallButton.Size = new System.Drawing.Size(173, 48);
-            this.UnInstallButton.Style = MetroFramework.MetroColorStyle.Purple;
-            this.UnInstallButton.TabIndex = 8;
-            this.UnInstallButton.Text = "UNINSTALL";
-            this.UnInstallButton.Theme = MetroFramework.MetroThemeStyle.Dark;
-            this.UnInstallButton.Visible = false;
-            this.UnInstallButton.Click += new System.EventHandler(this.UnInstallButton_Click);
             // 
             // MainForm
             // 

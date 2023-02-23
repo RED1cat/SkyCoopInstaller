@@ -9,85 +9,75 @@ namespace SkyCoopInstaller
 {
     internal class Uninstaller
     {
-        private static List<UninstallerQueueElement> UninstallerQueue = new List<UninstallerQueueElement>();
-        private static int ProgressValue = 0;
-        public class UninstallerQueueElement
-        {
-            public string m_Path = "";
-            public string m_FileName = "";
-            public bool m_IsFile;
+        private static List<string> m_UninstallerQueue = new List<string>();
+        private static int m_ProgressValue = 0;
 
-            public UninstallerQueueElement(string path, string filename, bool isFile = true)
-            {
-                m_Path = path;
-                m_FileName = filename;
-                m_IsFile = isFile;
-            }
-        }
         public static void Start(GithubManager.AvalibleRelease release, string gamePath, bool fullUninstall)
         {
-            
-            if(fullUninstall == false)
+            //release.m_
+            m_ProgressValue = 0;
+            if (fullUninstall)
             {
-                foreach (GithubManager.DependenceMeta dependence in release.m_Dependencies)
-                {
-                    UninstallerQueue.Add(new UninstallerQueueElement(gamePath + dependence.m_Path, dependence.m_Name + ".dll"));
-                }
+                m_UninstallerQueue.Add($"{gamePath}\\MelonLoader");
+                m_UninstallerQueue.Add($"{gamePath}\\Mods");
+                m_UninstallerQueue.Add($"{gamePath}\\Plugins");
+                m_UninstallerQueue.Add($"{gamePath}\\version.dll");
+                m_UninstallerQueue.Add($"{gamePath}\\NOTICE.txt");
             }
             else
             {
-                if(Directory.Exists(gamePath + @"\MelonLoader"))
+                foreach (string path in release.m_UninstallContent)
                 {
-                    UninstallerQueue.Add(new UninstallerQueueElement(gamePath, "MelonLoader", false));
+                    m_UninstallerQueue.Add($"{gamePath}\\{path}");
                 }
-                if(File.Exists(gamePath + @"\version.dll"))
+                foreach(GithubManager.DependenceMeta dependence in release.m_Dependencies)
                 {
-                    UninstallerQueue.Add(new UninstallerQueueElement(gamePath, "version.dll"));
-                }
-                if(Directory.Exists(gamePath + @"\Mods"))
-                {
-                    UninstallerQueue.Add(new UninstallerQueueElement(gamePath, "Mods", false));
-                }
-                if (Directory.Exists(gamePath + @"\Plugins"))
-                {
-                    UninstallerQueue.Add(new UninstallerQueueElement(gamePath, "Plugins", false));
+                    m_UninstallerQueue.Add($"{gamePath}{dependence.m_Path}\\{dependence.m_Name}.dll");
                 }
             }
-            Program.mainForm.SetMaximumValueProgressBar(UninstallerQueue.Count);
+            Program.mainForm.SetMaximumValueProgressBar(m_UninstallerQueue.Count);
             BeginUninstall();
         }
         private static void BeginUninstall()
         {
-            foreach(UninstallerQueueElement file in UninstallerQueue)
+            foreach(string file in m_UninstallerQueue)
             {
-                if (file.m_IsFile)
+                if (Directory.Exists(file))
                 {
+                    string name = new DirectoryInfo(file).Name;
+
+                    Program.mainForm.AddInstallLog($"Trying delete file {name}");
                     try
                     {
-                        File.Delete(file.m_Path + @"\" + file.m_FileName);
+                        Directory.Delete(file, true);
                     }
                     finally
                     {
-                        ProgressValue++;
-                        Program.mainForm.AddInstallLog($"File {file.m_FileName} Delete complete");
-                        Program.mainForm.UpdateCurrentFileProgressBar(ProgressValue);
+                        m_ProgressValue++;
+                        Program.mainForm.AddInstallLog($"File {file} Delete complete");
+                        Program.mainForm.UpdateCurrentFileProgressBar(m_ProgressValue, name);
+                        Program.mainForm.UpdateTotalProgressBar(m_ProgressValue);
                     }
                 }
-                else
+                else if(File.Exists(file))
                 {
+                    string name = Path.GetFileName(file);
+
+                    Program.mainForm.AddInstallLog($"Trying delete file {name}");
                     try
                     {
-                        Directory.Delete(file.m_Path + @"\" + file.m_FileName, true);
+                        File.Delete(file);
                     }
                     finally
                     {
-                        ProgressValue++;
-                        Program.mainForm.AddInstallLog($"File {file.m_FileName} Delete complete");
-                        Program.mainForm.UpdateCurrentFileProgressBar(ProgressValue);
+                        m_ProgressValue++;
+                        Program.mainForm.AddInstallLog($"File {file} Delete complete");
+                        Program.mainForm.UpdateCurrentFileProgressBar(m_ProgressValue, name);
+                        Program.mainForm.UpdateTotalProgressBar(m_ProgressValue);
                     }
                 }
             }
-            UninstallerQueue.Clear();
+            m_UninstallerQueue.Clear();
             Program.mainForm.InstallFinished("Uninstallation");
         }
     }

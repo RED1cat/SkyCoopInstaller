@@ -9,9 +9,10 @@ namespace SkyCoopInstaller
 {
     internal class Downloader
     {
-        private static List<DownloadQueueElement> DownloadQueue;
-        public static DownloadQueueElement CurrentlyDownloadingFile;
-        private static bool EventSubscribbed;
+        private static List<DownloadQueueElement> m_DownloadQueue;
+        private static DownloadQueueElement m_CurrentlyDownloadingFile;
+        private static bool m_EventSubscribbed;
+        private static string m_Version;
         public class DownloadQueueElement
         {
             public string m_URL = "";
@@ -30,10 +31,11 @@ namespace SkyCoopInstaller
 
         public static void Start(GithubManager.AvalibleRelease release, string gamePath, string melonVersion)
         {
-            DownloadQueue = new List<DownloadQueueElement>();
-            CurrentlyDownloadingFile = null;
-            EventSubscribbed = false;
-            DownloadQueue.Clear();
+            m_Version = release.m_EternalVersion;
+            m_DownloadQueue = new List<DownloadQueueElement>();
+            m_CurrentlyDownloadingFile = null;
+            m_EventSubscribbed = false;
+            m_DownloadQueue.Clear();
             Program.mainForm.ClearInstallLog();
 
             if (Directory.Exists(gamePath + @"\Plugins"))
@@ -53,7 +55,7 @@ namespace SkyCoopInstaller
             if (MelonChecker.CheckInstalledMelonVersion(gamePath, melonVersion) == false)
             {
                 Program.mainForm.AddInstallLog("Melonloader "+ melonVersion + " going to be installed");
-                DownloadQueue.Add(new DownloadQueueElement(release.m_MelonURL, gamePath, "Melonloader", true));
+                m_DownloadQueue.Add(new DownloadQueueElement(release.m_MelonURL, gamePath, "Melonloader", true));
             }
             else
             {
@@ -72,11 +74,11 @@ namespace SkyCoopInstaller
                 Directory.CreateDirectory(gamePath + @"\Plugins");
             }
 
-            DownloadQueue.Add(new DownloadQueueElement(release.m_ReleaseMeta.m_DownloadURL, gamePath + @"\Mods", "SkyCoop", true));
+            m_DownloadQueue.Add(new DownloadQueueElement(release.m_ReleaseMeta.m_DownloadURL, gamePath + @"\Mods", "SkyCoop", true));
             Program.mainForm.AddInstallLog("Sky-Coop " + release.m_ReleaseMeta.m_ReleaseName + " from "+ release.m_FromBranch+ " branch going to be installed");
             foreach (GithubManager.DependenceMeta dependenceMeta in release.m_Dependencies)
             {
-                DownloadQueue.Add(new DownloadQueueElement(dependenceMeta.m_DownloadURL, gamePath + dependenceMeta.m_Path, dependenceMeta.m_Name, dependenceMeta.m_IsZip));
+                m_DownloadQueue.Add(new DownloadQueueElement(dependenceMeta.m_DownloadURL, gamePath + dependenceMeta.m_Path, dependenceMeta.m_Name, dependenceMeta.m_IsZip));
             }
             Program.mainForm.AddInstallLog("Found " + release.m_Dependencies.Count + " dependencies needed to be installed");
             Program.mainForm.SetMaximumValueProgressBar(release.m_Dependencies.Count + 2);
@@ -85,13 +87,13 @@ namespace SkyCoopInstaller
 
         private static void BeginDownload()
         {
-            if(DownloadQueue.Count > 0) 
+            if(m_DownloadQueue.Count > 0) 
             {
-                if (!EventSubscribbed)
+                if (!m_EventSubscribbed)
                 {
                     Program.webClient.DownloadFileCompleted += new AsyncCompletedEventHandler(Completed);
                     Program.webClient.DownloadProgressChanged += new DownloadProgressChangedEventHandler(ProgressChanged);
-                    EventSubscribbed = true;
+                    m_EventSubscribbed = true;
                 }
                 DownloadNextFileFromQueue();
             }
@@ -99,13 +101,13 @@ namespace SkyCoopInstaller
 
         private static void DownloadNextFileFromQueue()
         {
-            if(DownloadQueue.Count > 0)
+            if(m_DownloadQueue.Count > 0)
             {
-                CurrentlyDownloadingFile = DownloadQueue[0];
-                DownloadQueue.RemoveAt(0);
+                m_CurrentlyDownloadingFile = m_DownloadQueue[0];
+                m_DownloadQueue.RemoveAt(0);
             } else
             {
-                CurrentlyDownloadingFile = null;
+                m_CurrentlyDownloadingFile = null;
                 DownloadingQueueFinished();
                 return;
             }
@@ -116,29 +118,29 @@ namespace SkyCoopInstaller
             Program.webClient.Headers.Add("User-Agent", "Unity web player");
             Program.webClient.CachePolicy = new System.Net.Cache.RequestCachePolicy(System.Net.Cache.RequestCacheLevel.BypassCache);
 
-            string FileName = CurrentlyDownloadingFile.m_FileName;
+            string FileName = m_CurrentlyDownloadingFile.m_FileName;
             Program.mainForm.AddInstallLog("Downloading " + FileName + "...");
-            if (CurrentlyDownloadingFile.m_IsZip)
+            if (m_CurrentlyDownloadingFile.m_IsZip)
             {
                 FileName += ".zip";
             } else
             {
                 FileName += ".dll";
             }
-            string PathPlusName = CurrentlyDownloadingFile.m_Path + @"\" + FileName;
+            string PathPlusName = m_CurrentlyDownloadingFile.m_Path + @"\" + FileName;
             
-            Program.webClient.DownloadFileAsync(new Uri(CurrentlyDownloadingFile.m_URL), PathPlusName);
+            Program.webClient.DownloadFileAsync(new Uri(m_CurrentlyDownloadingFile.m_URL), PathPlusName);
         }
         private static void DownloadingQueueFinished()
         {
             Program.webClient.Dispose();
             Program.webClient = new WebClient();
-            Program.mainForm.InstallFinished("Installation");
+            Program.mainForm.InstallFinished("Installation", m_Version);
         }
 
         private static void ProgressChanged(object sender, DownloadProgressChangedEventArgs e)
         {
-            Program.mainForm.UpdateCurrentFileProgressBar(e.ProgressPercentage);
+            Program.mainForm.UpdateCurrentFileProgressBar(e.ProgressPercentage, Downloader.m_CurrentlyDownloadingFile.m_FileName);
         }
 
         private static void Completed(object sender, AsyncCompletedEventArgs e)
@@ -164,16 +166,16 @@ namespace SkyCoopInstaller
                 return;
             }
 
-            Program.mainForm.AddInstallLog(CurrentlyDownloadingFile.m_FileName + " downloaded!");
+            Program.mainForm.AddInstallLog(m_CurrentlyDownloadingFile.m_FileName + " downloaded!");
 
-            if (CurrentlyDownloadingFile.m_IsZip)
+            if (m_CurrentlyDownloadingFile.m_IsZip)
             {
-                Program.mainForm.AddInstallLog("Unzipping "+ CurrentlyDownloadingFile.m_FileName + "...");
-                new ICSharpCode.SharpZipLib.Zip.FastZip().ExtractZip(CurrentlyDownloadingFile.m_Path + @"\" + CurrentlyDownloadingFile.m_FileName + ".zip", CurrentlyDownloadingFile.m_Path, null);
+                Program.mainForm.AddInstallLog("Unzipping "+ m_CurrentlyDownloadingFile.m_FileName + "...");
+                new ICSharpCode.SharpZipLib.Zip.FastZip().ExtractZip(m_CurrentlyDownloadingFile.m_Path + @"\" + m_CurrentlyDownloadingFile.m_FileName + ".zip", m_CurrentlyDownloadingFile.m_Path, null);
 
-                File.Delete(CurrentlyDownloadingFile.m_Path + @"\" + CurrentlyDownloadingFile.m_FileName + ".zip");
+                File.Delete(m_CurrentlyDownloadingFile.m_Path + @"\" + m_CurrentlyDownloadingFile.m_FileName + ".zip");
                 Program.mainForm.UpdateTotalProgressBar(1);
-                Program.mainForm.AddInstallLog(CurrentlyDownloadingFile.m_FileName+ " successfully extracted!");
+                Program.mainForm.AddInstallLog(m_CurrentlyDownloadingFile.m_FileName+ " successfully extracted!");
                 DownloadNextFileFromQueue();
             } else
             {

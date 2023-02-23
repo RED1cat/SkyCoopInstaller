@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Runtime.Remoting.Lifetime;
 using System.Windows.Forms;
 
 namespace SkyCoopInstaller
@@ -9,17 +10,18 @@ namespace SkyCoopInstaller
     public partial class MainForm : MetroFramework.Forms.MetroForm
     {
         List<GithubManager.AvalibleRelease> lastSelectetAvalibleReleases;
-        bool gameVersionSelected = false;
-        bool modReadyToInstall = false;
-        bool modInstalling = false;
-        bool modAlreadyInstalled = false;
+        bool m_GameVersionSelected = false;
+        bool m_ModReadyToInstall = false;
+        bool m_ModInstalling = false;
+        bool m_ModAlreadyInstalled = false;
+        string m_CurrentInstalledVersion = string.Empty;
 
         public MainForm()
         {
             InitializeComponent();
             if (DateTime.Now.Month == 12 || DateTime.Now.Month < 3)
             {
-                SkyCoopLogo.Image = SkyCoopInstaller.Properties.Resources.InstallerBanner2;
+                SkyCoopLogo.Image = Properties.Resources.InstallerBanner2;
             }
             GithubManager.PrepareReleasesList();
             NewsTextBox.Text = GithubManager.GetNews();
@@ -40,35 +42,53 @@ namespace SkyCoopInstaller
                 {
                     string gamePath = Directory.GetParent(ofd.FileName).FullName;
                     GamePath.Text = gamePath;
-                    GameVersion.Enabled = true;
-                    FillGameVersionBox();
 
+                    GameVersion.Enabled = true;
+
+                    FillGameVersionBox();
                     CheckingGameVersion(gamePath);
+                    UpdateReleaseList();
                     CheckingForInstalledMod(gamePath);
                 }
             }
         }
         private void ChechingModVersion(string gamePath)
         {
-            FileVersionInfo file = FileVersionInfo.GetVersionInfo(gamePath + @"\Mods\SkyCoop.dll");
-            
-            //if(file.FileVersion.)
+            FileVersionInfo fileVersion = FileVersionInfo.GetVersionInfo(gamePath + @"\Mods\SkyCoop.dll");
+            GithubManager.AvalibleRelease releaes = GithubManager.GetReleasesByEternalVersion(GameVersion.SelectedItem.ToString(), fileVersion.FileVersion);
+            if(releaes != null)
+            {
+                HidePreReleaseCheckBox.Checked = releaes.m_IsPreRelease;
+                ModVersions.SelectedItem = releaes.m_ReleaseMeta.m_ReleaseName;
+                m_CurrentInstalledVersion = releaes.m_EternalVersion;
+            }
+            else
+            {
+                GithubManager.AvalibleRelease lastRelease = GithubManager.GetLatestReleaseMeta(GameVersion.SelectedItem.ToString(), true);
+                if(lastRelease != null)
+                {
+                    HidePreReleaseCheckBox.Checked = lastRelease.m_IsPreRelease;
+                    ModVersions.SelectedItem = lastRelease.m_ReleaseMeta.m_ReleaseName;
+                    m_CurrentInstalledVersion = lastRelease.m_EternalVersion;
+                }
+            }
         }
         private void CheckingForInstalledMod(string gamePath)
         {
             if(File.Exists(gamePath + @"\Mods\SkyCoop.dll") && Directory.Exists(gamePath + @"\MelonLoader"))
             {
-                modReadyToInstall = true;
-                modAlreadyInstalled = true;
+                m_ModReadyToInstall = true;
+                m_ModAlreadyInstalled = true;
                 UnInstallButton.Visible = true;
                 UnInstallButton.Enabled = true;
+                ChechingModVersion(gamePath);
             }
         }
         private void CheckingGameVersion(string gamePath)
         {
             string gameVersionFile = gamePath + @"\tld_Data\StreamingAssets\version.txt";
             bool thisVersionIsCompatible = false;
-            string version;
+            string version = " ";
             string selectedCompatibleVersion = string.Empty;
             if (File.Exists(gameVersionFile))
             {
@@ -104,7 +124,7 @@ namespace SkyCoopInstaller
             }
             if (thisVersionIsCompatible == false)
             {
-                MessageBox.Show("This game version it may not be supported, further installation becomes at your own risk",
+                MessageBox.Show($"The version of the game you have chosen ({version}), does not match with any supported builds of the game. You can select version manually, and continue on your own risk.",
                     "Information",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning,
@@ -129,9 +149,7 @@ namespace SkyCoopInstaller
             NextButton.Enabled = true;
             ModVersions.Items.Clear();
             ModVersions.Enabled = true;
-            gameVersionSelected = true;
-
-            UpdateReleaseList();
+            m_GameVersionSelected = true;
         }
         private void UpdateReleaseList()
         {
@@ -155,7 +173,7 @@ namespace SkyCoopInstaller
                 ChangeLogTextBox.Text = lastSelectetAvalibleReleases[ModVersions.SelectedIndex].m_ReleaseMeta.m_ChangeLog;
                 ChangeLogLabel.Text = lastSelectetAvalibleReleases[ModVersions.SelectedIndex].m_ReleaseMeta.m_ReleaseName;
                 InstallButton.Enabled = true;
-                modReadyToInstall = true;
+                m_ModReadyToInstall = true;
             }
         }
         private void NextButton_Click(object sender, EventArgs e)
@@ -178,7 +196,7 @@ namespace SkyCoopInstaller
                 ChangeLogTextBox.Visible = true;
                 NewsTextBox.Visible = false;
                 InstallationLogTextBox.Visible = false;
-                if(modAlreadyInstalled == true)
+                if(m_ModAlreadyInstalled == true)
                 {
                     InstallButton.Text = "UPDATE";
                     UnInstallButton.Enabled = true;
@@ -197,7 +215,7 @@ namespace SkyCoopInstaller
                 InstallationLogTextBox.Visible = true;
             }
 
-            if (gameVersionSelected == false && modReadyToInstall == false)
+            if (m_GameVersionSelected == false && m_ModReadyToInstall == false)
             {
                 if(MainTabControl.SelectedIndex == 1 || MainTabControl.SelectedIndex == 2)
                 {
@@ -209,7 +227,7 @@ namespace SkyCoopInstaller
                     MainTabControl.SelectedIndex = 0;
                 }
             }
-            if(gameVersionSelected == true && modInstalling == false) 
+            if(m_GameVersionSelected == true && m_ModInstalling == false) 
             {
                 if (MainTabControl.SelectedIndex == 2)
                 {
@@ -230,10 +248,10 @@ namespace SkyCoopInstaller
 
         private void InstallButton_Click(object sender, EventArgs e)
         {
-            if (modReadyToInstall)
+            if (m_ModReadyToInstall)
             {
                 InstallationLogTextBox.Text = "";
-                modInstalling = true;
+                m_ModInstalling = true;
                 MainTabControl.SelectedIndex = 2;
 
                 GameVersion.Enabled = false;
@@ -251,10 +269,10 @@ namespace SkyCoopInstaller
         }
         private void UnInstallButton_Click(object sender, EventArgs e)
         {
-            if (modAlreadyInstalled)
+            if (m_ModAlreadyInstalled)
             {
                 InstallationLogTextBox.Text = "";
-                modInstalling = true;
+                m_ModInstalling = true;
                 MainTabControl.SelectedIndex = 2;
 
                 GameVersion.Enabled = false;
@@ -265,11 +283,11 @@ namespace SkyCoopInstaller
                 HidePreReleaseCheckBox.Enabled = false;
                 UnInstallButton.Enabled = false;
 
-                GithubManager.AvalibleRelease release = lastSelectetAvalibleReleases[ModVersions.SelectedIndex];
+                GithubManager.AvalibleRelease release = GithubManager.GetReleasesByEternalVersion(GameVersion.SelectedItem.ToString(), m_CurrentInstalledVersion);
 
                 bool fullUninstall = false;
-                DialogResult result = MessageBox.Show("Full uninstall?",
-                    "",
+                DialogResult result = MessageBox.Show("Yes - Delete all mods, plugins and MelonLoader (Game will be fully unmodified).\nNo - Delete only Sky Co-op and everything that was required for work of it. Other mods along with MelonLoader will not be touched.",
+                    "Full uninstall?",
                     MessageBoxButtons.YesNo,
                     MessageBoxIcon.Question,
                     MessageBoxDefaultButton.Button1);
@@ -279,8 +297,7 @@ namespace SkyCoopInstaller
                 }
 
                 Uninstaller.Start(release, GamePath.Text, fullUninstall);
-                modAlreadyInstalled = false;
-
+                m_ModAlreadyInstalled = false;
             }
         }
         public void SetMaximumValueProgressBar(int value)
@@ -292,13 +309,10 @@ namespace SkyCoopInstaller
             TotalProggressBar.Value += value;
             TotalProggressLabel.Text =  "Total Progress: " + TotalProggressBar.Value.ToString() + "/" + TotalProggressBar.Maximum +" Files";
         }
-        public void UpdateCurrentFileProgressBar(int value)
+        public void UpdateCurrentFileProgressBar(int value, string text)
         {
             CurrentFileProgessBar.Value = value;
-            if(Downloader.CurrentlyDownloadingFile != null)
-            {
-                ProggressLabel.Text = Downloader.CurrentlyDownloadingFile.m_FileName +" "+ value+"%";
-            }
+            ProggressLabel.Text = $"{text} {value}%";
         }
         public void AddInstallLog(string Message)
         {
@@ -315,7 +329,7 @@ namespace SkyCoopInstaller
             InstallationLogTextBox.Text = string.Empty;
         }
 
-        public void InstallFinished(string message)
+        public void InstallFinished(string message, string version = "")
         {
             TotalProggressLabel.Text = "Total Progress: Done";
             ProggressLabel.Text = $"{message} completed";
@@ -330,7 +344,7 @@ namespace SkyCoopInstaller
             CurrentFileProgessBar.Value = 0;
             TotalProggressLabel.Text = "Total Proggress:";
             ProggressLabel.Text = "Proggress:";
-            modAlreadyInstalled = true;
+            m_ModAlreadyInstalled = true;
             UnInstallButton.Visible = true;
             UnInstallButton.Enabled = true;
 
@@ -340,6 +354,15 @@ namespace SkyCoopInstaller
                 MessageBoxIcon.Information,
                 MessageBoxDefaultButton.Button1,
                 MessageBoxOptions.ServiceNotification);
+
+            if(message == "Installation")
+            {
+                m_CurrentInstalledVersion = version;
+            }
+            else
+            {
+                m_CurrentInstalledVersion = string.Empty;
+            }
         }
         private void CheckProgramVersion()
         {
@@ -374,7 +397,5 @@ namespace SkyCoopInstaller
         {
             System.Diagnostics.Process.Start("https://boosty.to/filigrani");
         }
-
-
     }
 }
