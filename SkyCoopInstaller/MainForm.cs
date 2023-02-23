@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Runtime.Remoting.Lifetime;
 using System.Windows.Forms;
 
 namespace SkyCoopInstaller
@@ -58,7 +57,7 @@ namespace SkyCoopInstaller
             GithubManager.AvalibleRelease releaes = GithubManager.GetReleasesByEternalVersion(GameVersion.SelectedItem.ToString(), fileVersion.FileVersion);
             if(releaes != null)
             {
-                HidePreReleaseCheckBox.Checked = releaes.m_IsPreRelease;
+                HidePreReleaseCheckBox.Checked = !releaes.m_IsPreRelease;
                 ModVersions.SelectedItem = releaes.m_ReleaseMeta.m_ReleaseName;
                 m_CurrentInstalledVersion = releaes.m_EternalVersion;
             }
@@ -67,7 +66,7 @@ namespace SkyCoopInstaller
                 GithubManager.AvalibleRelease lastRelease = GithubManager.GetLatestReleaseMeta(GameVersion.SelectedItem.ToString(), true);
                 if(lastRelease != null)
                 {
-                    HidePreReleaseCheckBox.Checked = lastRelease.m_IsPreRelease;
+                    HidePreReleaseCheckBox.Checked = !lastRelease.m_IsPreRelease;
                     ModVersions.SelectedItem = lastRelease.m_ReleaseMeta.m_ReleaseName;
                     m_CurrentInstalledVersion = lastRelease.m_EternalVersion;
                 }

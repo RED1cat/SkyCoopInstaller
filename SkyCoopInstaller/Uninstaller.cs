@@ -14,7 +14,6 @@ namespace SkyCoopInstaller
 
         public static void Start(GithubManager.AvalibleRelease release, string gamePath, bool fullUninstall)
         {
-            //release.m_
             m_ProgressValue = 0;
             if (fullUninstall)
             {
