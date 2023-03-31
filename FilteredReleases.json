@@ -8,7 +8,7 @@
 		"eternal_version": "0.11.4.0",
 		"branch": "BeforeTFTFT",
 		"melon_version": "0.5.7",
-		"is_prerelease": true,
+		"is_prerelease": false,
 		"melon_url": "https://github.com/LavaGang/MelonLoader/releases/download/v0.5.7/MelonLoader.x64.zip",
 	    "dependencies":
 	    [
