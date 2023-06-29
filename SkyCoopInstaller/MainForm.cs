@@ -367,7 +367,7 @@ namespace SkyCoopInstaller
         {
             if (GithubManager.LatestInstallerVersion.Replace("\n", "") != BuildInfo.Version)
             {
-                MessageBox.Show("A newer version of the installer is available, please download the latest version.",
+                MessageBox.Show("A newer version of the installer is available, please download the latest version.\n(If you have already downloaded the latest version and you see this message, it means that the installer does not have Internet access.)",
                     "Information",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information,
