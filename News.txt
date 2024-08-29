@@ -3,6 +3,6 @@
 This brand new installer will help you to install right version of melonloader and correct builds of all dependencies for release of Sky Co-op Mod you are selected.
 
 
-Sky Co-Op 13.0 is already out!
+Sky Co-Op 13.1 is already out!
 
-Try to find new book!
+Now with First Aid Book!
