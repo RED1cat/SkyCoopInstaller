@@ -1,21 +1,26 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.IO.Compression;
 using System.Runtime.Remoting.Lifetime;
+using System.Text;
 using MelonLoader.LightJson;
+using SevenZip.Buffer;
 
 namespace SkyCoopInstaller
 {
     internal class GithubManager
     {
         public const string MetadataURL = "https://api.github.com/repos/Filigrani/SkyCoop/releases";
-        public const string FilteredURL = "https://raw.githubusercontent.com/RED1cat/SkyCoopInstaller/master/FilteredReleases.json";
-        public const string NewsURL = "https://raw.githubusercontent.com/RED1cat/SkyCoopInstaller/master/News.txt";
-        public const string LatestInstllaerVersionURL = "https://raw.githubusercontent.com/RED1cat/SkyCoopInstaller/master/Version.txt";
+        public const string FilteredURL = "https://api.github.com/repos/RED1cat/SkyCoopInstaller/contents/FilteredReleases_test.json";
+        public const string NewsURL = "https://api.github.com/repos/RED1cat/SkyCoopInstaller/contents/News.txt";
+        public const string LatestInstllaerVersionURL = "https://api.github.com/repos/RED1cat/SkyCoopInstaller/contents/Version.txt";
         public static string GitJson = "";
         public static string FilteredJson = "";
         public static List<ReleaseMeta> Releaes = new List<ReleaseMeta>();
         public static List<string> GameVersions = new List<string>();
         public static Dictionary<string, List<AvalibleRelease>> AvailableReleaes = new Dictionary<string, List<AvalibleRelease>>();
+        public static Dictionary<string, List<DependenceMeta>> Dependencies = new Dictionary<string, List<DependenceMeta>>();
         public static string News = "";
         public static string LatestInstallerVersion = "";
 
@@ -62,6 +67,29 @@ namespace SkyCoopInstaller
             }
         }
 
+        public static string DecompressString(string compressedText)
+        {
+            return Encoding.Default.GetString(Convert.FromBase64String(compressedText));
+        }
+
+        public static string RequestRemoteFileEncoded(string URL)
+        {
+            string Result = RequestRemoteFile(URL);
+            if (!string.IsNullOrEmpty(Result))
+            {
+                JsonValue JSON = JsonValue.Parse(Result);
+                string Content = JSON["content"].AsString;
+                string Encoding = JSON["encoding"].AsString;
+
+                if(Encoding == "base64")
+                {
+                    string Decoded = DecompressString(Content);
+                    return Decoded;
+                }
+            }
+            return "";
+        }
+
         public static void PrepareReleasesList() 
         {
             GitJson = RequestRemoteFile(MetadataURL);
@@ -69,13 +97,14 @@ namespace SkyCoopInstaller
             {
                 return;
             }
-            FilteredJson = RequestRemoteFile(FilteredURL);
+            FilteredJson = RequestRemoteFileEncoded(FilteredURL);
             if (string.IsNullOrEmpty(FilteredJson))
             {
                 return;
             }
-            News = RequestRemoteFile(NewsURL);
-            LatestInstallerVersion = RequestRemoteFile(LatestInstllaerVersionURL);
+            News = RequestRemoteFileEncoded(NewsURL);
+            LatestInstallerVersion = RequestRemoteFileEncoded(LatestInstllaerVersionURL);
+            LatestInstallerVersion = LatestInstallerVersion.TrimEnd('\n');
             JsonArray JsonData = JsonValue.Parse(GitJson).AsJsonArray;
             foreach (JsonValue release in JsonData)
             {
@@ -93,6 +122,38 @@ namespace SkyCoopInstaller
                 Releaes.Add(Meta);
             }
             JsonArray FilteredJsonData = JsonValue.Parse(FilteredJson).AsJsonArray;
+
+            foreach (JsonValue json in FilteredJsonData)
+            {
+                List<AvalibleRelease> ReleasesForGameVersion = new List<AvalibleRelease>();
+                foreach (JsonValue dependencies_group in json["dependencies_groups"].AsJsonArray)
+                {
+                    string GroupName = dependencies_group["name"].AsString;
+                    List<DependenceMeta> Metas = new List<DependenceMeta>();
+
+                    foreach (JsonValue Dependence in dependencies_group["dependencies"].AsJsonArray)
+                    {
+                        DependenceMeta DepMeta = new DependenceMeta();
+                        DepMeta.m_Name = Dependence["name"].AsString;
+                        DepMeta.m_DownloadURL = Dependence["url"].AsString;
+                        DepMeta.m_Path = @"\" + Dependence["path"].AsString;
+
+                        string[] Slices = DepMeta.m_DownloadURL.Split('.');
+                        if (Slices.Length > 1)
+                        {
+                            if (Slices[Slices.Length - 1].ToLower() == "zip")
+                            {
+                                DepMeta.m_IsZip = true;
+                            }
+                        }
+
+                        Metas.Add(DepMeta);
+                    }
+                    Dependencies.Add(GroupName, Metas);
+                }
+            }
+
+
             foreach (JsonValue gameversion in FilteredJsonData)
             {
                 string g_version = gameversion["game_version"].AsString;
@@ -119,23 +180,12 @@ namespace SkyCoopInstaller
                             break;
                         }
                     }
-                    foreach (JsonValue Dependence in modversion["dependencies"].AsJsonArray)
+
+                    string DependeciesGroup = modversion["dependencies_group"].AsString;
+                    List<DependenceMeta> Deps;
+                    if (Dependencies.TryGetValue(DependeciesGroup, out Deps))
                     {
-                        DependenceMeta DepMeta = new DependenceMeta();
-                        DepMeta.m_Name = Dependence["name"].AsString;
-                        DepMeta.m_DownloadURL = Dependence["url"].AsString;
-                        DepMeta.m_Path = @"\"+ Dependence["path"].AsString;
-
-                        string[] Slices = DepMeta.m_DownloadURL.Split('.');
-                        if(Slices.Length > 1)
-                        {
-                            if(Slices[Slices.Length-1].ToLower() == "zip")
-                            {
-                                DepMeta.m_IsZip = true;
-                            }
-                        }
-
-                        AvRelease.m_Dependencies.Add(DepMeta);
+                        AvRelease.m_Dependencies = Deps;
                     }
                     ReleasesForGameVersion.Add(AvRelease);
                 }

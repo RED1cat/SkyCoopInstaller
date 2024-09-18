@@ -243,6 +243,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AutoSetup.cs" />
     <Compile Include="Downloader.cs" />
     <Compile Include="Libs\LightJson\JsonArray.cs" />
     <Compile Include="Libs\LightJson\JsonObject.cs" />
