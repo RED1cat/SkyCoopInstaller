@@ -192,7 +192,7 @@ namespace SkyCoopInstaller
             }
             if (e.Error != null)
             {
-                MessageBox.Show("Downloading error",
+                MessageBox.Show($"Downloading error: {e.Error}",
                     "Information",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error,

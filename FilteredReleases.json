@@ -1,449 +1,983 @@
 [
-  {
-    "game_version": "2.01-2.02",
-	"mod_versions": 
-	[
-	 {
-	    "tag_name": "v11.6",
-		"eternal_version": "0.11.6.0",
-		"branch": "BeforeTFTFT",
-		"melon_version": "0.5.7",
-		"is_prerelease": false,
-		"melon_url": "https://github.com/LavaGang/MelonLoader/releases/download/v0.5.7/MelonLoader.x64.zip",
-	    "dependencies":
-	    [
-	      {
-		    "name": "ModSettings",
-		    "url": "https://github.com/zeobviouslyfakeacc/ModSettings/releases/download/v1.8.2/ModSettings.dll",
-		    "path": "Mods"
-		  },
-	      {
-		    "name": "KeyboardUtilities",
-		    "url": "https://github.com/ds5678/KeyboardUtilities/releases/download/1.3.0/KeyboardUtilities.dll",
-		    "path": "Mods"
-		  },
-	      {
-		    "name": "ModComponent",
-		    "url": "https://github.com/ds5678/ModComponent/releases/download/5.1.4/ModComponent.dll",
-		    "path": "Mods"
-		  },	
-	      {
-		    "name": "LocalizationUtilities",
-		    "url": "https://github.com/ds5678/LocalizationUtilities/releases/download/1.0.0/LocalizationUtilities.dll",
-		    "path": "Mods"
-		  },	
-	      {
-		    "name": "GearSpawner",
-		    "url": "https://github.com/ds5678/GearSpawner/releases/download/1.0.1/GearSpawner.dll",
-	            "path": "Mods"
-		  },	
-	      {
-		    "name": "CraftingRevisions",
-		    "url": "https://github.com/ds5678/CraftingRevisions/releases/download/1.0.1/CraftingRevisions.dll",
-		    "path": "Mods"
-		  },
-	      {
-		    "name": "IncreaseSaveSlotLimit",
-		    "url": "https://github.com/ds5678/IncreaseSaveSlotLimit/releases/download/1.1/IncreaseSaveSlotLimit.dll",
-		    "path": "Mods"
-	      },
-	      {
-		    "name": "AudioCore",
-		    "url": "https://github.com/DigitalzombieTLD/AudioCore/releases/download/1.0/AudioCore_PLUGIN_1.0.zip",
-		    "path": "Plugins"
-	      }
-	    ],
-	    "uninstall_resources":
-	    [
-	      "Mods/ExpeditionTemplates",
-		  "Mods/SkyCoop.dll",
-		  "Mods/Steamworks.NET.dll",
-		  "Mods/README.txt",
-		  "Mods/SkyCoop.modcomponent",
-		  "Mods/multiplayerstuff.unity3d",
-		  "Plugins/AudioCore.dll",
-		  "Plugins/AudioCoreData.tpk",
-		  "Plugins/_License"
-	    ]		
-	 },	
-	 {
-	    "tag_name": "v11.5",
-		"eternal_version": "0.11.5.0",
-		"branch": "BeforeTFTFT",
-		"melon_version": "0.5.7",
-		"is_prerelease": false,
-		"melon_url": "https://github.com/LavaGang/MelonLoader/releases/download/v0.5.7/MelonLoader.x64.zip",
-	    "dependencies":
-	    [
-	      {
-		    "name": "ModSettings",
-		    "url": "https://github.com/zeobviouslyfakeacc/ModSettings/releases/download/v1.8.2/ModSettings.dll",
-		    "path": "Mods"
-		  },
-	      {
-		    "name": "KeyboardUtilities",
-		    "url": "https://github.com/ds5678/KeyboardUtilities/releases/download/1.3.0/KeyboardUtilities.dll",
-		    "path": "Mods"
-		  },
-	      {
-		    "name": "ModComponent",
-		    "url": "https://github.com/ds5678/ModComponent/releases/download/5.1.4/ModComponent.dll",
-		    "path": "Mods"
-		  },	
-	      {
-		    "name": "LocalizationUtilities",
-		    "url": "https://github.com/ds5678/LocalizationUtilities/releases/download/1.0.0/LocalizationUtilities.dll",
-		    "path": "Mods"
-		  },	
-	      {
-		    "name": "GearSpawner",
-		    "url": "https://github.com/ds5678/GearSpawner/releases/download/1.0.1/GearSpawner.dll",
-	            "path": "Mods"
-		  },	
-	      {
-		    "name": "CraftingRevisions",
-		    "url": "https://github.com/ds5678/CraftingRevisions/releases/download/1.0.1/CraftingRevisions.dll",
-		    "path": "Mods"
-		  },
-	      {
-		    "name": "IncreaseSaveSlotLimit",
-		    "url": "https://github.com/ds5678/IncreaseSaveSlotLimit/releases/download/1.1/IncreaseSaveSlotLimit.dll",
-		    "path": "Mods"
-	      },
-	      {
-		    "name": "AudioCore",
-		    "url": "https://github.com/DigitalzombieTLD/AudioCore/releases/download/1.0/AudioCore_PLUGIN_1.0.zip",
-		    "path": "Plugins"
-	      }
-	    ],
-	    "uninstall_resources":
-	    [
-	      "Mods/ExpeditionTemplates",
-		  "Mods/SkyCoop.dll",
-		  "Mods/Steamworks.NET.dll",
-		  "Mods/README.txt",
-		  "Mods/SkyCoop.modcomponent",
-		  "Mods/multiplayerstuff.unity3d",
-		  "Plugins/AudioCore.dll",
-		  "Plugins/AudioCoreData.tpk",
-		  "Plugins/_License"
-	    ]		
-	 },		
-	 {
-	    "tag_name": "v11.4",
-		"eternal_version": "0.11.4.0",
-		"branch": "BeforeTFTFT",
-		"melon_version": "0.5.7",
-		"is_prerelease": false,
-		"melon_url": "https://github.com/LavaGang/MelonLoader/releases/download/v0.5.7/MelonLoader.x64.zip",
-	    "dependencies":
-	    [
-	      {
-		    "name": "ModSettings",
-		    "url": "https://github.com/zeobviouslyfakeacc/ModSettings/releases/download/v1.8.2/ModSettings.dll",
-		    "path": "Mods"
-		  },
-	      {
-		    "name": "KeyboardUtilities",
-		    "url": "https://github.com/ds5678/KeyboardUtilities/releases/download/1.3.0/KeyboardUtilities.dll",
-		    "path": "Mods"
-		  },
-	      {
-		    "name": "ModComponent",
-		    "url": "https://github.com/ds5678/ModComponent/releases/download/5.1.4/ModComponent.dll",
-		    "path": "Mods"
-		  },	
-	      {
-		    "name": "LocalizationUtilities",
-		    "url": "https://github.com/ds5678/LocalizationUtilities/releases/download/1.0.0/LocalizationUtilities.dll",
-		    "path": "Mods"
-		  },	
-	      {
-		    "name": "GearSpawner",
-		    "url": "https://github.com/ds5678/GearSpawner/releases/download/1.0.1/GearSpawner.dll",
-	            "path": "Mods"
-		  },	
-	      {
-		    "name": "CraftingRevisions",
-		    "url": "https://github.com/ds5678/CraftingRevisions/releases/download/1.0.1/CraftingRevisions.dll",
-		    "path": "Mods"
-		  },
-	      {
-		    "name": "IncreaseSaveSlotLimit",
-		    "url": "https://github.com/ds5678/IncreaseSaveSlotLimit/releases/download/1.1/IncreaseSaveSlotLimit.dll",
-		    "path": "Mods"
-	      },
-	      {
-		    "name": "AudioCore",
-		    "url": "https://github.com/DigitalzombieTLD/AudioCore/releases/download/1.0/AudioCore_PLUGIN_1.0.zip",
-		    "path": "Plugins"
-	      }
-	    ],
-	    "uninstall_resources":
-	    [
-	      "Mods/ExpeditionTemplates",
-		  "Mods/SkyCoop.dll",
-		  "Mods/Steamworks.NET.dll",
-		  "Mods/README.txt",
-		  "Mods/SkyCoop.modcomponent",
-		  "Mods/multiplayerstuff.unity3d",
-		  "Plugins/AudioCore.dll",
-		  "Plugins/AudioCoreData.tpk",
-		  "Plugins/_License"
-	    ]		
-	 },		
-	 {
-	    "tag_name": "v11.3",
-		"eternal_version": "0.11.3.0",
-		"branch": "BeforeTFTFT",
-		"melon_version": "0.5.7",
-		"is_prerelease": true,
-		"melon_url": "https://github.com/LavaGang/MelonLoader/releases/download/v0.5.7/MelonLoader.x64.zip",
-	    "dependencies":
-	    [
-	      {
-		    "name": "ModSettings",
-		    "url": "https://github.com/zeobviouslyfakeacc/ModSettings/releases/download/v1.8.2/ModSettings.dll",
-		    "path": "Mods"
-		  },
-	      {
-		    "name": "KeyboardUtilities",
-		    "url": "https://github.com/ds5678/KeyboardUtilities/releases/download/1.3.0/KeyboardUtilities.dll",
-		    "path": "Mods"
-		  },
-	      {
-		    "name": "ModComponent",
-		    "url": "https://github.com/ds5678/ModComponent/releases/download/5.1.4/ModComponent.dll",
-		    "path": "Mods"
-		  },	
-	      {
-		    "name": "LocalizationUtilities",
-		    "url": "https://github.com/ds5678/LocalizationUtilities/releases/download/1.0.0/LocalizationUtilities.dll",
-		    "path": "Mods"
-		  },	
-	      {
-		    "name": "GearSpawner",
-		    "url": "https://github.com/ds5678/GearSpawner/releases/download/1.0.1/GearSpawner.dll",
-	            "path": "Mods"
-		  },	
-	      {
-		    "name": "CraftingRevisions",
-		    "url": "https://github.com/ds5678/CraftingRevisions/releases/download/1.0.1/CraftingRevisions.dll",
-		    "path": "Mods"
-		  },
-	      {
-		    "name": "IncreaseSaveSlotLimit",
-		    "url": "https://github.com/ds5678/IncreaseSaveSlotLimit/releases/download/1.1/IncreaseSaveSlotLimit.dll",
-		    "path": "Mods"
-	      },
-	      {
-		    "name": "AudioCore",
-		    "url": "https://github.com/DigitalzombieTLD/AudioCore/releases/download/1.0/AudioCore_PLUGIN_1.0.zip",
-		    "path": "Plugins"
-	      }
-	    ],
-	    "uninstall_resources":
-	    [
-	      "Mods/ExpeditionTemplates",
-		  "Mods/SkyCoop.dll",
-		  "Mods/Steamworks.NET.dll",
-		  "Mods/README.txt",
-		  "Mods/SkyCoop.modcomponent",
-		  "Mods/multiplayerstuff.unity3d",
-		  "Plugins/AudioCore.dll",
-		  "Plugins/AudioCoreData.tpk",
-		  "Plugins/_License"
-	    ]		
-	 },	
-	 {
-	    "tag_name": "v11.2",
-		"eternal_version": "1.0.0.0",
-		"branch": "BeforeTFTFT",
-		"melon_version": "0.5.7",
-		"is_prerelease": false,
-		"melon_url": "https://github.com/LavaGang/MelonLoader/releases/download/v0.5.7/MelonLoader.x64.zip",
-	    "dependencies":
-	    [
-	      {
-		    "name": "ModSettings",
-		    "url": "https://github.com/zeobviouslyfakeacc/ModSettings/releases/download/v1.8.2/ModSettings.dll",
-		    "path": "Mods"
-		  },
-	      {
-		    "name": "KeyboardUtilities",
-		    "url": "https://github.com/ds5678/KeyboardUtilities/releases/download/1.3.0/KeyboardUtilities.dll",
-		    "path": "Mods"
-		  },
-	      {
-		    "name": "ModComponent",
-		    "url": "https://github.com/ds5678/ModComponent/releases/download/5.1.4/ModComponent.dll",
-		    "path": "Mods"
-		  },	
-	      {
-		    "name": "LocalizationUtilities",
-		    "url": "https://github.com/ds5678/LocalizationUtilities/releases/download/1.0.0/LocalizationUtilities.dll",
-		    "path": "Mods"
-		  },	
-	      {
-		    "name": "GearSpawner",
-		    "url": "https://github.com/ds5678/GearSpawner/releases/download/1.0.1/GearSpawner.dll",
-	            "path": "Mods"
-		  },	
-	      {
-		    "name": "CraftingRevisions",
-		    "url": "https://github.com/ds5678/CraftingRevisions/releases/download/1.0.1/CraftingRevisions.dll",
-		    "path": "Mods"
-		  },
-	      {
-		    "name": "IncreaseSaveSlotLimit",
-		    "url": "https://github.com/ds5678/IncreaseSaveSlotLimit/releases/download/1.1/IncreaseSaveSlotLimit.dll",
-		    "path": "Mods"
-	      },
-	      {
-		    "name": "AudioCore",
-		    "url": "https://github.com/DigitalzombieTLD/AudioCore/releases/download/1.0/AudioCore_PLUGIN_1.0.zip",
-		    "path": "Plugins"
-	      }
-	    ],
-	    "uninstall_resources":
-	    [
-	      "Mods/ExpeditionTemplates",
-		  "Mods/SkyCoop.dll",
-		  "Mods/Steamworks.NET.dll",
-		  "Mods/README.txt",
-		  "Mods/SkyCoop.modcomponent",
-		  "Mods/multiplayerstuff.unity3d",
-		  "Plugins/AudioCore.dll",
-		  "Plugins/AudioCoreData.tpk",
-		  "Plugins/_License"
-	    ]		
-	 },	
-	 {
-	    "tag_name": "v11.1",
-		"eternal_version": "1.0.0.0",
-		"branch": "BeforeTFTFT",
-		"melon_version": "0.5.7",
-		"is_prerelease": false,
-		"melon_url": "https://github.com/LavaGang/MelonLoader/releases/download/v0.5.7/MelonLoader.x64.zip",
-	    "dependencies":
-	    [
-	      {
-		    "name": "ModSettings",
-		    "url": "https://github.com/zeobviouslyfakeacc/ModSettings/releases/download/v1.8.2/ModSettings.dll",
-		    "path": "Mods"
-		  },
-	      {
-		    "name": "KeyboardUtilities",
-		    "url": "https://github.com/ds5678/KeyboardUtilities/releases/download/1.3.0/KeyboardUtilities.dll",
-		    "path": "Mods"
-		  },
-	      {
-		    "name": "ModComponent",
-		    "url": "https://github.com/ds5678/ModComponent/releases/download/5.1.4/ModComponent.dll",
-		    "path": "Mods"
-		  },	
-	      {
-		    "name": "LocalizationUtilities",
-		    "url": "https://github.com/ds5678/LocalizationUtilities/releases/download/1.0.0/LocalizationUtilities.dll",
-		    "path": "Mods"
-		  },	
-	      {
-		    "name": "GearSpawner",
-		    "url": "https://github.com/ds5678/GearSpawner/releases/download/1.0.1/GearSpawner.dll",
-	            "path": "Mods"
-		  },	
-	      {
-		    "name": "CraftingRevisions",
-		    "url": "https://github.com/ds5678/CraftingRevisions/releases/download/1.0.1/CraftingRevisions.dll",
-		    "path": "Mods"
-		  },
-	      {
-		    "name": "IncreaseSaveSlotLimit",
-		    "url": "https://github.com/ds5678/IncreaseSaveSlotLimit/releases/download/1.1/IncreaseSaveSlotLimit.dll",
-		    "path": "Mods"
-	      },
-	      {
-		    "name": "AudioCore",
-		    "url": "https://github.com/DigitalzombieTLD/AudioCore/releases/download/1.0/AudioCore_PLUGIN_1.0.zip",
-		    "path": "Plugins"
-	      }
-	    ],
-	    "uninstall_resources":
-	    [
-	      "Mods/ExpeditionTemplates",
-		  "Mods/SkyCoop.dll",
-		  "Mods/Steamworks.NET.dll",
-		  "Mods/README.txt",
-		  "Mods/SkyCoop.modcomponent",
-		  "Mods/multiplayerstuff.unity3d",
-		  "Plugins/AudioCore.dll",
-		  "Plugins/AudioCoreData.tpk",
-		  "Plugins/_License"
-	    ]	
-	 },
-	 {
-	    "tag_name": "v11.0",
-		"eternal_version": "1.0.0.0",
-		"branch": "BeforeTFTFT",
-		"melon_version": "0.5.7",
-		"is_prerelease": false,
-		"melon_url": "https://github.com/LavaGang/MelonLoader/releases/download/v0.5.7/MelonLoader.x64.zip",
-	    "dependencies":
-	    [
-	      {
-		    "name": "ModSettings",
-		    "url": "https://github.com/zeobviouslyfakeacc/ModSettings/releases/download/v1.8.2/ModSettings.dll",
-		    "path": "Mods"
-		  },
-	      {
-		    "name": "KeyboardUtilities",
-		    "url": "https://github.com/ds5678/KeyboardUtilities/releases/download/1.3.0/KeyboardUtilities.dll",
-		    "path": "Mods"
-		  },
-	      {
-		    "name": "ModComponent",
-		    "url": "https://github.com/ds5678/ModComponent/releases/download/5.1.4/ModComponent.dll",
-		    "path": "Mods"
-		  },	
-	      {
-		    "name": "LocalizationUtilities",
-		    "url": "https://github.com/ds5678/LocalizationUtilities/releases/download/1.0.0/LocalizationUtilities.dll",
-		    "path": "Mods"
-		  },	
-	      {
-		    "name": "GearSpawner",
-		    "url": "https://github.com/ds5678/GearSpawner/releases/download/1.0.1/GearSpawner.dll",
-	            "path": "Mods"
-		  },	
-	      {
-		    "name": "CraftingRevisions",
-		    "url": "https://github.com/ds5678/CraftingRevisions/releases/download/1.0.1/CraftingRevisions.dll",
-		    "path": "Mods"
-		  },
-	      {
-		    "name": "IncreaseSaveSlotLimit",
-		    "url": "https://github.com/ds5678/IncreaseSaveSlotLimit/releases/download/1.1/IncreaseSaveSlotLimit.dll",
-		    "path": "Mods"
-	      },
-	      {
-		    "name": "AudioCore",
-		    "url": "https://github.com/DigitalzombieTLD/AudioCore/releases/download/1.0/AudioCore_PLUGIN_1.0.zip",
-		    "path": "Plugins"
-	      }
-	    ],
-	    "uninstall_resources":
-	    [
-	      "Mods/ExpeditionTemplates",
-		  "Mods/SkyCoop.dll",
-		  "Mods/Steamworks.NET.dll",
-		  "Mods/README.txt",
-		  "Mods/SkyCoop.modcomponent",
-		  "Mods/multiplayerstuff.unity3d",
-		  "Plugins/AudioCore.dll",
-		  "Plugins/AudioCoreData.tpk",
-		  "Plugins/_License"
-	    ]		
-	 }		 
-   ]
-  }  
+    {
+        "game_version": "2.01-2.02",
+        "mod_versions": [
+            {
+                "tag_name": "v13.2",
+                "eternal_version": "0.13.2.0",
+                "branch": "BeforeTFTFT",
+                "melon_version": "0.5.7",
+                "is_prerelease": false,
+                "melon_url": "https://github.com/LavaGang/MelonLoader/releases/download/v0.5.7/MelonLoader.x64.zip",
+                "dependencies": [
+                    {
+                        "name": "ModSettings",
+                        "url": "https://github.com/zeobviouslyfakeacc/ModSettings/releases/download/v1.8.2/ModSettings.dll",
+                        "path": "Mods"
+                    },
+                    {
+                        "name": "KeyboardUtilities",
+                        "url": "https://github.com/ds5678/KeyboardUtilities/releases/download/1.3.0/KeyboardUtilities.dll",
+                        "path": "Mods"
+                    },
+                    {
+                        "name": "ModComponent",
+                        "url": "https://github.com/ds5678/ModComponent/releases/download/5.1.4/ModComponent.dll",
+                        "path": "Mods"
+                    },
+                    {
+                        "name": "LocalizationUtilities",
+                        "url": "https://github.com/ds5678/LocalizationUtilities/releases/download/1.0.0/LocalizationUtilities.dll",
+                        "path": "Mods"
+                    },
+                    {
+                        "name": "GearSpawner",
+                        "url": "https://github.com/ds5678/GearSpawner/releases/download/1.0.1/GearSpawner.dll",
+                        "path": "Mods"
+                    },
+                    {
+                        "name": "CraftingRevisions",
+                        "url": "https://github.com/ds5678/CraftingRevisions/releases/download/1.0.1/CraftingRevisions.dll",
+                        "path": "Mods"
+                    },
+                    {
+                        "name": "IncreaseSaveSlotLimit",
+                        "url": "https://github.com/ds5678/IncreaseSaveSlotLimit/releases/download/1.1/IncreaseSaveSlotLimit.dll",
+                        "path": "Mods"
+                    },
+                    {
+                        "name": "AudioCore",
+                        "url": "https://github.com/DigitalzombieTLD/AudioCore/releases/download/1.0/AudioCore_PLUGIN_1.0.zip",
+                        "path": "Plugins"
+                    }
+                ],
+                "uninstall_resources": [
+                    "Mods/ExpeditionTemplates",
+                    "Mods/SkyCoop.dll",
+                    "Mods/Steamworks.NET.dll",
+                    "Mods/README.txt",
+                    "Mods/SkyCoop.modcomponent",
+                    "Mods/multiplayerstuff.unity3d",
+                    "Plugins/AudioCore.dll",
+                    "Plugins/AudioCoreData.tpk",
+                    "Plugins/_License"
+                ]
+            },
+            {
+                "tag_name": "v13.1",
+                "eternal_version": "0.13.1.0",
+                "branch": "BeforeTFTFT",
+                "melon_version": "0.5.7",
+                "is_prerelease": false,
+                "melon_url": "https://github.com/LavaGang/MelonLoader/releases/download/v0.5.7/MelonLoader.x64.zip",
+                "dependencies": [
+                    {
+                        "name": "ModSettings",
+                        "url": "https://github.com/zeobviouslyfakeacc/ModSettings/releases/download/v1.8.2/ModSettings.dll",
+                        "path": "Mods"
+                    },
+                    {
+                        "name": "KeyboardUtilities",
+                        "url": "https://github.com/ds5678/KeyboardUtilities/releases/download/1.3.0/KeyboardUtilities.dll",
+                        "path": "Mods"
+                    },
+                    {
+                        "name": "ModComponent",
+                        "url": "https://github.com/ds5678/ModComponent/releases/download/5.1.4/ModComponent.dll",
+                        "path": "Mods"
+                    },
+                    {
+                        "name": "LocalizationUtilities",
+                        "url": "https://github.com/ds5678/LocalizationUtilities/releases/download/1.0.0/LocalizationUtilities.dll",
+                        "path": "Mods"
+                    },
+                    {
+                        "name": "GearSpawner",
+                        "url": "https://github.com/ds5678/GearSpawner/releases/download/1.0.1/GearSpawner.dll",
+                        "path": "Mods"
+                    },
+                    {
+                        "name": "CraftingRevisions",
+                        "url": "https://github.com/ds5678/CraftingRevisions/releases/download/1.0.1/CraftingRevisions.dll",
+                        "path": "Mods"
+                    },
+                    {
+                        "name": "IncreaseSaveSlotLimit",
+                        "url": "https://github.com/ds5678/IncreaseSaveSlotLimit/releases/download/1.1/IncreaseSaveSlotLimit.dll",
+                        "path": "Mods"
+                    },
+                    {
+                        "name": "AudioCore",
+                        "url": "https://github.com/DigitalzombieTLD/AudioCore/releases/download/1.0/AudioCore_PLUGIN_1.0.zip",
+                        "path": "Plugins"
+                    }
+                ],
+                "uninstall_resources": [
+                    "Mods/ExpeditionTemplates",
+                    "Mods/SkyCoop.dll",
+                    "Mods/Steamworks.NET.dll",
+                    "Mods/README.txt",
+                    "Mods/SkyCoop.modcomponent",
+                    "Mods/multiplayerstuff.unity3d",
+                    "Plugins/AudioCore.dll",
+                    "Plugins/AudioCoreData.tpk",
+                    "Plugins/_License"
+                ]
+            },
+            {
+                "tag_name": "v13.0",
+                "eternal_version": "0.13.0",
+                "branch": "BeforeTFTFT",
+                "melon_version": "0.5.7",
+                "is_prerelease": false,
+                "melon_url": "https://github.com/LavaGang/MelonLoader/releases/download/v0.5.7/MelonLoader.x64.zip",
+                "dependencies": [
+                    {
+                        "name": "ModSettings",
+                        "url": "https://github.com/zeobviouslyfakeacc/ModSettings/releases/download/v1.8.2/ModSettings.dll",
+                        "path": "Mods"
+                    },
+                    {
+                        "name": "KeyboardUtilities",
+                        "url": "https://github.com/ds5678/KeyboardUtilities/releases/download/1.3.0/KeyboardUtilities.dll",
+                        "path": "Mods"
+                    },
+                    {
+                        "name": "ModComponent",
+                        "url": "https://github.com/ds5678/ModComponent/releases/download/5.1.4/ModComponent.dll",
+                        "path": "Mods"
+                    },
+                    {
+                        "name": "LocalizationUtilities",
+                        "url": "https://github.com/ds5678/LocalizationUtilities/releases/download/1.0.0/LocalizationUtilities.dll",
+                        "path": "Mods"
+                    },
+                    {
+                        "name": "GearSpawner",
+                        "url": "https://github.com/ds5678/GearSpawner/releases/download/1.0.1/GearSpawner.dll",
+                        "path": "Mods"
+                    },
+                    {
+                        "name": "CraftingRevisions",
+                        "url": "https://github.com/ds5678/CraftingRevisions/releases/download/1.0.1/CraftingRevisions.dll",
+                        "path": "Mods"
+                    },
+                    {
+                        "name": "IncreaseSaveSlotLimit",
+                        "url": "https://github.com/ds5678/IncreaseSaveSlotLimit/releases/download/1.1/IncreaseSaveSlotLimit.dll",
+                        "path": "Mods"
+                    },
+                    {
+                        "name": "AudioCore",
+                        "url": "https://github.com/DigitalzombieTLD/AudioCore/releases/download/1.0/AudioCore_PLUGIN_1.0.zip",
+                        "path": "Plugins"
+                    }
+                ],
+                "uninstall_resources": [
+                    "Mods/ExpeditionTemplates",
+                    "Mods/SkyCoop.dll",
+                    "Mods/Steamworks.NET.dll",
+                    "Mods/README.txt",
+                    "Mods/SkyCoop.modcomponent",
+                    "Mods/multiplayerstuff.unity3d",
+                    "Plugins/AudioCore.dll",
+                    "Plugins/AudioCoreData.tpk",
+                    "Plugins/_License"
+                ]
+            },
+            {
+                "tag_name": "v12.2",
+                "eternal_version": "0.12.2.0",
+                "branch": "BeforeTFTFT",
+                "melon_version": "0.5.7",
+                "is_prerelease": false,
+                "melon_url": "https://github.com/LavaGang/MelonLoader/releases/download/v0.5.7/MelonLoader.x64.zip",
+                "dependencies": [
+                    {
+                        "name": "ModSettings",
+                        "url": "https://github.com/zeobviouslyfakeacc/ModSettings/releases/download/v1.8.2/ModSettings.dll",
+                        "path": "Mods"
+                    },
+                    {
+                        "name": "KeyboardUtilities",
+                        "url": "https://github.com/ds5678/KeyboardUtilities/releases/download/1.3.0/KeyboardUtilities.dll",
+                        "path": "Mods"
+                    },
+                    {
+                        "name": "ModComponent",
+                        "url": "https://github.com/ds5678/ModComponent/releases/download/5.1.4/ModComponent.dll",
+                        "path": "Mods"
+                    },
+                    {
+                        "name": "LocalizationUtilities",
+                        "url": "https://github.com/ds5678/LocalizationUtilities/releases/download/1.0.0/LocalizationUtilities.dll",
+                        "path": "Mods"
+                    },
+                    {
+                        "name": "GearSpawner",
+                        "url": "https://github.com/ds5678/GearSpawner/releases/download/1.0.1/GearSpawner.dll",
+                        "path": "Mods"
+                    },
+                    {
+                        "name": "CraftingRevisions",
+                        "url": "https://github.com/ds5678/CraftingRevisions/releases/download/1.0.1/CraftingRevisions.dll",
+                        "path": "Mods"
+                    },
+                    {
+                        "name": "IncreaseSaveSlotLimit",
+                        "url": "https://github.com/ds5678/IncreaseSaveSlotLimit/releases/download/1.1/IncreaseSaveSlotLimit.dll",
+                        "path": "Mods"
+                    },
+                    {
+                        "name": "AudioCore",
+                        "url": "https://github.com/DigitalzombieTLD/AudioCore/releases/download/1.0/AudioCore_PLUGIN_1.0.zip",
+                        "path": "Plugins"
+                    }
+                ],
+                "uninstall_resources": [
+                    "Mods/ExpeditionTemplates",
+                    "Mods/SkyCoop.dll",
+                    "Mods/Steamworks.NET.dll",
+                    "Mods/README.txt",
+                    "Mods/SkyCoop.modcomponent",
+                    "Mods/multiplayerstuff.unity3d",
+                    "Plugins/AudioCore.dll",
+                    "Plugins/AudioCoreData.tpk",
+                    "Plugins/_License"
+                ]
+            },
+            {
+                "tag_name": "v12.1",
+                "eternal_version": "0.12.1.0",
+                "branch": "BeforeTFTFT",
+                "melon_version": "0.5.7",
+                "is_prerelease": false,
+                "melon_url": "https://github.com/LavaGang/MelonLoader/releases/download/v0.5.7/MelonLoader.x64.zip",
+                "dependencies": [
+                    {
+                        "name": "ModSettings",
+                        "url": "https://github.com/zeobviouslyfakeacc/ModSettings/releases/download/v1.8.2/ModSettings.dll",
+                        "path": "Mods"
+                    },
+                    {
+                        "name": "KeyboardUtilities",
+                        "url": "https://github.com/ds5678/KeyboardUtilities/releases/download/1.3.0/KeyboardUtilities.dll",
+                        "path": "Mods"
+                    },
+                    {
+                        "name": "ModComponent",
+                        "url": "https://github.com/ds5678/ModComponent/releases/download/5.1.4/ModComponent.dll",
+                        "path": "Mods"
+                    },
+                    {
+                        "name": "LocalizationUtilities",
+                        "url": "https://github.com/ds5678/LocalizationUtilities/releases/download/1.0.0/LocalizationUtilities.dll",
+                        "path": "Mods"
+                    },
+                    {
+                        "name": "GearSpawner",
+                        "url": "https://github.com/ds5678/GearSpawner/releases/download/1.0.1/GearSpawner.dll",
+                        "path": "Mods"
+                    },
+                    {
+                        "name": "CraftingRevisions",
+                        "url": "https://github.com/ds5678/CraftingRevisions/releases/download/1.0.1/CraftingRevisions.dll",
+                        "path": "Mods"
+                    },
+                    {
+                        "name": "IncreaseSaveSlotLimit",
+                        "url": "https://github.com/ds5678/IncreaseSaveSlotLimit/releases/download/1.1/IncreaseSaveSlotLimit.dll",
+                        "path": "Mods"
+                    },
+                    {
+                        "name": "AudioCore",
+                        "url": "https://github.com/DigitalzombieTLD/AudioCore/releases/download/1.0/AudioCore_PLUGIN_1.0.zip",
+                        "path": "Plugins"
+                    }
+                ],
+                "uninstall_resources": [
+                    "Mods/ExpeditionTemplates",
+                    "Mods/SkyCoop.dll",
+                    "Mods/Steamworks.NET.dll",
+                    "Mods/README.txt",
+                    "Mods/SkyCoop.modcomponent",
+                    "Mods/multiplayerstuff.unity3d",
+                    "Plugins/AudioCore.dll",
+                    "Plugins/AudioCoreData.tpk",
+                    "Plugins/_License"
+                ]
+            },
+            {
+                "tag_name": "v12.0",
+                "eternal_version": "0.12.0.0",
+                "branch": "BeforeTFTFT",
+                "melon_version": "0.5.7",
+                "is_prerelease": false,
+                "melon_url": "https://github.com/LavaGang/MelonLoader/releases/download/v0.5.7/MelonLoader.x64.zip",
+                "dependencies": [
+                    {
+                        "name": "ModSettings",
+                        "url": "https://github.com/zeobviouslyfakeacc/ModSettings/releases/download/v1.8.2/ModSettings.dll",
+                        "path": "Mods"
+                    },
+                    {
+                        "name": "KeyboardUtilities",
+                        "url": "https://github.com/ds5678/KeyboardUtilities/releases/download/1.3.0/KeyboardUtilities.dll",
+                        "path": "Mods"
+                    },
+                    {
+                        "name": "ModComponent",
+                        "url": "https://github.com/ds5678/ModComponent/releases/download/5.1.4/ModComponent.dll",
+                        "path": "Mods"
+                    },
+                    {
+                        "name": "LocalizationUtilities",
+                        "url": "https://github.com/ds5678/LocalizationUtilities/releases/download/1.0.0/LocalizationUtilities.dll",
+                        "path": "Mods"
+                    },
+                    {
+                        "name": "GearSpawner",
+                        "url": "https://github.com/ds5678/GearSpawner/releases/download/1.0.1/GearSpawner.dll",
+                        "path": "Mods"
+                    },
+                    {
+                        "name": "CraftingRevisions",
+                        "url": "https://github.com/ds5678/CraftingRevisions/releases/download/1.0.1/CraftingRevisions.dll",
+                        "path": "Mods"
+                    },
+                    {
+                        "name": "IncreaseSaveSlotLimit",
+                        "url": "https://github.com/ds5678/IncreaseSaveSlotLimit/releases/download/1.1/IncreaseSaveSlotLimit.dll",
+                        "path": "Mods"
+                    },
+                    {
+                        "name": "AudioCore",
+                        "url": "https://github.com/DigitalzombieTLD/AudioCore/releases/download/1.0/AudioCore_PLUGIN_1.0.zip",
+                        "path": "Plugins"
+                    }
+                ],
+                "uninstall_resources": [
+                    "Mods/ExpeditionTemplates",
+                    "Mods/SkyCoop.dll",
+                    "Mods/Steamworks.NET.dll",
+                    "Mods/README.txt",
+                    "Mods/SkyCoop.modcomponent",
+                    "Mods/multiplayerstuff.unity3d",
+                    "Plugins/AudioCore.dll",
+                    "Plugins/AudioCoreData.tpk",
+                    "Plugins/_License"
+                ]
+            },
+            {
+                "tag_name": "v11.9",
+                "eternal_version": "0.11.9.0",
+                "branch": "BeforeTFTFT",
+                "melon_version": "0.5.7",
+                "is_prerelease": true,
+                "melon_url": "https://github.com/LavaGang/MelonLoader/releases/download/v0.5.7/MelonLoader.x64.zip",
+                "dependencies": [
+                    {
+                        "name": "ModSettings",
+                        "url": "https://github.com/zeobviouslyfakeacc/ModSettings/releases/download/v1.8.2/ModSettings.dll",
+                        "path": "Mods"
+                    },
+                    {
+                        "name": "KeyboardUtilities",
+                        "url": "https://github.com/ds5678/KeyboardUtilities/releases/download/1.3.0/KeyboardUtilities.dll",
+                        "path": "Mods"
+                    },
+                    {
+                        "name": "ModComponent",
+                        "url": "https://github.com/ds5678/ModComponent/releases/download/5.1.4/ModComponent.dll",
+                        "path": "Mods"
+                    },
+                    {
+                        "name": "LocalizationUtilities",
+                        "url": "https://github.com/ds5678/LocalizationUtilities/releases/download/1.0.0/LocalizationUtilities.dll",
+                        "path": "Mods"
+                    },
+                    {
+                        "name": "GearSpawner",
+                        "url": "https://github.com/ds5678/GearSpawner/releases/download/1.0.1/GearSpawner.dll",
+                        "path": "Mods"
+                    },
+                    {
+                        "name": "CraftingRevisions",
+                        "url": "https://github.com/ds5678/CraftingRevisions/releases/download/1.0.1/CraftingRevisions.dll",
+                        "path": "Mods"
+                    },
+                    {
+                        "name": "IncreaseSaveSlotLimit",
+                        "url": "https://github.com/ds5678/IncreaseSaveSlotLimit/releases/download/1.1/IncreaseSaveSlotLimit.dll",
+                        "path": "Mods"
+                    },
+                    {
+                        "name": "AudioCore",
+                        "url": "https://github.com/DigitalzombieTLD/AudioCore/releases/download/1.0/AudioCore_PLUGIN_1.0.zip",
+                        "path": "Plugins"
+                    }
+                ],
+                "uninstall_resources": [
+                    "Mods/ExpeditionTemplates",
+                    "Mods/SkyCoop.dll",
+                    "Mods/Steamworks.NET.dll",
+                    "Mods/README.txt",
+                    "Mods/SkyCoop.modcomponent",
+                    "Mods/multiplayerstuff.unity3d",
+                    "Plugins/AudioCore.dll",
+                    "Plugins/AudioCoreData.tpk",
+                    "Plugins/_License"
+                ]
+            },
+            {
+                "tag_name": "v11.8",
+                "eternal_version": "0.11.8.0",
+                "branch": "BeforeTFTFT",
+                "melon_version": "0.5.7",
+                "is_prerelease": true,
+                "melon_url": "https://github.com/LavaGang/MelonLoader/releases/download/v0.5.7/MelonLoader.x64.zip",
+                "dependencies": [
+                    {
+                        "name": "ModSettings",
+                        "url": "https://github.com/zeobviouslyfakeacc/ModSettings/releases/download/v1.8.2/ModSettings.dll",
+                        "path": "Mods"
+                    },
+                    {
+                        "name": "KeyboardUtilities",
+                        "url": "https://github.com/ds5678/KeyboardUtilities/releases/download/1.3.0/KeyboardUtilities.dll",
+                        "path": "Mods"
+                    },
+                    {
+                        "name": "ModComponent",
+                        "url": "https://github.com/ds5678/ModComponent/releases/download/5.1.4/ModComponent.dll",
+                        "path": "Mods"
+                    },
+                    {
+                        "name": "LocalizationUtilities",
+                        "url": "https://github.com/ds5678/LocalizationUtilities/releases/download/1.0.0/LocalizationUtilities.dll",
+                        "path": "Mods"
+                    },
+                    {
+                        "name": "GearSpawner",
+                        "url": "https://github.com/ds5678/GearSpawner/releases/download/1.0.1/GearSpawner.dll",
+                        "path": "Mods"
+                    },
+                    {
+                        "name": "CraftingRevisions",
+                        "url": "https://github.com/ds5678/CraftingRevisions/releases/download/1.0.1/CraftingRevisions.dll",
+                        "path": "Mods"
+                    },
+                    {
+                        "name": "IncreaseSaveSlotLimit",
+                        "url": "https://github.com/ds5678/IncreaseSaveSlotLimit/releases/download/1.1/IncreaseSaveSlotLimit.dll",
+                        "path": "Mods"
+                    },
+                    {
+                        "name": "AudioCore",
+                        "url": "https://github.com/DigitalzombieTLD/AudioCore/releases/download/1.0/AudioCore_PLUGIN_1.0.zip",
+                        "path": "Plugins"
+                    }
+                ],
+                "uninstall_resources": [
+                    "Mods/ExpeditionTemplates",
+                    "Mods/SkyCoop.dll",
+                    "Mods/Steamworks.NET.dll",
+                    "Mods/README.txt",
+                    "Mods/SkyCoop.modcomponent",
+                    "Mods/multiplayerstuff.unity3d",
+                    "Plugins/AudioCore.dll",
+                    "Plugins/AudioCoreData.tpk",
+                    "Plugins/_License"
+                ]
+            },
+            {
+                "tag_name": "v11.7",
+                "eternal_version": "0.11.7.0",
+                "branch": "BeforeTFTFT",
+                "melon_version": "0.5.7",
+                "is_prerelease": true,
+                "melon_url": "https://github.com/LavaGang/MelonLoader/releases/download/v0.5.7/MelonLoader.x64.zip",
+                "dependencies": [
+                    {
+                        "name": "ModSettings",
+                        "url": "https://github.com/zeobviouslyfakeacc/ModSettings/releases/download/v1.8.2/ModSettings.dll",
+                        "path": "Mods"
+                    },
+                    {
+                        "name": "KeyboardUtilities",
+                        "url": "https://github.com/ds5678/KeyboardUtilities/releases/download/1.3.0/KeyboardUtilities.dll",
+                        "path": "Mods"
+                    },
+                    {
+                        "name": "ModComponent",
+                        "url": "https://github.com/ds5678/ModComponent/releases/download/5.1.4/ModComponent.dll",
+                        "path": "Mods"
+                    },
+                    {
+                        "name": "LocalizationUtilities",
+                        "url": "https://github.com/ds5678/LocalizationUtilities/releases/download/1.0.0/LocalizationUtilities.dll",
+                        "path": "Mods"
+                    },
+                    {
+                        "name": "GearSpawner",
+                        "url": "https://github.com/ds5678/GearSpawner/releases/download/1.0.1/GearSpawner.dll",
+                        "path": "Mods"
+                    },
+                    {
+                        "name": "CraftingRevisions",
+                        "url": "https://github.com/ds5678/CraftingRevisions/releases/download/1.0.1/CraftingRevisions.dll",
+                        "path": "Mods"
+                    },
+                    {
+                        "name": "IncreaseSaveSlotLimit",
+                        "url": "https://github.com/ds5678/IncreaseSaveSlotLimit/releases/download/1.1/IncreaseSaveSlotLimit.dll",
+                        "path": "Mods"
+                    },
+                    {
+                        "name": "AudioCore",
+                        "url": "https://github.com/DigitalzombieTLD/AudioCore/releases/download/1.0/AudioCore_PLUGIN_1.0.zip",
+                        "path": "Plugins"
+                    }
+                ],
+                "uninstall_resources": [
+                    "Mods/ExpeditionTemplates",
+                    "Mods/SkyCoop.dll",
+                    "Mods/Steamworks.NET.dll",
+                    "Mods/README.txt",
+                    "Mods/SkyCoop.modcomponent",
+                    "Mods/multiplayerstuff.unity3d",
+                    "Plugins/AudioCore.dll",
+                    "Plugins/AudioCoreData.tpk",
+                    "Plugins/_License"
+                ]
+            },
+            {
+                "tag_name": "v11.6",
+                "eternal_version": "0.11.6.0",
+                "branch": "BeforeTFTFT",
+                "melon_version": "0.5.7",
+                "is_prerelease": false,
+                "melon_url": "https://github.com/LavaGang/MelonLoader/releases/download/v0.5.7/MelonLoader.x64.zip",
+                "dependencies": [
+                    {
+                        "name": "ModSettings",
+                        "url": "https://github.com/zeobviouslyfakeacc/ModSettings/releases/download/v1.8.2/ModSettings.dll",
+                        "path": "Mods"
+                    },
+                    {
+                        "name": "KeyboardUtilities",
+                        "url": "https://github.com/ds5678/KeyboardUtilities/releases/download/1.3.0/KeyboardUtilities.dll",
+                        "path": "Mods"
+                    },
+                    {
+                        "name": "ModComponent",
+                        "url": "https://github.com/ds5678/ModComponent/releases/download/5.1.4/ModComponent.dll",
+                        "path": "Mods"
+                    },
+                    {
+                        "name": "LocalizationUtilities",
+                        "url": "https://github.com/ds5678/LocalizationUtilities/releases/download/1.0.0/LocalizationUtilities.dll",
+                        "path": "Mods"
+                    },
+                    {
+                        "name": "GearSpawner",
+                        "url": "https://github.com/ds5678/GearSpawner/releases/download/1.0.1/GearSpawner.dll",
+                        "path": "Mods"
+                    },
+                    {
+                        "name": "CraftingRevisions",
+                        "url": "https://github.com/ds5678/CraftingRevisions/releases/download/1.0.1/CraftingRevisions.dll",
+                        "path": "Mods"
+                    },
+                    {
+                        "name": "IncreaseSaveSlotLimit",
+                        "url": "https://github.com/ds5678/IncreaseSaveSlotLimit/releases/download/1.1/IncreaseSaveSlotLimit.dll",
+                        "path": "Mods"
+                    },
+                    {
+                        "name": "AudioCore",
+                        "url": "https://github.com/DigitalzombieTLD/AudioCore/releases/download/1.0/AudioCore_PLUGIN_1.0.zip",
+                        "path": "Plugins"
+                    }
+                ],
+                "uninstall_resources": [
+                    "Mods/ExpeditionTemplates",
+                    "Mods/SkyCoop.dll",
+                    "Mods/Steamworks.NET.dll",
+                    "Mods/README.txt",
+                    "Mods/SkyCoop.modcomponent",
+                    "Mods/multiplayerstuff.unity3d",
+                    "Plugins/AudioCore.dll",
+                    "Plugins/AudioCoreData.tpk",
+                    "Plugins/_License"
+                ]
+            },
+            {
+                "tag_name": "v11.5",
+                "eternal_version": "0.11.5.0",
+                "branch": "BeforeTFTFT",
+                "melon_version": "0.5.7",
+                "is_prerelease": false,
+                "melon_url": "https://github.com/LavaGang/MelonLoader/releases/download/v0.5.7/MelonLoader.x64.zip",
+                "dependencies": [
+                    {
+                        "name": "ModSettings",
+                        "url": "https://github.com/zeobviouslyfakeacc/ModSettings/releases/download/v1.8.2/ModSettings.dll",
+                        "path": "Mods"
+                    },
+                    {
+                        "name": "KeyboardUtilities",
+                        "url": "https://github.com/ds5678/KeyboardUtilities/releases/download/1.3.0/KeyboardUtilities.dll",
+                        "path": "Mods"
+                    },
+                    {
+                        "name": "ModComponent",
+                        "url": "https://github.com/ds5678/ModComponent/releases/download/5.1.4/ModComponent.dll",
+                        "path": "Mods"
+                    },
+                    {
+                        "name": "LocalizationUtilities",
+                        "url": "https://github.com/ds5678/LocalizationUtilities/releases/download/1.0.0/LocalizationUtilities.dll",
+                        "path": "Mods"
+                    },
+                    {
+                        "name": "GearSpawner",
+                        "url": "https://github.com/ds5678/GearSpawner/releases/download/1.0.1/GearSpawner.dll",
+                        "path": "Mods"
+                    },
+                    {
+                        "name": "CraftingRevisions",
+                        "url": "https://github.com/ds5678/CraftingRevisions/releases/download/1.0.1/CraftingRevisions.dll",
+                        "path": "Mods"
+                    },
+                    {
+                        "name": "IncreaseSaveSlotLimit",
+                        "url": "https://github.com/ds5678/IncreaseSaveSlotLimit/releases/download/1.1/IncreaseSaveSlotLimit.dll",
+                        "path": "Mods"
+                    },
+                    {
+                        "name": "AudioCore",
+                        "url": "https://github.com/DigitalzombieTLD/AudioCore/releases/download/1.0/AudioCore_PLUGIN_1.0.zip",
+                        "path": "Plugins"
+                    }
+                ],
+                "uninstall_resources": [
+                    "Mods/ExpeditionTemplates",
+                    "Mods/SkyCoop.dll",
+                    "Mods/Steamworks.NET.dll",
+                    "Mods/README.txt",
+                    "Mods/SkyCoop.modcomponent",
+                    "Mods/multiplayerstuff.unity3d",
+                    "Plugins/AudioCore.dll",
+                    "Plugins/AudioCoreData.tpk",
+                    "Plugins/_License"
+                ]
+            },
+            {
+                "tag_name": "v11.4",
+                "eternal_version": "0.11.4.0",
+                "branch": "BeforeTFTFT",
+                "melon_version": "0.5.7",
+                "is_prerelease": false,
+                "melon_url": "https://github.com/LavaGang/MelonLoader/releases/download/v0.5.7/MelonLoader.x64.zip",
+                "dependencies": [
+                    {
+                        "name": "ModSettings",
+                        "url": "https://github.com/zeobviouslyfakeacc/ModSettings/releases/download/v1.8.2/ModSettings.dll",
+                        "path": "Mods"
+                    },
+                    {
+                        "name": "KeyboardUtilities",
+                        "url": "https://github.com/ds5678/KeyboardUtilities/releases/download/1.3.0/KeyboardUtilities.dll",
+                        "path": "Mods"
+                    },
+                    {
+                        "name": "ModComponent",
+                        "url": "https://github.com/ds5678/ModComponent/releases/download/5.1.4/ModComponent.dll",
+                        "path": "Mods"
+                    },
+                    {
+                        "name": "LocalizationUtilities",
+                        "url": "https://github.com/ds5678/LocalizationUtilities/releases/download/1.0.0/LocalizationUtilities.dll",
+                        "path": "Mods"
+                    },
+                    {
+                        "name": "GearSpawner",
+                        "url": "https://github.com/ds5678/GearSpawner/releases/download/1.0.1/GearSpawner.dll",
+                        "path": "Mods"
+                    },
+                    {
+                        "name": "CraftingRevisions",
+                        "url": "https://github.com/ds5678/CraftingRevisions/releases/download/1.0.1/CraftingRevisions.dll",
+                        "path": "Mods"
+                    },
+                    {
+                        "name": "IncreaseSaveSlotLimit",
+                        "url": "https://github.com/ds5678/IncreaseSaveSlotLimit/releases/download/1.1/IncreaseSaveSlotLimit.dll",
+                        "path": "Mods"
+                    },
+                    {
+                        "name": "AudioCore",
+                        "url": "https://github.com/DigitalzombieTLD/AudioCore/releases/download/1.0/AudioCore_PLUGIN_1.0.zip",
+                        "path": "Plugins"
+                    }
+                ],
+                "uninstall_resources": [
+                    "Mods/ExpeditionTemplates",
+                    "Mods/SkyCoop.dll",
+                    "Mods/Steamworks.NET.dll",
+                    "Mods/README.txt",
+                    "Mods/SkyCoop.modcomponent",
+                    "Mods/multiplayerstuff.unity3d",
+                    "Plugins/AudioCore.dll",
+                    "Plugins/AudioCoreData.tpk",
+                    "Plugins/_License"
+                ]
+            },
+            {
+                "tag_name": "v11.3",
+                "eternal_version": "0.11.3.0",
+                "branch": "BeforeTFTFT",
+                "melon_version": "0.5.7",
+                "is_prerelease": true,
+                "melon_url": "https://github.com/LavaGang/MelonLoader/releases/download/v0.5.7/MelonLoader.x64.zip",
+                "dependencies": [
+                    {
+                        "name": "ModSettings",
+                        "url": "https://github.com/zeobviouslyfakeacc/ModSettings/releases/download/v1.8.2/ModSettings.dll",
+                        "path": "Mods"
+                    },
+                    {
+                        "name": "KeyboardUtilities",
+                        "url": "https://github.com/ds5678/KeyboardUtilities/releases/download/1.3.0/KeyboardUtilities.dll",
+                        "path": "Mods"
+                    },
+                    {
+                        "name": "ModComponent",
+                        "url": "https://github.com/ds5678/ModComponent/releases/download/5.1.4/ModComponent.dll",
+                        "path": "Mods"
+                    },
+                    {
+                        "name": "LocalizationUtilities",
+                        "url": "https://github.com/ds5678/LocalizationUtilities/releases/download/1.0.0/LocalizationUtilities.dll",
+                        "path": "Mods"
+                    },
+                    {
+                        "name": "GearSpawner",
+                        "url": "https://github.com/ds5678/GearSpawner/releases/download/1.0.1/GearSpawner.dll",
+                        "path": "Mods"
+                    },
+                    {
+                        "name": "CraftingRevisions",
+                        "url": "https://github.com/ds5678/CraftingRevisions/releases/download/1.0.1/CraftingRevisions.dll",
+                        "path": "Mods"
+                    },
+                    {
+                        "name": "IncreaseSaveSlotLimit",
+                        "url": "https://github.com/ds5678/IncreaseSaveSlotLimit/releases/download/1.1/IncreaseSaveSlotLimit.dll",
+                        "path": "Mods"
+                    },
+                    {
+                        "name": "AudioCore",
+                        "url": "https://github.com/DigitalzombieTLD/AudioCore/releases/download/1.0/AudioCore_PLUGIN_1.0.zip",
+                        "path": "Plugins"
+                    }
+                ],
+                "uninstall_resources": [
+                    "Mods/ExpeditionTemplates",
+                    "Mods/SkyCoop.dll",
+                    "Mods/Steamworks.NET.dll",
+                    "Mods/README.txt",
+                    "Mods/SkyCoop.modcomponent",
+                    "Mods/multiplayerstuff.unity3d",
+                    "Plugins/AudioCore.dll",
+                    "Plugins/AudioCoreData.tpk",
+                    "Plugins/_License"
+                ]
+            },
+            {
+                "tag_name": "v11.2",
+                "eternal_version": "1.0.0.0",
+                "branch": "BeforeTFTFT",
+                "melon_version": "0.5.7",
+                "is_prerelease": false,
+                "melon_url": "https://github.com/LavaGang/MelonLoader/releases/download/v0.5.7/MelonLoader.x64.zip",
+                "dependencies": [
+                    {
+                        "name": "ModSettings",
+                        "url": "https://github.com/zeobviouslyfakeacc/ModSettings/releases/download/v1.8.2/ModSettings.dll",
+                        "path": "Mods"
+                    },
+                    {
+                        "name": "KeyboardUtilities",
+                        "url": "https://github.com/ds5678/KeyboardUtilities/releases/download/1.3.0/KeyboardUtilities.dll",
+                        "path": "Mods"
+                    },
+                    {
+                        "name": "ModComponent",
+                        "url": "https://github.com/ds5678/ModComponent/releases/download/5.1.4/ModComponent.dll",
+                        "path": "Mods"
+                    },
+                    {
+                        "name": "LocalizationUtilities",
+                        "url": "https://github.com/ds5678/LocalizationUtilities/releases/download/1.0.0/LocalizationUtilities.dll",
+                        "path": "Mods"
+                    },
+                    {
+                        "name": "GearSpawner",
+                        "url": "https://github.com/ds5678/GearSpawner/releases/download/1.0.1/GearSpawner.dll",
+                        "path": "Mods"
+                    },
+                    {
+                        "name": "CraftingRevisions",
+                        "url": "https://github.com/ds5678/CraftingRevisions/releases/download/1.0.1/CraftingRevisions.dll",
+                        "path": "Mods"
+                    },
+                    {
+                        "name": "IncreaseSaveSlotLimit",
+                        "url": "https://github.com/ds5678/IncreaseSaveSlotLimit/releases/download/1.1/IncreaseSaveSlotLimit.dll",
+                        "path": "Mods"
+                    },
+                    {
+                        "name": "AudioCore",
+                        "url": "https://github.com/DigitalzombieTLD/AudioCore/releases/download/1.0/AudioCore_PLUGIN_1.0.zip",
+                        "path": "Plugins"
+                    }
+                ],
+                "uninstall_resources": [
+                    "Mods/ExpeditionTemplates",
+                    "Mods/SkyCoop.dll",
+                    "Mods/Steamworks.NET.dll",
+                    "Mods/README.txt",
+                    "Mods/SkyCoop.modcomponent",
+                    "Mods/multiplayerstuff.unity3d",
+                    "Plugins/AudioCore.dll",
+                    "Plugins/AudioCoreData.tpk",
+                    "Plugins/_License"
+                ]
+            },
+            {
+                "tag_name": "v11.1",
+                "eternal_version": "1.0.0.0",
+                "branch": "BeforeTFTFT",
+                "melon_version": "0.5.7",
+                "is_prerelease": false,
+                "melon_url": "https://github.com/LavaGang/MelonLoader/releases/download/v0.5.7/MelonLoader.x64.zip",
+                "dependencies": [
+                    {
+                        "name": "ModSettings",
+                        "url": "https://github.com/zeobviouslyfakeacc/ModSettings/releases/download/v1.8.2/ModSettings.dll",
+                        "path": "Mods"
+                    },
+                    {
+                        "name": "KeyboardUtilities",
+                        "url": "https://github.com/ds5678/KeyboardUtilities/releases/download/1.3.0/KeyboardUtilities.dll",
+                        "path": "Mods"
+                    },
+                    {
+                        "name": "ModComponent",
+                        "url": "https://github.com/ds5678/ModComponent/releases/download/5.1.4/ModComponent.dll",
+                        "path": "Mods"
+                    },
+                    {
+                        "name": "LocalizationUtilities",
+                        "url": "https://github.com/ds5678/LocalizationUtilities/releases/download/1.0.0/LocalizationUtilities.dll",
+                        "path": "Mods"
+                    },
+                    {
+                        "name": "GearSpawner",
+                        "url": "https://github.com/ds5678/GearSpawner/releases/download/1.0.1/GearSpawner.dll",
+                        "path": "Mods"
+                    },
+                    {
+                        "name": "CraftingRevisions",
+                        "url": "https://github.com/ds5678/CraftingRevisions/releases/download/1.0.1/CraftingRevisions.dll",
+                        "path": "Mods"
+                    },
+                    {
+                        "name": "IncreaseSaveSlotLimit",
+                        "url": "https://github.com/ds5678/IncreaseSaveSlotLimit/releases/download/1.1/IncreaseSaveSlotLimit.dll",
+                        "path": "Mods"
+                    },
+                    {
+                        "name": "AudioCore",
+                        "url": "https://github.com/DigitalzombieTLD/AudioCore/releases/download/1.0/AudioCore_PLUGIN_1.0.zip",
+                        "path": "Plugins"
+                    }
+                ],
+                "uninstall_resources": [
+                    "Mods/ExpeditionTemplates",
+                    "Mods/SkyCoop.dll",
+                    "Mods/Steamworks.NET.dll",
+                    "Mods/README.txt",
+                    "Mods/SkyCoop.modcomponent",
+                    "Mods/multiplayerstuff.unity3d",
+                    "Plugins/AudioCore.dll",
+                    "Plugins/AudioCoreData.tpk",
+                    "Plugins/_License"
+                ]
+            },
+            {
+                "tag_name": "v11.0",
+                "eternal_version": "1.0.0.0",
+                "branch": "BeforeTFTFT",
+                "melon_version": "0.5.7",
+                "is_prerelease": false,
+                "melon_url": "https://github.com/LavaGang/MelonLoader/releases/download/v0.5.7/MelonLoader.x64.zip",
+                "dependencies": [
+                    {
+                        "name": "ModSettings",
+                        "url": "https://github.com/zeobviouslyfakeacc/ModSettings/releases/download/v1.8.2/ModSettings.dll",
+                        "path": "Mods"
+                    },
+                    {
+                        "name": "KeyboardUtilities",
+                        "url": "https://github.com/ds5678/KeyboardUtilities/releases/download/1.3.0/KeyboardUtilities.dll",
+                        "path": "Mods"
+                    },
+                    {
+                        "name": "ModComponent",
+                        "url": "https://github.com/ds5678/ModComponent/releases/download/5.1.4/ModComponent.dll",
+                        "path": "Mods"
+                    },
+                    {
+                        "name": "LocalizationUtilities",
+                        "url": "https://github.com/ds5678/LocalizationUtilities/releases/download/1.0.0/LocalizationUtilities.dll",
+                        "path": "Mods"
+                    },
+                    {
+                        "name": "GearSpawner",
+                        "url": "https://github.com/ds5678/GearSpawner/releases/download/1.0.1/GearSpawner.dll",
+                        "path": "Mods"
+                    },
+                    {
+                        "name": "CraftingRevisions",
+                        "url": "https://github.com/ds5678/CraftingRevisions/releases/download/1.0.1/CraftingRevisions.dll",
+                        "path": "Mods"
+                    },
+                    {
+                        "name": "IncreaseSaveSlotLimit",
+                        "url": "https://github.com/ds5678/IncreaseSaveSlotLimit/releases/download/1.1/IncreaseSaveSlotLimit.dll",
+                        "path": "Mods"
+                    },
+                    {
+                        "name": "AudioCore",
+                        "url": "https://github.com/DigitalzombieTLD/AudioCore/releases/download/1.0/AudioCore_PLUGIN_1.0.zip",
+                        "path": "Plugins"
+                    }
+                ],
+                "uninstall_resources": [
+                    "Mods/ExpeditionTemplates",
+                    "Mods/SkyCoop.dll",
+                    "Mods/Steamworks.NET.dll",
+                    "Mods/README.txt",
+                    "Mods/SkyCoop.modcomponent",
+                    "Mods/multiplayerstuff.unity3d",
+                    "Plugins/AudioCore.dll",
+                    "Plugins/AudioCoreData.tpk",
+                    "Plugins/_License"
+                ]
+            }
+        ]
+    }
 ]
