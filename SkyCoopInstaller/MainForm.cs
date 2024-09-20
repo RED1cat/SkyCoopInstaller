@@ -58,9 +58,8 @@ namespace SkyCoopInstaller
                     } else
                     {
                         m_ModReadyToInstall = false;
-                        m_ModAlreadyInstalled = false;
-                        UnInstallButton.Visible = false;
-                        UnInstallButton.Enabled = false;
+                        m_GameVersionSelected = false;
+                        InstallButton.Enabled = false;
                     }
                 }
             }
@@ -104,25 +103,6 @@ namespace SkyCoopInstaller
             string version = " ";
             string selectedCompatibleVersion = string.Empty;
 
-            if (thisVersionIsCompatible == false)
-            {
-                string Message;
-                MessageBoxIcon Icon;
-                if (string.IsNullOrEmpty(version) || version == " ")
-                {
-                    Message = "File you selected does not looks like The Long Dark. Make sure you selected tld.exe file, AND NOT SHORTCUT! You need to select tld.exe from the directory of the game.";
-                    Icon = MessageBoxIcon.Error;
-                    MessageBox.Show(Message, "ERROR", MessageBoxButtons.OK, Icon, MessageBoxDefaultButton.Button1);
-                    return false;
-                } else
-                {
-                    Message = $"The version of the game you have chosen ({version}), does not match with any supported builds of the game. You can select version manually, and continue on your own risk.";
-                    Icon = MessageBoxIcon.Warning;
-                    MessageBox.Show(Message, "Unknown version selected", MessageBoxButtons.OK, Icon, MessageBoxDefaultButton.Button1);
-                }
-            }
-
-
             if (File.Exists(gameVersionFile))
             {
                 version = File.ReadAllText(gameVersionFile).Split(' ')[0];
@@ -155,6 +135,26 @@ namespace SkyCoopInstaller
                     }
                 }
             }
+
+            if (thisVersionIsCompatible == false)
+            {
+                string Message;
+                MessageBoxIcon Icon;
+                if (string.IsNullOrEmpty(version) || version == " ")
+                {
+                    Message = "File you selected does not looks like The Long Dark. Make sure you selected tld.exe file, AND NOT SHORTCUT! You need to select tld.exe from the directory of the game.";
+                    Icon = MessageBoxIcon.Error;
+                    MessageBox.Show(Message, "ERROR", MessageBoxButtons.OK, Icon, MessageBoxDefaultButton.Button1);
+                    return false;
+                }
+                else
+                {
+                    Message = $"The version of the game you have chosen ({version}), does not match with any supported builds of the game. You can select version manually, and continue on your own risk.";
+                    Icon = MessageBoxIcon.Warning;
+                    MessageBox.Show(Message, "Unknown version selected", MessageBoxButtons.OK, Icon, MessageBoxDefaultButton.Button1);
+                }
+            }
+
             return true;
         }
         private void FillGameVersionBox()

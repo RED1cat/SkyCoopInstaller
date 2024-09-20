@@ -12,7 +12,7 @@ namespace SkyCoopInstaller
     internal class GithubManager
     {
         public const string MetadataURL = "https://api.github.com/repos/Filigrani/SkyCoop/releases";
-        public const string FilteredURL = "https://api.github.com/repos/RED1cat/SkyCoopInstaller/contents/FilteredReleases_test.json";
+        public const string FilteredURL = "https://api.github.com/repos/RED1cat/SkyCoopInstaller/contents/FilteredReleases.json";
         public const string NewsURL = "https://api.github.com/repos/RED1cat/SkyCoopInstaller/contents/News.txt";
         public const string LatestInstllaerVersionURL = "https://api.github.com/repos/RED1cat/SkyCoopInstaller/contents/Version.txt";
         public static string GitJson = "";
