@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Net;
+using System.Runtime.InteropServices;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SkyCoopInstaller
@@ -9,13 +11,37 @@ namespace SkyCoopInstaller
         public static WebClient webClient;
         public static MainForm mainForm;
         [STAThread]
-        static void Main()
+        static void Main(string[] arg)
         {
-            webClient = new WebClient();
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            mainForm = new MainForm();
-            Application.Run(mainForm);
+            if (arg.GetLength(0) == 0) 
+            {
+                Application.EnableVisualStyles();
+                Application.SetCompatibleTextRenderingDefault(false);
+                webClient = new WebClient();
+                mainForm = new MainForm();
+                Application.Run(mainForm);
+            }
+            else if (arg[0] == "-silent")
+            {
+                webClient = new WebClient();
+                mainForm = new MainForm(true);
+                AllocConsole();
+                Console.WriteLine("Silent Mode");
+                Task.Run(AutoSetup.Begin);
+                Wating();
+            }
         }
+
+        private static void Wating()
+        {
+            while (AutoSetup.Installing) {}
+            FreeConsole();
+        }
+
+        [DllImport("kernel32.dll")]
+        private static extern bool AllocConsole();
+
+        [DllImport("kernel32.dll")]
+        private static extern bool FreeConsole();
     }
 }

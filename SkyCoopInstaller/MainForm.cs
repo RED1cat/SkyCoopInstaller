@@ -15,23 +15,21 @@ namespace SkyCoopInstaller
         bool m_ModAlreadyInstalled = false;
         string m_CurrentInstalledVersion = string.Empty;
 
-        public MainForm()
+        public MainForm(bool force = false)
         {
-            if (AutoSetup.IsRequired())
-            {
-                AutoSetup.Begin();
-                return;
-            }
             InitializeComponent();
-            if (DateTime.Now.Month == 12 || DateTime.Now.Month < 3)
+            if (!force)
             {
-                SkyCoopLogo.Image = Properties.Resources.InstallerBanner2;
+                if (DateTime.Now.Month == 12 || DateTime.Now.Month < 3)
+                {
+                    SkyCoopLogo.Image = Properties.Resources.InstallerBanner2;
+                }
+                GithubManager.PrepareReleasesList();
+                NewsTextBox.Text = GithubManager.GetNews();
+                CheckProgramVersion();
+                MainTabControl.SelectedIndex = 0;
+                ProgramVersionLabel.Text = "Version: " + BuildInfo.Version;
             }
-            GithubManager.PrepareReleasesList();
-            NewsTextBox.Text = GithubManager.GetNews();
-            CheckProgramVersion();
-            MainTabControl.SelectedIndex = 0;
-            ProgramVersionLabel.Text = "Version: " + BuildInfo.Version;
         }
 
         private void metroButton1_Click(object sender, EventArgs e)
@@ -394,12 +392,19 @@ namespace SkyCoopInstaller
         {
             if (GithubManager.LatestInstallerVersion.Replace("\n", "") != BuildInfo.Version)
             {
-                MessageBox.Show("A newer version of the installer is available, please download the latest version.\n(If you have already downloaded the latest version and you see this message, it means that the installer does not have Internet access.)",
+                DialogResult result = MessageBox.Show("A newer version of the installer is available, please download the latest version.\n(If you have already downloaded the latest version and you see this message, it means that the installer does not have Internet access.)\nIf the installer doesn't work for you anyway, you can download the finished mod package if you click 'yes'.",
                     "Information",
-                    MessageBoxButtons.OK,
+                    MessageBoxButtons.YesNo,
                     MessageBoxIcon.Information,
                     MessageBoxDefaultButton.Button1);
-                System.Diagnostics.Process.Start("https://github.com/RED1cat/SkyCoopInstaller/releases/latest");
+                if (result == DialogResult.Yes) 
+                {
+                    System.Diagnostics.Process.Start("https://github.com/RED1cat/SkyCoopInstaller/releases/tag/LastMod");
+                }
+                else
+                {
+                    System.Diagnostics.Process.Start("https://github.com/RED1cat/SkyCoopInstaller/releases/latest");
+                }
                 Environment.Exit(0);
             }
         }

@@ -1,0 +1,41 @@
+name: BuildModPack
+
+on: workflow_dispatch
+
+jobs:
+    build:
+        name: Build on ${{ matrix.os }} ${{ matrix.arch }}
+        runs-on: ${{ matrix.os }}
+        strategy:
+            matrix:
+                include:
+                    - os: windows-2019
+                      arch: x64
+
+
+        steps:
+            - uses: actions/checkout@v2
+            
+            - name: Restore dependencies
+              run: nuget restore SkyCoopInstaller.sln
+              
+            - name: Build installer
+              run: dotnet build --configuration debug
+              
+            - name: Download last mod version and dependencies
+              run: SkyCoopInstaller/bin/Debug/SkyCoopInstaller.exe -silent
+              
+            - name: Ñreating archive
+              run: Compress-Archive -Path SkyCoopInstaller/bin/Debug/DsMods/* -Destination SkyCoop.zip
+              
+            - name: Publishing
+              uses: svenstaro/upload-release-action@v2
+              with:
+                  repo_token: ${{ secrets.GITHUB_TOKEN }}
+                  file: SkyCoop.zip
+                  asset_name: ${{ matrix.asset_name }}
+                  prerelease: true
+                  overwrite: true
+                  release_name: Last Mod Realese
+                  body: If your installer doesn't work for some reason, you can download this ready-made package of the latest version of the mod and unzip it to the root folder of the game.
+                  tag: LastMod

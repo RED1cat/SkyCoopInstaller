@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -10,10 +11,7 @@ namespace SkyCoopInstaller
 {
     internal class AutoSetup
     {
-        public static bool IsRequired()
-        {
-            return Environment.GetCommandLineArgs().Contains("-auto");
-        }
+        public static bool Installing = true;
         public static void Begin()
         {
             GithubManager.PrepareReleasesList();
@@ -21,30 +19,55 @@ namespace SkyCoopInstaller
             GithubManager.AvalibleRelease R = GithubManager.GetLatestReleaseMeta(GithubManager.GameVersions[0], false);
             Downloader.SilentMode = true;
 
-            string Path = Environment.CurrentDirectory + "/DsMods";
-            if(Directory.Exists(Path))
-            {
-                Directory.Delete(Path, true);
-            }
+            string Path = AppDomain.CurrentDomain.BaseDirectory + "/DsMods";
+            DeleteDirectory(Path);
             Directory.CreateDirectory(Path);
-            Downloader.Start(R, Path, "");
+            Console.WriteLine($"Download to {Path}");
+            Downloader.Start(R, Path, R.m_RequiredMelon);
         }
 
-        public static void Finished()
+        public static void DeleteDirectory(string path, bool retryOnFailure = true, int maxRetries = 3, int retryDelay = 500)
         {
-            string Path = Environment.CurrentDirectory + "/DsMods";
-            if (Directory.Exists(Path))
+            if (!Directory.Exists(path))
+                return;
+
+            SetAttributesNormal(path);
+
+            for (int attempt = 1; attempt <= maxRetries; attempt++)
             {
-                if(File.Exists(Path + "/Mods/Steamworks.NET.dll"))
+                try
                 {
-                    File.Delete(Path + "/Mods/Steamworks.NET.dll");
+                    Directory.Delete(path, true);
+                    return;
                 }
-                if (File.Exists(Path + "/Mods/multiplayerstuff.unity3d"))
+                catch (IOException ex) when (retryOnFailure && attempt < maxRetries)
                 {
-                    File.Delete(Path + "/Mods/multiplayerstuff.unity3d");
+                    Console.WriteLine($"Attempt {attempt}: {ex.Message}");
+                    Thread.Sleep(retryDelay);
+                }
+                catch (UnauthorizedAccessException ex) when (retryOnFailure && attempt < maxRetries)
+                {
+                    Console.WriteLine($"Attempt {attempt}: {ex.Message}");
+                    Thread.Sleep(retryDelay);
                 }
             }
-            Application.Exit();
+
+            throw new IOException($"Couldn't delete the '{path}' directory after {maxRetries} attempts");
+        }
+
+        private static void SetAttributesNormal(string path)
+        {
+            foreach (var file in Directory.GetFiles(path, "*.*", SearchOption.AllDirectories))
+            {
+                File.SetAttributes(file, FileAttributes.Normal);
+            }
+
+            foreach (var dir in Directory.GetDirectories(path, "*", SearchOption.AllDirectories))
+            {
+                File.SetAttributes(dir, FileAttributes.Normal);
+            }
+
+            File.SetAttributes(path, FileAttributes.Normal);
         }
     }
 }

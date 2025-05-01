@@ -69,12 +69,21 @@ namespace SkyCoopInstaller
                     Program.mainForm.UpdateTotalProgressBar(1);
                 }
             }
+            else
+            {
+                Console.WriteLine("Melonloader " + melonVersion + " going to be installed");
+                m_DownloadQueue.Add(new DownloadQueueElement(release.m_MelonURL, gamePath, "Melonloader", true));
+            }
 
             if(!Directory.Exists(gamePath + @"\Mods"))
             {
                 if (!SilentMode)
                 {
                     Program.mainForm.AddInstallLog("Mods folder not exist, creating...");
+                }
+                else
+                {
+                    Console.WriteLine("Mods folder not exist, creating...");
                 }
                 Directory.CreateDirectory(gamePath + @"\Mods");
             }
@@ -83,6 +92,10 @@ namespace SkyCoopInstaller
                 if (!SilentMode)
                 {
                     Program.mainForm.AddInstallLog("Plugins folder not exist, creating...");
+                }
+                else
+                {
+                    Console.WriteLine("Plugins folder not exist, creating...");
                 }
                 Directory.CreateDirectory(gamePath + @"\Plugins");
             }
@@ -93,6 +106,10 @@ namespace SkyCoopInstaller
             {
                 Program.mainForm.AddInstallLog("Sky-Coop " + release.m_ReleaseMeta.m_ReleaseName + " from " + release.m_FromBranch + " branch going to be installed");
             }
+            else
+            {
+                Console.WriteLine("Sky-Coop " + release.m_ReleaseMeta.m_ReleaseName + " from " + release.m_FromBranch + " branch going to be installed");
+            }
             foreach (GithubManager.DependenceMeta dependenceMeta in release.m_Dependencies)
             {
                 m_DownloadQueue.Add(new DownloadQueueElement(dependenceMeta.m_DownloadURL, gamePath + dependenceMeta.m_Path, dependenceMeta.m_Name, dependenceMeta.m_IsZip));
@@ -102,6 +119,10 @@ namespace SkyCoopInstaller
             {
                 Program.mainForm.AddInstallLog("Found " + release.m_Dependencies.Count + " dependencies needed to be installed");
                 Program.mainForm.SetMaximumValueProgressBar(release.m_Dependencies.Count + 2);
+            }
+            else
+            {
+                Console.WriteLine("Found " + release.m_Dependencies.Count + " dependencies needed to be installed");
             }
             BeginDownload();
         }
@@ -145,6 +166,10 @@ namespace SkyCoopInstaller
             {
                 Program.mainForm.AddInstallLog("Downloading " + FileName + "...");
             }
+            else
+            {
+                Console.WriteLine("Downloading " + FileName + "...");
+            }
             if (m_CurrentlyDownloadingFile.m_IsZip)
             {
                 FileName += ".zip";
@@ -166,7 +191,8 @@ namespace SkyCoopInstaller
                 Program.mainForm.InstallFinished("Installation", m_Version);
             } else
             {
-                AutoSetup.Finished();
+                Console.WriteLine($"Downloader finished version {m_Version}");
+                AutoSetup.Installing = false;
             }
         }
 
@@ -176,40 +202,66 @@ namespace SkyCoopInstaller
             {
                 Program.mainForm.UpdateCurrentFileProgressBar(e.ProgressPercentage, Downloader.m_CurrentlyDownloadingFile.m_FileName);
             }
+            else
+            {
+                Console.Write('*');
+            }
         }
 
         private static void Completed(object sender, AsyncCompletedEventArgs e)
         {
-            if (e.Cancelled)
+            if (!SilentMode)
             {
-                MessageBox.Show("Downloading cancled",
-                    "Information",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information,
-                    MessageBoxDefaultButton.Button1,
-                    MessageBoxOptions.ServiceNotification);
-                return;
+                if (e.Cancelled)
+                {
+                    MessageBox.Show("Downloading cancled",
+                        "Information",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information,
+                        MessageBoxDefaultButton.Button1,
+                        MessageBoxOptions.ServiceNotification);
+                    return;
+                }
+                if (e.Error != null)
+                {
+                    MessageBox.Show($"Downloading error: {e.Error}",
+                        "Information",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error,
+                        MessageBoxDefaultButton.Button1,
+                        MessageBoxOptions.ServiceNotification);
+                    return;
+                }
             }
-            if (e.Error != null)
+            else
             {
-                MessageBox.Show($"Downloading error: {e.Error}",
-                    "Information",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error,
-                    MessageBoxDefaultButton.Button1,
-                    MessageBoxOptions.ServiceNotification);
-                return;
+                if (e.Cancelled)
+                {
+                    Console.WriteLine("Downloading cancled");
+                }
+                if(e.Error != null)
+                {
+                    Console.WriteLine(e.Error.ToString());
+                }
             }
 
             if (!SilentMode)
             {
                 Program.mainForm.AddInstallLog(m_CurrentlyDownloadingFile.m_FileName + " downloaded!");
             }
+            else
+            {
+                Console.WriteLine(m_CurrentlyDownloadingFile.m_FileName + " downloaded!");
+            }
             if (m_CurrentlyDownloadingFile.m_IsZip)
             {
                 if (!SilentMode)
                 {
                     Program.mainForm.AddInstallLog("Unzipping " + m_CurrentlyDownloadingFile.m_FileName + "...");
+                }
+                else
+                {
+                    Console.WriteLine("Unzipping " + m_CurrentlyDownloadingFile.m_FileName + "...");
                 }
                 new ICSharpCode.SharpZipLib.Zip.FastZip().ExtractZip(m_CurrentlyDownloadingFile.m_Path + @"\" + m_CurrentlyDownloadingFile.m_FileName + ".zip", m_CurrentlyDownloadingFile.m_Path, null);
 
@@ -219,6 +271,10 @@ namespace SkyCoopInstaller
                 {
                     Program.mainForm.UpdateTotalProgressBar(1);
                     Program.mainForm.AddInstallLog(m_CurrentlyDownloadingFile.m_FileName + " successfully extracted!");
+                }
+                else
+                {
+                    Console.WriteLine(m_CurrentlyDownloadingFile.m_FileName + " successfully extracted!");
                 }
                 DownloadNextFileFromQueue();
             } else
