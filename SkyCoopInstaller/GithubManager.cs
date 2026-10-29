@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
-using System.IO.Compression;
-using System.Runtime.Remoting.Lifetime;
 using System.Text;
 using MelonLoader.LightJson;
-using SevenZip.Buffer;
 
 namespace SkyCoopInstaller
 {
