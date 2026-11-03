@@ -1,47 +1,34 @@
-﻿using System;
+﻿using Avalonia;
+using System;
 using System.Net;
-using System.Runtime.InteropServices;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
-namespace SkyCoopInstaller
+namespace SkyCoopInstaller;
+
+class Program
 {
-    internal static class Program
-    {
-        public static WebClient webClient;
-        public static MainForm mainForm;
-        [STAThread]
-        static void Main(string[] arg)
+    public static WebClient webClient = new WebClient();
+    [STAThread]
+    public static void Main(string[] args) 
+    { 
+        if (args.GetLength(0) == 0)
         {
-            if (arg.GetLength(0) == 0) 
-            {
-                Application.EnableVisualStyles();
-                Application.SetCompatibleTextRenderingDefault(false);
-                webClient = new WebClient();
-                mainForm = new MainForm();
-                Application.Run(mainForm);
-            }
-            else if (arg[0] == "-silent")
-            {
-                webClient = new WebClient();
-                mainForm = new MainForm(true);
-                AllocConsole();
-                Console.WriteLine("Silent Mode");
-                Task.Run(AutoSetup.Begin);
-                Wating();
-            }
+            webClient = new WebClient();
+            BuildAvaloniaApp().StartWithClassicDesktopLifetime(args);
         }
-
-        private static void Wating()
+        else if (args[0] == "-silent")
         {
-            while (AutoSetup.Installing) {}
-            FreeConsole();
+            Console.WriteLine("Silent Mode");
+            Console.ReadKey();
         }
-
-        [DllImport("kernel32.dll")]
-        private static extern bool AllocConsole();
-
-        [DllImport("kernel32.dll")]
-        private static extern bool FreeConsole();
     }
+
+    // Avalonia configuration, don't remove; also used by visual designer.
+    public static AppBuilder BuildAvaloniaApp()
+        => AppBuilder.Configure<App>()
+            .UsePlatformDetect()
+#if DEBUG
+            .WithDeveloperTools()
+#endif
+            .WithInterFont()
+            .LogToTrace();
 }

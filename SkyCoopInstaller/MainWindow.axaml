@@ -1,0 +1,183 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="962" d:DesignHeight="630" 
+        x:Class="SkyCoopInstaller.MainWindow"
+        Title="SkyCoopInstaller"
+        CanResize="False"
+        Width="962"
+        Height="630">
+
+    <Window.Styles>
+        <Style Selector="Button, TabControl, TextBox, ComboBox, Window">
+            <Setter Property="BorderBrush" Value="{DynamicResource SystemControlHighlightAccentBrush}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+        </Style>
+    </Window.Styles>
+
+    <Grid HorizontalAlignment="Center" 
+          VerticalAlignment="Center"
+          ColumnSpacing="0"
+          RowSpacing="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="350"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0"/>
+            <RowDefinition Height="0"/>
+        </Grid.RowDefinitions>
+
+        <TabControl Name="Main_TabControl"
+                    Width="565"
+                    Height="301"
+                    Grid.Column="0"
+                    Grid.Row="0">
+
+            <TabItem Name="SelectGame_TabItem" Header="Select Game">
+
+                <Grid HorizontalAlignment="Center"
+                      VerticalAlignment="Center"
+                      ColumnSpacing="0"
+                      RowSpacing="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Button Name="Select_Button" Content="Select"
+                            Click="Select_Button_OnClick"
+                            HorizontalContentAlignment="Center"
+                            VerticalContentAlignment="Center"
+                            Width="95"
+                            Height="25"
+                            Grid.Column="0"
+                            Grid.Row="0"/>
+
+                    <TextBox Name="GamePath_TextBox" Text="Select your TLD.exe directory"
+                             MaxLines="1"
+                             Width="409"
+                             Height="25"
+                             Grid.Column="1"
+                             Grid.Row="0"/>
+
+                    <Label Name="GameVersion_Label" Content="Game versions:"
+                           Grid.Column="0"
+                           Grid.Row="1"/>
+
+                    <ComboBox Name="GameVersion_ComboBox"
+                              Grid.Column="1"
+                              Grid.Row="1"/>
+
+                    <Button Name="Next_Button" Content="Next"
+                            Grid.Column="1"
+                            Grid.Row="2"/>
+                </Grid>
+            </TabItem>
+
+            <TabItem Name="SelectModVersion_TabItem" Header="Select Mod Version">
+
+                <Grid HorizontalAlignment="Center"
+                      VerticalAlignment="Center"
+                      ColumnSpacing="0"
+                      RowSpacing="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Label Name="AvalibleModVersion_Label" Content="Avalible mod versions:"
+                           Grid.Column="0"
+                           Grid.Row="0"/>
+
+                    <ComboBox Name="ModVersions_ComboBox"
+                              Grid.Column="0"
+                              Grid.Row="1"/>
+
+                    <CheckBox Name="HidePreRelease_CheckBox" Content="Hide Pre-Release"
+                              
+                              Grid.Column="0"
+                              Grid.Row="2"/>
+
+                    <Button Name="Uninstall_Button" Content="UNINSTALL"
+                            Grid.Column="0"
+                            Grid.Row="3"/>
+
+                    <Button Name="Install_Button" Content="INSTALL"
+                            Click="Install_Button_OnClick"
+                            Grid.Column="0"
+                            Grid.Row="4"/>
+                </Grid>
+            </TabItem>
+
+            <TabItem Name="Installation_TabItem" Header="Installation">
+
+                 <Grid HorizontalAlignment="Center"
+                      VerticalAlignment="Center"
+                      ColumnSpacing="0"
+                      RowSpacing="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    
+                     <Label Name="Progress_label" Content="Progress"
+                            Grid.Column="0"
+                            Grid.Row="0"/>
+                     
+                     <ProgressBar Name="Progress_ProgressBar"
+                                  Grid.Column="0"
+                                  Grid.Row="1"/>
+
+                    <Label Name="TotalProgress_label" Content="Total Progress"
+                            Grid.Column="0"
+                            Grid.Row="2"/>
+                     
+                     <ProgressBar Name="TotalProgress_ProgressBar"
+                                  Grid.Column="0"
+                                  Grid.Row="3"/>
+
+                     <Button Background="{DynamicResource SystemControlBackgroundAltHighBrush}" Content="test1" Grid.Column="0" Grid.Row="4"/>
+                     <Button Background="{DynamicResource SystemControlBackgroundBaseLowBrush}" Content="test2" Grid.Column="1" Grid.Row="4"/>
+                     <Button Background="{DynamicResource SystemControlForegroundBaseHighBrush}" Content="test3" Grid.Column="2" Grid.Row="4"/>
+                     <Button Background="{DynamicResource SystemControlForegroundBaseMediumBrush}" Content="test4" Grid.Column="3" Grid.Row="4"/>
+                     <Button Background="{DynamicResource SystemControlHighlightAccentBrush}" Content="test5" Grid.Column="4" Grid.Row="4"/>
+                     <Button Background="{DynamicResource SystemAccentColor}" Content="test6" Grid.Column="5" Grid.Row="4"/>
+                </Grid>
+            </TabItem>
+        </TabControl>
+        <TextBox Name="ChangeLog_TextBox" Text="TEST"
+                 IsReadOnly="True"
+                 TextWrapping="Wrap"
+                 HorizontalAlignment="Right" 
+                 VerticalAlignment="Stretch" 
+                 Width="326" 
+                 Height="548"
+                 Grid.Row="0"
+                 Grid.Column="1"/>
+    </Grid>
+</Window>

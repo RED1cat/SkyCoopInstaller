@@ -1,9 +1,10 @@
-﻿using System;
+﻿using Avalonia;
+using Avalonia.Controls.ApplicationLifetimes;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Net;
-using System.Windows.Forms;
 
 namespace SkyCoopInstaller
 {
@@ -39,34 +40,34 @@ namespace SkyCoopInstaller
             m_DownloadQueue.Clear();
             if (!SilentMode)
             {
-                Program.mainForm.ClearInstallLog();
+                //Program.mainForm.ClearInstallLog(); //TODO:need rework
             }
             if (Directory.Exists(gamePath + @"\Plugins"))
             {
                 if (File.Exists(gamePath + @"\Plugins\AutoUpdatingPlugin.dll"))
                 {
-                    MessageBox.Show("Sky Co-Op " + release.m_ReleaseMeta.m_ReleaseName + " using specific versions of the dependency mods.\r\nAutoUpdatingPlugin will be deleted.",
-                        "Information",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Warning,
-                        MessageBoxDefaultButton.Button1,
-                        MessageBoxOptions.ServiceNotification);
+                    //MessageBox.Show("Sky Co-Op " + release.m_ReleaseMeta.m_ReleaseName + " using specific versions of the dependency mods.\r\nAutoUpdatingPlugin will be deleted.",
+                    //    "Information",
+                    //    MessageBoxButtons.OK,
+                    //    MessageBoxIcon.Warning,
+                    //    MessageBoxDefaultButton.Button1,
+                    //    MessageBoxOptions.ServiceNotification); //TODO:need rework
                     File.Delete(gamePath + @"\Plugins\AutoUpdatingPlugin.dll");
                 }
             }
 
             if (!SilentMode)
             {
-                Program.mainForm.AddInstallLog("Checking currently installed Melonloader...");
+                ((MainWindow)((IClassicDesktopStyleApplicationLifetime)Application.Current.ApplicationLifetime).MainWindow).ChangeLog_TextBox.Text += "Checking currently installed Melonloader..."; //TODO:need rework
 
                 if (MelonChecker.CheckInstalledMelonVersion(gamePath, melonVersion) == false)
                 {
-                    Program.mainForm.AddInstallLog("Melonloader " + melonVersion + " going to be installed");
+                    ((MainWindow)((IClassicDesktopStyleApplicationLifetime)Application.Current.ApplicationLifetime).MainWindow).ChangeLog_TextBox.Text += $"Melonloader {melonVersion} going to be installed"; //TODO:need rework
                     m_DownloadQueue.Add(new DownloadQueueElement(release.m_MelonURL, gamePath, "Melonloader", true));
                 } else
                 {
-                    Program.mainForm.AddInstallLog("Melonloader " + melonVersion + " is already installed, skipping");
-                    Program.mainForm.UpdateTotalProgressBar(1);
+                    ((MainWindow)((IClassicDesktopStyleApplicationLifetime)Application.Current.ApplicationLifetime).MainWindow).ChangeLog_TextBox.Text += $"Melonloader {melonVersion} is already installed, skipping"; //TODO:need rework
+                    //Program.mainForm.UpdateTotalProgressBar(1); //TODO:need rework
                 }
             }
             else
@@ -79,7 +80,7 @@ namespace SkyCoopInstaller
             {
                 if (!SilentMode)
                 {
-                    Program.mainForm.AddInstallLog("Mods folder not exist, creating...");
+                    ((MainWindow)((IClassicDesktopStyleApplicationLifetime)Application.Current.ApplicationLifetime).MainWindow).ChangeLog_TextBox.Text += "Mods folder not exist, creating..."; //TODO:need rework
                 }
                 else
                 {
@@ -91,7 +92,7 @@ namespace SkyCoopInstaller
             {
                 if (!SilentMode)
                 {
-                    Program.mainForm.AddInstallLog("Plugins folder not exist, creating...");
+                    ((MainWindow)((IClassicDesktopStyleApplicationLifetime)Application.Current.ApplicationLifetime).MainWindow).ChangeLog_TextBox.Text += "Plugins folder not exist, creating..."; //TODO:need rework
                 }
                 else
                 {
@@ -104,7 +105,7 @@ namespace SkyCoopInstaller
 
             if (!SilentMode)
             {
-                Program.mainForm.AddInstallLog("Sky-Coop " + release.m_ReleaseMeta.m_ReleaseName + " from " + release.m_FromBranch + " branch going to be installed");
+                ((MainWindow)((IClassicDesktopStyleApplicationLifetime)Application.Current.ApplicationLifetime).MainWindow).ChangeLog_TextBox.Text += $"Sky-Coop {release.m_ReleaseMeta.m_ReleaseName} from {release.m_FromBranch} branch going to be installed"; //TODO:need rework
             }
             else
             {
@@ -117,8 +118,8 @@ namespace SkyCoopInstaller
 
             if (!SilentMode)
             {
-                Program.mainForm.AddInstallLog("Found " + release.m_Dependencies.Count + " dependencies needed to be installed");
-                Program.mainForm.SetMaximumValueProgressBar(release.m_Dependencies.Count + 2);
+                ((MainWindow)((IClassicDesktopStyleApplicationLifetime)Application.Current.ApplicationLifetime).MainWindow).ChangeLog_TextBox.Text += $"Found {release.m_Dependencies.Count} dependencies needed to be installed"; //TODO:need rework
+                //Program.mainForm.SetMaximumValueProgressBar(release.m_Dependencies.Count + 2); //TODO:need rework
             }
             else
             {
@@ -164,7 +165,7 @@ namespace SkyCoopInstaller
 
             if (!SilentMode)
             {
-                Program.mainForm.AddInstallLog("Downloading " + FileName + "...");
+                ((MainWindow)((IClassicDesktopStyleApplicationLifetime)Application.Current.ApplicationLifetime).MainWindow).ChangeLog_TextBox.Text += $"Downloading {FileName} ..."; //TODO:need rework
             }
             else
             {
@@ -188,8 +189,10 @@ namespace SkyCoopInstaller
 
             if (!SilentMode)
             {
-                Program.mainForm.InstallFinished("Installation", m_Version);
-            } else
+                //Program.mainForm.InstallFinished("Installation", m_Version); //TODO:need rework
+                ((MainWindow)((IClassicDesktopStyleApplicationLifetime)Application.Current.ApplicationLifetime).MainWindow).ChangeLog_TextBox.Text += "DONE"; //TODO:need rework
+            }
+            else
             {
                 Console.WriteLine($"Downloader finished version {m_Version}");
                 AutoSetup.Installing = false;
@@ -200,7 +203,7 @@ namespace SkyCoopInstaller
         {
             if (!SilentMode)
             {
-                Program.mainForm.UpdateCurrentFileProgressBar(e.ProgressPercentage, Downloader.m_CurrentlyDownloadingFile.m_FileName);
+                //Program.mainForm.UpdateCurrentFileProgressBar(e.ProgressPercentage, Downloader.m_CurrentlyDownloadingFile.m_FileName); //TODO:need rework
             }
             else
             {
@@ -214,22 +217,22 @@ namespace SkyCoopInstaller
             {
                 if (e.Cancelled)
                 {
-                    MessageBox.Show("Downloading cancled",
-                        "Information",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Information,
-                        MessageBoxDefaultButton.Button1,
-                        MessageBoxOptions.ServiceNotification);
+                    //MessageBox.Show("Downloading cancled",
+                    //    "Information",
+                    //    MessageBoxButtons.OK,
+                    //    MessageBoxIcon.Information,
+                    //    MessageBoxDefaultButton.Button1,
+                    //    MessageBoxOptions.ServiceNotification); //TODO:need rework
                     return;
                 }
                 if (e.Error != null)
                 {
-                    MessageBox.Show($"Downloading error: {e.Error}",
-                        "Information",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Error,
-                        MessageBoxDefaultButton.Button1,
-                        MessageBoxOptions.ServiceNotification);
+                    //MessageBox.Show($"Downloading error: {e.Error}",
+                    //    "Information",
+                    //    MessageBoxButtons.OK,
+                    //    MessageBoxIcon.Error,
+                    //    MessageBoxDefaultButton.Button1,
+                    //    MessageBoxOptions.ServiceNotification); //TODO:need rework
                     return;
                 }
             }
@@ -247,7 +250,7 @@ namespace SkyCoopInstaller
 
             if (!SilentMode)
             {
-                Program.mainForm.AddInstallLog(m_CurrentlyDownloadingFile.m_FileName + " downloaded!");
+                ((MainWindow)((IClassicDesktopStyleApplicationLifetime)Application.Current.ApplicationLifetime).MainWindow).ChangeLog_TextBox.Text += $"{m_CurrentlyDownloadingFile.m_FileName} downloaded!"; //TODO:need rework
             }
             else
             {
@@ -257,7 +260,7 @@ namespace SkyCoopInstaller
             {
                 if (!SilentMode)
                 {
-                    Program.mainForm.AddInstallLog("Unzipping " + m_CurrentlyDownloadingFile.m_FileName + "...");
+                    ((MainWindow)((IClassicDesktopStyleApplicationLifetime)Application.Current.ApplicationLifetime).MainWindow).ChangeLog_TextBox.Text += $"Unzipping {m_CurrentlyDownloadingFile.m_FileName}..."; //TODO:need rework
                 }
                 else
                 {
@@ -269,8 +272,8 @@ namespace SkyCoopInstaller
 
                 if (!SilentMode)
                 {
-                    Program.mainForm.UpdateTotalProgressBar(1);
-                    Program.mainForm.AddInstallLog(m_CurrentlyDownloadingFile.m_FileName + " successfully extracted!");
+                    //Program.mainForm.UpdateTotalProgressBar(1); //TODO:need rework
+                    ((MainWindow)((IClassicDesktopStyleApplicationLifetime)Application.Current.ApplicationLifetime).MainWindow).ChangeLog_TextBox.Text += $"{m_CurrentlyDownloadingFile.m_FileName} successfully extracted!"; //TODO:need rework
                 }
                 else
                 {
@@ -281,7 +284,7 @@ namespace SkyCoopInstaller
             {
                 if (!SilentMode)
                 {
-                    Program.mainForm.UpdateTotalProgressBar(1);
+                    //Program.mainForm.UpdateTotalProgressBar(1); //TODO:need rework
                 }
                 DownloadNextFileFromQueue();
             }
