@@ -6,10 +6,10 @@ namespace SkyCoopInstaller
 {
     internal class GithubManager
     {
-        public const string MetadataURL = "https://api.github.com/repos/Filigrani/SkyCoop/releases";
-        public const string FilteredURL = "https://raw.githubusercontent.com/RED1cat/SkyCoopInstaller/refs/heads/master/FilteredReleases.json";
-        public const string NewsURL = "https://raw.githubusercontent.com/RED1cat/SkyCoopInstaller/refs/heads/master/News.txt";
-        public const string LatestInstllaerVersionURL = "https://raw.githubusercontent.com/RED1cat/SkyCoopInstaller/refs/heads/master/Version.txt";
+        public const string MetadataURL = "https://raw.githubusercontent.com/RED1cat/SkyCoopInstaller/refs/heads/avaloniaupdate/Releases.json";
+        public const string FilteredURL = "https://raw.githubusercontent.com/RED1cat/SkyCoopInstaller/refs/heads/avaloniaupdate/FilteredReleases.json";
+        public const string NewsURL = "https://raw.githubusercontent.com/RED1cat/SkyCoopInstaller/refs/heads/avaloniaupdate/News.txt";
+        public const string LatestInstllaerVersionURL = "https://raw.githubusercontent.com/RED1cat/SkyCoopInstaller/refs/heads/avaloniaupdate/Version.txt";
         public const string LatestInstllaerExe = "https://github.com/RED1cat/SkyCoopInstaller/releases/latest/download/SkyCoopInstaller";
         public static string GitJson = "";
         public static string FilteredJson = "";

@@ -46,6 +46,7 @@ namespace SkyCoopInstaller
             {
                 if (!await CreateDirectory(m_TempPath))
                     Environment.Exit(0);
+                force = true;
             }
             else if (!File.Exists(@$"{m_TempPath}/Version.txt") || !File.Exists(@$"{m_TempPath}/NEWS.txt") || !File.Exists(@$"{m_TempPath}/Releases.json") || !File.Exists(@$"{m_TempPath}/FilteredReleases.json"))
             {

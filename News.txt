@@ -1,8 +1,8 @@
        Welcome to Sky Co-op Installer!
 
 This brand new installer will help you to install right version of melonloader and correct builds of all dependencies for release of Sky Co-op Mod you are selected.
+Now on AvaloniaUI!
 
+Sky Co-op Reborn – Now publicly released!
 
-Sky Co-Op 13.2 is already out!
-
-Animals now react on decoy and eating deers!
+First ever official release of Sky Co-op Reborn, for The Long Dark versions 2.59-2.60.
