@@ -1,5 +1,142 @@
 [
     {
+        "game_version": "2.60",
+        "mod_versions": [
+            {
+                "tag_name": "RebornV1",
+                "eternal_version": "1.0.0.0",
+                "branch": "Reborn",
+                "melon_version": "0.7.3",
+                "is_prerelease": false,
+                "melon_url": "https://github.com/LavaGang/MelonLoader/releases/download/v0.7.3/MelonLoader.x64.zip",
+				"melon_url_linux": "https://github.com/LavaGang/MelonLoader/releases/download/v0.7.3/MelonLoader.Linux.x64.zip",
+				"melon_url_macOS": "https://github.com/LavaGang/MelonLoader/releases/download/v0.7.3/MelonLoader.macOS.x64.zip",
+                "dependencies_group": "Beta",
+                "uninstall_resources": [
+                    "Mods/SkyModData",
+                    "Mods/SkyCoopClient.dll",
+					"Mods/SkyCoopServer.dll",
+                    "Mods/SkyCoop.modcomponent",
+                    "Mods/skycoop",
+                    "Plugins/AudioCore.dll",
+					"UserLibs/LiteNetLib.dll",
+					"UserLibs/Mono.Nat.dll",
+					"UserLibs/NAudio.Core.dll",
+					"UserLibs/NAudio.WinMM.dll",
+					"UserLibs/OpenVoiceSharp.dll",
+					"UserLibs/opus.dll",
+					"UserLibs/OpusDotNet.dll",
+					"UserLibs/rnnoise.dll",
+					"UserLibs/RNNoise.NET.dll",
+					"UserLibs/WebRtcVad.dll",
+					"UserLibs/WebRtcVadSharp.dll"
+                ]
+            }
+        ],
+		"dependencies_groups": [
+            {
+                "name": "Beta",
+                "dependencies": [
+                    {
+                        "name": "ModSettings",
+                        "url": "https://github.com/DigitalzombieTLD/ModSettings/releases/download/v2.2.5/ModSettings.dll",
+                        "path": "Mods",
+						"source": "Github"
+                    },
+                    {
+                        "name": "ModComponent",
+                        "url": "https://github.com/dommrogers/ModComponent/releases/download/7.0.0/ModComponent.dll",
+                        "path": "Mods",
+						"source": "Github"
+                    },
+                    {
+                        "name": "AudioCore",
+                        "url": "https://github.com/DigitalzombieTLD/AudioCore/releases/download/v3.1.5/AudioCore.dll",
+                        "path": "Plugins",
+						"source": "Github"
+                    },
+					{
+                        "name": "LiteNetLib", 
+                        "url": "https://api.nuget.org/v3-flatcontainer/litenetlib/2.1.4/litenetlib.2.1.4.nupkg",
+						"path": "UserLibs",
+						"source": "Nuget",
+						"filePath": "lib/netstandard2.1"
+                    },
+					{
+                        "name": "Mono.Nat",
+						"url": "https://api.nuget.org/v3-flatcontainer/mono.nat/3.0.4/mono.nat.3.0.4.nupkg",
+						"path": "UserLibs",
+						"source": "Nuget",
+						"filePath": "lib/netstandard2.1"
+                    },
+					{
+                        "name": "NAudio.Core",
+						"url": "https://api.nuget.org/v3-flatcontainer/naudio.core/2.2.1/naudio.core.2.2.1.nupkg",
+						"path": "UserLibs",
+						"source": "Nuget",
+						"filePath": "lib/netstandard2.0"
+                    },
+					{
+                        "name": "NAudio.WinMM",
+						"url": "https://api.nuget.org/v3-flatcontainer/naudio.winmm/2.2.1/naudio.winmm.2.2.1.nupkg",
+						"path": "UserLibs",
+						"source": "Nuget",
+						"filePath": "lib/netstandard2.0"
+                    },
+					{
+                        "name": "OpenVoiceSharp",
+						"url": "https://api.nuget.org/v3-flatcontainer/openvoicesharp/1.0.3/openvoicesharp.1.0.3.nupkg",
+						"path": "UserLibs",
+						"source": "Nuget",
+						"filePath": "lib/netstandard2.1"
+                    },
+					{
+                        "name": "opus",
+						"url": "https://api.nuget.org/v3-flatcontainer/opusdotnet.opus.win-x64/1.3.1/opusdotnet.opus.win-x64.1.3.1.nupkg",
+						"path": "UserLibs",
+						"source": "Nuget",
+						"filePath": "runtimes/win-x64/native"
+                    },
+					{
+                        "name": "OpusDotNet",
+						"url": "https://api.nuget.org/v3-flatcontainer/opusdotnet/1.0.3/opusdotnet.1.0.3.nupkg",						
+						"path": "UserLibs",
+						"source": "Nuget",
+						"filePath": "lib/netstandard2.0"
+                    },
+					{
+                        "name": "rnnoise",
+						"url": "https://api.nuget.org/v3-flatcontainer/yellowdogman.rrnoise.net/0.1.6/yellowdogman.rrnoise.net.0.1.6.nupkg",						
+						"path": "UserLibs",
+						"source": "Nuget",
+						"filePath": "runtimes/win-x64/native"
+                    },
+					{
+                        "name": "RNNoise.NET",
+						"url": "https://api.nuget.org/v3-flatcontainer/yellowdogman.rrnoise.net/0.1.6/yellowdogman.rrnoise.net.0.1.6.nupkg",						
+						"path": "UserLibs",
+						"source": "Nuget",
+						"filePath": "lib/netstandard2.0"
+                    },
+					{
+                        "name": "WebRtcVad",
+						"url": "https://api.nuget.org/v3-flatcontainer/webrtcvadsharp/1.3.2/webrtcvadsharp.1.3.2.nupkg",						
+						"path": "UserLibs",
+						"source": "Nuget",
+						"filePath": "build/win-x64/native"
+                    },
+					{
+                        "name": "WebRtcVadSharp",
+						"url": "https://api.nuget.org/v3-flatcontainer/webrtcvadsharp/1.3.2/webrtcvadsharp.1.3.2.nupkg",
+						"path": "UserLibs",
+						"source": "Nuget",
+						"filePath": "lib/netstandard2.0"
+                    }
+                ]
+            }		
+		]
+    },
+	{
         "game_version": "2.01-2.02",
         "mod_versions": [
             {
@@ -330,42 +467,50 @@
                     {
                         "name": "ModSettings",
                         "url": "https://github.com/zeobviouslyfakeacc/ModSettings/releases/download/v1.8.2/ModSettings.dll",
-                        "path": "Mods"
+                        "path": "Mods",
+						"source": "Github"
                     },
                     {
                         "name": "KeyboardUtilities",
                         "url": "https://github.com/ds5678/KeyboardUtilities/releases/download/1.3.0/KeyboardUtilities.dll",
-                        "path": "Mods"
+                        "path": "Mods",
+						"source": "Github"
                     },
                     {
                         "name": "ModComponent",
                         "url": "https://github.com/ds5678/ModComponent/releases/download/5.1.4/ModComponent.dll",
-                        "path": "Mods"
+                        "path": "Mods",
+						"source": "Github"
                     },
                     {
                         "name": "LocalizationUtilities",
                         "url": "https://github.com/ds5678/LocalizationUtilities/releases/download/1.0.0/LocalizationUtilities.dll",
-                        "path": "Mods"
+                        "path": "Mods",
+						"source": "Github"
                     },
                     {
                         "name": "GearSpawner",
                         "url": "https://github.com/ds5678/GearSpawner/releases/download/1.0.1/GearSpawner.dll",
-                        "path": "Mods"
+                        "path": "Mods",
+						"source": "Github"
                     },
                     {
                         "name": "CraftingRevisions",
                         "url": "https://github.com/ds5678/CraftingRevisions/releases/download/1.0.1/CraftingRevisions.dll",
-                        "path": "Mods"
+                        "path": "Mods",
+						"source": "Github"
                     },
                     {
                         "name": "IncreaseSaveSlotLimit",
                         "url": "https://github.com/ds5678/IncreaseSaveSlotLimit/releases/download/1.1/IncreaseSaveSlotLimit.dll",
-                        "path": "Mods"
+                        "path": "Mods",
+						"source": "Github"
                     },
                     {
                         "name": "AudioCore",
                         "url": "https://github.com/DigitalzombieTLD/AudioCore/releases/download/1.0/AudioCore_PLUGIN_1.0.zip",
-                        "path": "Plugins"
+                        "path": "Plugins",
+						"source": "Github"
                     }
                 ]
             }		

@@ -2,182 +2,222 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="962" d:DesignHeight="630" 
+        mc:Ignorable="d" d:DesignWidth="951" d:DesignHeight="607" 
         x:Class="SkyCoopInstaller.MainWindow"
         Title="SkyCoopInstaller"
         CanResize="False"
-        Width="962"
-        Height="630">
+        Width="951"
+        Height="607">
 
     <Window.Styles>
-        <Style Selector="Button, TabControl, TextBox, ComboBox, Window">
+        <Style Selector="Button, TabControl, TextBox, ComboBox, Window, ProgressBar">
             <Setter Property="BorderBrush" Value="{DynamicResource SystemControlHighlightAccentBrush}"/>
             <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="0"/>
+        </Style>
+        <Style Selector="TabItem">
+            <Setter Property="IsHitTestVisible" Value="False"/>
+            <Setter Property="Focusable" Value="False"/>
         </Style>
     </Window.Styles>
 
-    <Grid HorizontalAlignment="Center" 
-          VerticalAlignment="Center"
-          ColumnSpacing="0"
-          RowSpacing="10">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="350"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="0"/>
-            <RowDefinition Height="0"/>
-        </Grid.RowDefinitions>
+    <Canvas>
+
+        <Button Name="UpdateInstallerData_Button" Content="UpdateData"
+                Click="UpdateInstallerData_Button_Click"
+                Height="30"
+                Canvas.Left="20"
+                Canvas.Top="567"/>
+
+        <Label Name="ProgramVersion_Label" Content="Version:"
+               Canvas.Left="130"
+               Canvas.Top="570"/>
+
+        <Image Name="SkyCoopLogo_Image" Source="/Resources/InstallerBanner1.png"
+               Width="571" 
+               Height="177"
+               Canvas.Left="20"
+               Canvas.Top="20"/>
+
+        <TextBox Name="News_TextBox" Text="NEWS"
+                 IsReadOnly="True"
+                 TextWrapping="Wrap"
+                 HorizontalAlignment="Right" 
+                 VerticalAlignment="Stretch"
+                 Width="320" 
+                 Height="537"
+                 Canvas.Left="611"
+                 Canvas.Top="20"/>
+
+        <Label Name="ChangeLog_Label" Content="MODE VERSION"
+               HorizontalContentAlignment="Center"
+               VerticalContentAlignment="Center"
+               IsVisible="False"
+               Width="320"
+               Height="20"
+               Canvas.Left="611"
+               Canvas.Top="20"/>
+
+        <TextBox Name="ChangeLog_TextBox" Text="CHANGELOG"
+                 IsReadOnly="True"
+                 TextWrapping="Wrap"
+                 HorizontalAlignment="Right" 
+                 VerticalAlignment="Stretch"
+                 IsVisible="False"
+                 Width="320" 
+                 Height="517"
+                 Canvas.Left="611"
+                 Canvas.Top="40"/>
+
+        <TextBox Name="InstallationLog_TextBox" Text="INSTALLATIONLOG"
+                 IsReadOnly="True"
+                 TextWrapping="Wrap"
+                 HorizontalAlignment="Right" 
+                 VerticalAlignment="Stretch"
+                 IsVisible="False"
+                 Width="320" 
+                 Height="537"
+                 Canvas.Left="611"
+                 Canvas.Top="20"/>
 
         <TabControl Name="Main_TabControl"
-                    Width="565"
-                    Height="301"
-                    Grid.Column="0"
-                    Grid.Row="0">
+                    SelectionChanged="Main_TabControl_SelectionChanged"
+                    Width="571"
+                    Height="340"
+                    Canvas.Left="20"
+                    Canvas.Top="217">
 
             <TabItem Name="SelectGame_TabItem" Header="Select Game">
-
-                <Grid HorizontalAlignment="Center"
-                      VerticalAlignment="Center"
-                      ColumnSpacing="0"
-                      RowSpacing="10">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="Auto"/>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
-
+                <Canvas>
                     <Button Name="Select_Button" Content="Select"
-                            Click="Select_Button_OnClick"
+                            Click="Select_Button_Click"
                             HorizontalContentAlignment="Center"
                             VerticalContentAlignment="Center"
                             Width="95"
-                            Height="25"
-                            Grid.Column="0"
-                            Grid.Row="0"/>
+                            Height="30"
+                            Canvas.Left="27"
+                            Canvas.Top="30"/>
 
                     <TextBox Name="GamePath_TextBox" Text="Select your TLD.exe directory"
+                             IsReadOnly="True"
                              MaxLines="1"
-                             Width="409"
-                             Height="25"
-                             Grid.Column="1"
-                             Grid.Row="0"/>
+                             Width="400"
+                             Height="30"
+                             Canvas.Left="130"
+                             Canvas.Top="30"/>
 
                     <Label Name="GameVersion_Label" Content="Game versions:"
-                           Grid.Column="0"
-                           Grid.Row="1"/>
+                           Canvas.Left="25"
+                           Canvas.Top="85"/>
 
                     <ComboBox Name="GameVersion_ComboBox"
-                              Grid.Column="1"
-                              Grid.Row="1"/>
+                              SelectionChanged="GameVersion_ComboBox_SelectionChanged"
+                              Width="295"
+                              Height="30"
+                              Canvas.Left="172"
+                              Canvas.Top="81"/>
 
-                    <Button Name="Next_Button" Content="Next"
-                            Grid.Column="1"
-                            Grid.Row="2"/>
-                </Grid>
+                    <Button Name="Next_Button" Content="NEXT"
+                            IsEnabled="False"
+                            Click="Next_Button_Click"
+                            Width="173"
+                            Height="48"
+                            HorizontalContentAlignment="Center"
+                            VerticalContentAlignment="Center"
+                            HorizontalAlignment="Center"
+                            Canvas.Left="196"
+                            Canvas.Top="219"/>
+                </Canvas>
             </TabItem>
 
             <TabItem Name="SelectModVersion_TabItem" Header="Select Mod Version">
 
-                <Grid HorizontalAlignment="Center"
-                      VerticalAlignment="Center"
-                      ColumnSpacing="0"
-                      RowSpacing="10">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
-
+                <Canvas>
                     <Label Name="AvalibleModVersion_Label" Content="Avalible mod versions:"
-                           Grid.Column="0"
-                           Grid.Row="0"/>
+                           FontSize="18"
+                           FontWeight="Bold"
+                           Width="214"
+                           Height="25"
+                           Canvas.Left="177"
+                           Canvas.Top="17"/>
 
                     <ComboBox Name="ModVersions_ComboBox"
-                              Grid.Column="0"
-                              Grid.Row="1"/>
+                              Width="294"
+                              Height="29"
+                              Canvas.Left="139"
+                              Canvas.Top="45"/>
 
                     <CheckBox Name="HidePreRelease_CheckBox" Content="Hide Pre-Release"
-                              
-                              Grid.Column="0"
-                              Grid.Row="2"/>
+                              Click="HidePreRelease_CheckBox_Click"
+                              IsChecked="True"
+                              Canvas.Left="224"
+                              Canvas.Top="80"/>
 
                     <Button Name="Uninstall_Button" Content="UNINSTALL"
-                            Grid.Column="0"
-                            Grid.Row="3"/>
+                            Click="Uninstall_Button_Click"
+                            HorizontalContentAlignment="Center"
+                            VerticalContentAlignment="Center"
+                            Width="173"
+                            Height="48"
+                            Canvas.Left="196"
+                            Canvas.Top="162"/>
 
                     <Button Name="Install_Button" Content="INSTALL"
-                            Click="Install_Button_OnClick"
-                            Grid.Column="0"
-                            Grid.Row="4"/>
-                </Grid>
+                            Click="Install_Button_Click"
+                            HorizontalContentAlignment="Center"
+                            VerticalContentAlignment="Center"
+                            Width="173"
+                            Height="48"
+                            Canvas.Left="196"
+                            Canvas.Top="219"/>
+
+                    <Button Name="Back_Button" Content="BACK"
+                            Click="Back_Button_Click"
+                            HorizontalContentAlignment="Center"
+                            VerticalContentAlignment="Center"
+                            Width="173"
+                            Height="48"
+                            Canvas.Left="5"
+                            Canvas.Top="219"/>
+
+                </Canvas>
             </TabItem>
 
             <TabItem Name="Installation_TabItem" Header="Installation">
 
-                 <Grid HorizontalAlignment="Center"
-                      VerticalAlignment="Center"
-                      ColumnSpacing="0"
-                      RowSpacing="10">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="Auto"/>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
-                    
-                     <Label Name="Progress_label" Content="Progress"
-                            Grid.Column="0"
-                            Grid.Row="0"/>
+                 <Canvas>
+                     <Label Name="Progress_label" Content="Progress:"
+                            Canvas.Left="3"
+                            Canvas.Top="91"/>
                      
                      <ProgressBar Name="Progress_ProgressBar"
-                                  Grid.Column="0"
-                                  Grid.Row="1"/>
+                                  Width="571"
+                                  Height="23"
+                                  Canvas.Left="-13"
+                                  Canvas.Top="119"/>
 
-                    <Label Name="TotalProgress_label" Content="Total Progress"
-                            Grid.Column="0"
-                            Grid.Row="2"/>
+                    <Label Name="TotalProgress_label" Content="Total Progress:"
+                            Canvas.Left="3"
+                            Canvas.Top="145"/>
                      
                      <ProgressBar Name="TotalProgress_ProgressBar"
-                                  Grid.Column="0"
-                                  Grid.Row="3"/>
+                                  Width="571"
+                                  Height="23"
+                                  Canvas.Left="-13"
+                                  Canvas.Top="173"/>
 
-                     <Button Background="{DynamicResource SystemControlBackgroundAltHighBrush}" Content="test1" Grid.Column="0" Grid.Row="4"/>
-                     <Button Background="{DynamicResource SystemControlBackgroundBaseLowBrush}" Content="test2" Grid.Column="1" Grid.Row="4"/>
-                     <Button Background="{DynamicResource SystemControlForegroundBaseHighBrush}" Content="test3" Grid.Column="2" Grid.Row="4"/>
-                     <Button Background="{DynamicResource SystemControlForegroundBaseMediumBrush}" Content="test4" Grid.Column="3" Grid.Row="4"/>
-                     <Button Background="{DynamicResource SystemControlHighlightAccentBrush}" Content="test5" Grid.Column="4" Grid.Row="4"/>
-                     <Button Background="{DynamicResource SystemAccentColor}" Content="test6" Grid.Column="5" Grid.Row="4"/>
-                </Grid>
+                    <Button Name="DONE_Button" Content="DONE"
+                            IsEnabled="False"
+                            Click="DONE_Button_Click"
+                            Width="173"
+                            Height="48"
+                            HorizontalContentAlignment="Center"
+                            VerticalContentAlignment="Center"
+                            HorizontalAlignment="Center"
+                            Canvas.Left="196"
+                            Canvas.Top="219"/>
+                </Canvas>
             </TabItem>
         </TabControl>
-        <TextBox Name="ChangeLog_TextBox" Text="TEST"
-                 IsReadOnly="True"
-                 TextWrapping="Wrap"
-                 HorizontalAlignment="Right" 
-                 VerticalAlignment="Stretch" 
-                 Width="326" 
-                 Height="548"
-                 Grid.Row="0"
-                 Grid.Column="1"/>
-    </Grid>
+    </Canvas>
 </Window>

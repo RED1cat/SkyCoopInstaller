@@ -1,5 +1,5 @@
-﻿using Avalonia;
-using Avalonia.Controls.ApplicationLifetimes;
+﻿using MsBox.Avalonia;
+using MsBox.Avalonia.Enums;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,117 +13,160 @@ namespace SkyCoopInstaller
         private static List<DownloadQueueElement> m_DownloadQueue;
         private static DownloadQueueElement m_CurrentlyDownloadingFile;
         private static bool m_EventSubscribbed;
-        private static string m_Version;
-        public static bool SilentMode = false;
+        private static string m_ModVersion;
+        public static bool SilentMode = false;      
+        public static string m_CurrentGamePath = "";
         public class DownloadQueueElement
         {
+            public string m_Source = "";
+            public string m_nuGetFilePath = "";
             public string m_URL = "";
             public string m_Path = "";
             public string m_FileName = "";
             public bool m_IsZip = false;
+            public bool m_IsSingleFile = false;
 
-            public DownloadQueueElement(string url, string path, string filename, bool iszip) 
+            public DownloadQueueElement(string url, string path, string filename, bool iszip, bool isSingleFile,
+                string source, string nuGetFilePath = "") 
             { 
                 m_URL = url;
                 m_Path = path;
                 m_FileName = filename;
                 m_IsZip = iszip;
+                m_IsSingleFile = isSingleFile;
+
+                if (source == "Nuget")
+                {
+                    m_Source = source;
+                    m_nuGetFilePath= nuGetFilePath;
+                }
             }
         }
 
-        public static void Start(GithubManager.AvalibleRelease release, string gamePath, string melonVersion)
+        public static async void Start(GithubManager.AvalibleRelease release, string gamePath, string melonVersion)
         {
-            m_Version = release.m_EternalVersion;
+            m_CurrentGamePath = gamePath;
+            m_ModVersion = release.m_EternalVersion;
             m_DownloadQueue = new List<DownloadQueueElement>();
             m_CurrentlyDownloadingFile = null;
             m_EventSubscribbed = false;
             m_DownloadQueue.Clear();
-            if (!SilentMode)
+
+            if (!Directory.Exists(FileManager.m_DownLoadTempPath))
             {
-                //Program.mainForm.ClearInstallLog(); //TODO:need rework
-            }
-            if (Directory.Exists(gamePath + @"\Plugins"))
-            {
-                if (File.Exists(gamePath + @"\Plugins\AutoUpdatingPlugin.dll"))
+                if (System.OperatingSystem.IsWindows())
                 {
-                    //MessageBox.Show("Sky Co-Op " + release.m_ReleaseMeta.m_ReleaseName + " using specific versions of the dependency mods.\r\nAutoUpdatingPlugin will be deleted.",
-                    //    "Information",
-                    //    MessageBoxButtons.OK,
-                    //    MessageBoxIcon.Warning,
-                    //    MessageBoxDefaultButton.Button1,
-                    //    MessageBoxOptions.ServiceNotification); //TODO:need rework
-                    File.Delete(gamePath + @"\Plugins\AutoUpdatingPlugin.dll");
+                    Directory.CreateDirectory(FileManager.m_DownLoadTempPath);
+                }
+                else if (OperatingSystem.IsLinux() || OperatingSystem.IsMacOS())
+                {
+                    Directory.CreateDirectory(FileManager.m_DownLoadTempPath, UnixFileMode.UserRead | UnixFileMode.UserWrite | UnixFileMode.UserExecute);
                 }
             }
 
             if (!SilentMode)
             {
-                ((MainWindow)((IClassicDesktopStyleApplicationLifetime)Application.Current.ApplicationLifetime).MainWindow).ChangeLog_TextBox.Text += "Checking currently installed Melonloader..."; //TODO:need rework
+                Program.mainWindow.ClearInstallLog();
+            }
 
-                if (MelonChecker.CheckInstalledMelonVersion(gamePath, melonVersion) == false)
+            if (File.Exists(@$"{m_CurrentGamePath}/Mods/SkyCoop.dll")) //legacy check
+            {
+                Program.mainWindow.AddInstallLog("SkyCoop legacy detected, it will been moved to SkyCoopLegacy folder in game root folder...");
+                await FileManager.CopyFilesRecursively(new DirectoryInfo(@$"{m_CurrentGamePath}/MelonLoader"), new DirectoryInfo(@$"{m_CurrentGamePath}/SkyCoopLegacy/MelonLoader"), true);
+                await FileManager.CopyFilesRecursively(new DirectoryInfo(@$"{m_CurrentGamePath}/Mods"), new DirectoryInfo(@$"{m_CurrentGamePath}/SkyCoopLegacy/Mods"), true);
+                await FileManager.CopyFilesRecursively(new DirectoryInfo(@$"{m_CurrentGamePath}/Plugins"), new DirectoryInfo(@$"{m_CurrentGamePath}/SkyCoopLegacy/Plugins"), true);
+                await FileManager.CopyFilesRecursively(new DirectoryInfo(@$"{m_CurrentGamePath}/UserLibs"), new DirectoryInfo(@$"{m_CurrentGamePath}/SkyCoopLegacy/UserLibs"), true);
+            }
+
+            if(await FileManager.CreateDirectory(@$"{m_CurrentGamePath}/Plugins"))
+            {
+                if (!SilentMode)
                 {
-                    ((MainWindow)((IClassicDesktopStyleApplicationLifetime)Application.Current.ApplicationLifetime).MainWindow).ChangeLog_TextBox.Text += $"Melonloader {melonVersion} going to be installed"; //TODO:need rework
-                    m_DownloadQueue.Add(new DownloadQueueElement(release.m_MelonURL, gamePath, "Melonloader", true));
-                } else
+                    Program.mainWindow.AddInstallLog("Creating Plugins folder...");
+                }
+                else
                 {
-                    ((MainWindow)((IClassicDesktopStyleApplicationLifetime)Application.Current.ApplicationLifetime).MainWindow).ChangeLog_TextBox.Text += $"Melonloader {melonVersion} is already installed, skipping"; //TODO:need rework
-                    //Program.mainForm.UpdateTotalProgressBar(1); //TODO:need rework
+                    Console.WriteLine("Creating Plugins folder...");
+                }
+            }
+            if (File.Exists(@$"{m_CurrentGamePath}/Plugins/AutoUpdatingPlugin.dll"))
+            {
+                await MessageBoxManager.GetMessageBoxStandard("Information",
+                            $"Sky Co-Op {release.m_ReleaseMeta.m_ReleaseName} using specific versions of the dependency mods.\nAutoUpdatingPlugin will be deleted.",
+                            ButtonEnum.Ok, MsBox.Avalonia.Enums.Icon.Warning).ShowAsPopupAsync(Program.mainWindow);
+
+                await FileManager.DeleteFile(@$"{m_CurrentGamePath}/Plugins/AutoUpdatingPlugin.dll");
+            }
+
+            if (await FileManager.CreateDirectory(@$"{m_CurrentGamePath}/Mods"))
+            {
+                if (!SilentMode)
+                {
+                    Program.mainWindow.AddInstallLog("Creating Mods folder...");
+                }
+                else
+                {
+                    Console.WriteLine("Creating Mods folder...");
+                }
+            }
+
+            if (await FileManager.CreateDirectory(@$"{m_CurrentGamePath}/UserLibs"))
+            {
+                if (!SilentMode)
+                {
+                    Program.mainWindow.AddInstallLog("Creating UserLibs folder...");
+                }
+                else
+                {
+                    Console.WriteLine("Creating UserLibs folder...");
+                }
+            }
+
+            if (!SilentMode)
+            {
+                Program.mainWindow.AddInstallLog("Checking currently installed Melonloader...");
+
+                if (MelonChecker.CheckInstalledMelonVersion(m_CurrentGamePath, melonVersion) == false)
+                {
+                    Program.mainWindow.AddInstallLog($"Melonloader {melonVersion} going to be installed");
+                    m_DownloadQueue.Add(new DownloadQueueElement(release.m_MelonURL, "", "Melonloader", true, false, "Github"));
+                } 
+                else
+                {
+                    Program.mainWindow.AddInstallLog($"Melonloader {melonVersion} is already installed, skipping");
+                    Program.mainWindow.UpdateTotalProgressBar(1);
                 }
             }
             else
             {
-                Console.WriteLine("Melonloader " + melonVersion + " going to be installed");
-                m_DownloadQueue.Add(new DownloadQueueElement(release.m_MelonURL, gamePath, "Melonloader", true));
+                Console.WriteLine($"Melonloader {melonVersion} going to be installed");
+                m_DownloadQueue.Add(new DownloadQueueElement(release.m_MelonURL, "", "Melonloader", true, false, "Github"));
             }
 
-            if(!Directory.Exists(gamePath + @"\Mods"))
-            {
-                if (!SilentMode)
-                {
-                    ((MainWindow)((IClassicDesktopStyleApplicationLifetime)Application.Current.ApplicationLifetime).MainWindow).ChangeLog_TextBox.Text += "Mods folder not exist, creating..."; //TODO:need rework
-                }
-                else
-                {
-                    Console.WriteLine("Mods folder not exist, creating...");
-                }
-                Directory.CreateDirectory(gamePath + @"\Mods");
-            }
-            if (!Directory.Exists(gamePath + @"\Plugins"))
-            {
-                if (!SilentMode)
-                {
-                    ((MainWindow)((IClassicDesktopStyleApplicationLifetime)Application.Current.ApplicationLifetime).MainWindow).ChangeLog_TextBox.Text += "Plugins folder not exist, creating..."; //TODO:need rework
-                }
-                else
-                {
-                    Console.WriteLine("Plugins folder not exist, creating...");
-                }
-                Directory.CreateDirectory(gamePath + @"\Plugins");
-            }
-
-            m_DownloadQueue.Add(new DownloadQueueElement(release.m_ReleaseMeta.m_DownloadURL, gamePath + @"\Mods", "SkyCoop", true));
+            m_DownloadQueue.Add(new DownloadQueueElement(release.m_ReleaseMeta.m_DownloadURL, "Mods", "SkyCoop", true, false, "Github"));
 
             if (!SilentMode)
             {
-                ((MainWindow)((IClassicDesktopStyleApplicationLifetime)Application.Current.ApplicationLifetime).MainWindow).ChangeLog_TextBox.Text += $"Sky-Coop {release.m_ReleaseMeta.m_ReleaseName} from {release.m_FromBranch} branch going to be installed"; //TODO:need rework
+                Program.mainWindow.AddInstallLog($"Sky-Coop {release.m_ReleaseMeta.m_ReleaseName} from {release.m_FromBranch} branch going to be installed");
             }
             else
             {
-                Console.WriteLine("Sky-Coop " + release.m_ReleaseMeta.m_ReleaseName + " from " + release.m_FromBranch + " branch going to be installed");
+                Console.WriteLine($"Sky-Coop {release.m_ReleaseMeta.m_ReleaseName} from {release.m_FromBranch} branch going to be installed");
             }
+
             foreach (GithubManager.DependenceMeta dependenceMeta in release.m_Dependencies)
             {
-                m_DownloadQueue.Add(new DownloadQueueElement(dependenceMeta.m_DownloadURL, gamePath + dependenceMeta.m_Path, dependenceMeta.m_Name, dependenceMeta.m_IsZip));
+                m_DownloadQueue.Add(new DownloadQueueElement(dependenceMeta.m_DownloadURL, dependenceMeta.m_Path, dependenceMeta.m_Name, dependenceMeta.m_IsZip, true, dependenceMeta.m_Source, dependenceMeta.m_nuGetFilePath));
             }
 
             if (!SilentMode)
             {
-                ((MainWindow)((IClassicDesktopStyleApplicationLifetime)Application.Current.ApplicationLifetime).MainWindow).ChangeLog_TextBox.Text += $"Found {release.m_Dependencies.Count} dependencies needed to be installed"; //TODO:need rework
-                //Program.mainForm.SetMaximumValueProgressBar(release.m_Dependencies.Count + 2); //TODO:need rework
+                Program.mainWindow.AddInstallLog($"Found {release.m_Dependencies.Count} dependencies needed to be installed");
+                Program.mainWindow.SetMaximumValueProgressBar(release.m_Dependencies.Count + 2);
             }
             else
             {
-                Console.WriteLine("Found " + release.m_Dependencies.Count + " dependencies needed to be installed");
+                Console.WriteLine($"Found {release.m_Dependencies.Count} dependencies needed to be installed");
             }
             BeginDownload();
         }
@@ -134,6 +177,8 @@ namespace SkyCoopInstaller
             {
                 if (!m_EventSubscribbed)
                 {
+                    Program.webClient.Dispose();
+                    Program.webClient = new();
                     Program.webClient.DownloadFileCompleted += new AsyncCompletedEventHandler(Completed);
                     Program.webClient.DownloadProgressChanged += new DownloadProgressChangedEventHandler(ProgressChanged);
                     m_EventSubscribbed = true;
@@ -142,13 +187,14 @@ namespace SkyCoopInstaller
             }
         }
 
-        private static void DownloadNextFileFromQueue()
+        private static async void DownloadNextFileFromQueue()
         {
             if(m_DownloadQueue.Count > 0)
             {
                 m_CurrentlyDownloadingFile = m_DownloadQueue[0];
                 m_DownloadQueue.RemoveAt(0);
-            } else
+            } 
+            else
             {
                 m_CurrentlyDownloadingFile = null;
                 DownloadingQueueFinished();
@@ -165,36 +211,47 @@ namespace SkyCoopInstaller
 
             if (!SilentMode)
             {
-                ((MainWindow)((IClassicDesktopStyleApplicationLifetime)Application.Current.ApplicationLifetime).MainWindow).ChangeLog_TextBox.Text += $"Downloading {FileName} ..."; //TODO:need rework
+                Program.mainWindow.AddInstallLog($"Downloading {FileName} ...");
             }
             else
             {
-                Console.WriteLine("Downloading " + FileName + "...");
+                Console.WriteLine($"Downloading { FileName }...");
             }
+
+
             if (m_CurrentlyDownloadingFile.m_IsZip)
             {
-                FileName += ".zip";
-            } else
+                if(m_CurrentlyDownloadingFile.m_Source == "Nuget")
+                {
+                    FileName += ".nupkg";
+                }
+                else
+                {
+                    FileName += ".zip";
+                }
+            }
+            else
             {
                 FileName += ".dll";
             }
-            string PathPlusName = m_CurrentlyDownloadingFile.m_Path + @"\" + FileName;
-            
+            string PathPlusName = $"{FileManager.m_DownLoadTempPath}/{FileName}";
+
             Program.webClient.DownloadFileAsync(new Uri(m_CurrentlyDownloadingFile.m_URL), PathPlusName);
+            
         }
         private static void DownloadingQueueFinished()
         {
             Program.webClient.Dispose();
             Program.webClient = new WebClient();
 
+            FileManager.DeletingDonwloadData();
             if (!SilentMode)
             {
-                //Program.mainForm.InstallFinished("Installation", m_Version); //TODO:need rework
-                ((MainWindow)((IClassicDesktopStyleApplicationLifetime)Application.Current.ApplicationLifetime).MainWindow).ChangeLog_TextBox.Text += "DONE"; //TODO:need rework
+                Program.mainWindow.InstallFinished("Installation", m_ModVersion);
             }
             else
             {
-                Console.WriteLine($"Downloader finished version {m_Version}");
+                Console.WriteLine($"Downloader finished version {m_ModVersion}");
                 AutoSetup.Installing = false;
             }
         }
@@ -203,7 +260,7 @@ namespace SkyCoopInstaller
         {
             if (!SilentMode)
             {
-                //Program.mainForm.UpdateCurrentFileProgressBar(e.ProgressPercentage, Downloader.m_CurrentlyDownloadingFile.m_FileName); //TODO:need rework
+                Program.mainWindow.UpdateCurrentFileProgressBar(e.ProgressPercentage, Downloader.m_CurrentlyDownloadingFile.m_FileName);
             }
             else
             {
@@ -211,28 +268,24 @@ namespace SkyCoopInstaller
             }
         }
 
-        private static void Completed(object sender, AsyncCompletedEventArgs e)
+        private static async void Completed(object sender, AsyncCompletedEventArgs e)
         {
             if (!SilentMode)
             {
                 if (e.Cancelled)
                 {
-                    //MessageBox.Show("Downloading cancled",
-                    //    "Information",
-                    //    MessageBoxButtons.OK,
-                    //    MessageBoxIcon.Information,
-                    //    MessageBoxDefaultButton.Button1,
-                    //    MessageBoxOptions.ServiceNotification); //TODO:need rework
+                    FileManager.DeletingDonwloadData();
+                    await MessageBoxManager.GetMessageBoxStandard("Information",
+                                $"Downloading cancled",
+                                ButtonEnum.Ok, MsBox.Avalonia.Enums.Icon.Info).ShowAsPopupAsync(Program.mainWindow);
                     return;
                 }
                 if (e.Error != null)
                 {
-                    //MessageBox.Show($"Downloading error: {e.Error}",
-                    //    "Information",
-                    //    MessageBoxButtons.OK,
-                    //    MessageBoxIcon.Error,
-                    //    MessageBoxDefaultButton.Button1,
-                    //    MessageBoxOptions.ServiceNotification); //TODO:need rework
+                    FileManager.DeletingDonwloadData();
+                    await MessageBoxManager.GetMessageBoxStandard("ERROR",
+                                $"Downloading error:\n{e.Error}",
+                                ButtonEnum.Ok, MsBox.Avalonia.Enums.Icon.Error).ShowAsPopupAsync(Program.mainWindow);
                     return;
                 }
             }
@@ -240,53 +293,113 @@ namespace SkyCoopInstaller
             {
                 if (e.Cancelled)
                 {
+                    FileManager.DeletingDonwloadData();
                     Console.WriteLine("Downloading cancled");
                 }
                 if(e.Error != null)
                 {
+                    FileManager.DeletingDonwloadData();
                     Console.WriteLine(e.Error.ToString());
                 }
             }
 
             if (!SilentMode)
             {
-                ((MainWindow)((IClassicDesktopStyleApplicationLifetime)Application.Current.ApplicationLifetime).MainWindow).ChangeLog_TextBox.Text += $"{m_CurrentlyDownloadingFile.m_FileName} downloaded!"; //TODO:need rework
+                Program.mainWindow.AddInstallLog($"{m_CurrentlyDownloadingFile.m_FileName} downloaded!");
             }
             else
             {
-                Console.WriteLine(m_CurrentlyDownloadingFile.m_FileName + " downloaded!");
+                Console.WriteLine($"{m_CurrentlyDownloadingFile.m_FileName} downloaded!");
             }
             if (m_CurrentlyDownloadingFile.m_IsZip)
             {
                 if (!SilentMode)
                 {
-                    ((MainWindow)((IClassicDesktopStyleApplicationLifetime)Application.Current.ApplicationLifetime).MainWindow).ChangeLog_TextBox.Text += $"Unzipping {m_CurrentlyDownloadingFile.m_FileName}..."; //TODO:need rework
+                    Program.mainWindow.AddInstallLog($"Unzipping {m_CurrentlyDownloadingFile.m_FileName}...");
                 }
                 else
                 {
                     Console.WriteLine("Unzipping " + m_CurrentlyDownloadingFile.m_FileName + "...");
                 }
-                new ICSharpCode.SharpZipLib.Zip.FastZip().ExtractZip(m_CurrentlyDownloadingFile.m_Path + @"\" + m_CurrentlyDownloadingFile.m_FileName + ".zip", m_CurrentlyDownloadingFile.m_Path, null);
 
-                File.Delete(m_CurrentlyDownloadingFile.m_Path + @"\" + m_CurrentlyDownloadingFile.m_FileName + ".zip");
-
-                if (!SilentMode)
+                try 
                 {
-                    //Program.mainForm.UpdateTotalProgressBar(1); //TODO:need rework
-                    ((MainWindow)((IClassicDesktopStyleApplicationLifetime)Application.Current.ApplicationLifetime).MainWindow).ChangeLog_TextBox.Text += $"{m_CurrentlyDownloadingFile.m_FileName} successfully extracted!"; //TODO:need rework
+                    new ICSharpCode.SharpZipLib.Zip.FastZip().ExtractZip(@$"{FileManager.m_DownLoadTempPath}/{m_CurrentlyDownloadingFile.m_FileName}.{(m_CurrentlyDownloadingFile.m_Source == "Nuget" ? "nupkg" : "zip")}",
+                        @$"{FileManager.m_DownLoadTempPath}/{m_CurrentlyDownloadingFile.m_FileName}", null);
+                }
+                catch(Exception ex)
+                {
+                    ((WebClient)sender).CancelAsync();
+                    CancelDownload(ex.Message);
+                    return;
+                }
+
+                if(m_CurrentlyDownloadingFile.m_IsSingleFile)
+                {
+                    if(!await FileManager.CopyFile(@$"{FileManager.m_DownLoadTempPath}/{m_CurrentlyDownloadingFile.m_FileName}/{(m_CurrentlyDownloadingFile.m_Source == "Nuget" ? $"{m_CurrentlyDownloadingFile.m_nuGetFilePath}/" : "")}{m_CurrentlyDownloadingFile.m_FileName}.dll",
+                        @$"{m_CurrentGamePath}/{m_CurrentlyDownloadingFile.m_Path}/{m_CurrentlyDownloadingFile.m_FileName}.dll", true))
+                    {
+                        ((WebClient)sender).CancelAsync();
+                        CancelDownload("");
+                        return;
+                    }
                 }
                 else
                 {
-                    Console.WriteLine(m_CurrentlyDownloadingFile.m_FileName + " successfully extracted!");
+                    if(!await FileManager.CopyFilesRecursively(new DirectoryInfo(@$"{FileManager.m_DownLoadTempPath}/{m_CurrentlyDownloadingFile.m_FileName}/"), 
+                        new DirectoryInfo(@$"{m_CurrentGamePath}/{m_CurrentlyDownloadingFile.m_Path}/")))
+                    {
+                        ((WebClient)sender).CancelAsync();
+                        CancelDownload("");
+                        return;
+                    }
                 }
-                DownloadNextFileFromQueue();
-            } else
-            {
+
                 if (!SilentMode)
                 {
-                    //Program.mainForm.UpdateTotalProgressBar(1); //TODO:need rework
+                    Program.mainWindow.UpdateTotalProgressBar(1);
+                    Program.mainWindow.AddInstallLog($"{m_CurrentlyDownloadingFile.m_FileName} successfully extracted!");
+                }
+                else
+                {
+                    Console.WriteLine($"{m_CurrentlyDownloadingFile.m_FileName} successfully extracted!");
                 }
                 DownloadNextFileFromQueue();
+            } 
+            else
+            {
+                if (m_CurrentlyDownloadingFile.m_IsSingleFile)
+                {
+
+                    if(!await FileManager.CopyFile(@$"{FileManager.m_DownLoadTempPath}/{m_CurrentlyDownloadingFile.m_FileName}.dll",
+                        @$"{m_CurrentGamePath}/{m_CurrentlyDownloadingFile.m_Path}/{m_CurrentlyDownloadingFile.m_FileName}.dll", true))
+                    {
+                        ((WebClient)sender).CancelAsync();
+                        CancelDownload("");
+                        return;
+                    }
+                }
+
+                if (!SilentMode)
+                {
+                    Program.mainWindow.UpdateTotalProgressBar(1);
+                }
+                DownloadNextFileFromQueue();
+            }
+        }
+
+        private static async void CancelDownload(string msg)
+        {
+            m_DownloadQueue.Clear();
+            FileManager.DeletingDonwloadData();
+            if (!SilentMode)
+            {
+                Program.mainWindow.AddInstallLog($"Download canceled!\n{msg}");
+                await MessageBoxManager.GetMessageBoxStandard("Info",
+                            $"Download canceled\n{msg}",
+                            ButtonEnum.Ok, MsBox.Avalonia.Enums.Icon.Info).ShowAsPopupAsync(Program.mainWindow);
+
+                Program.mainWindow.DONE_Button.IsEnabled = true;
             }
         }
     }

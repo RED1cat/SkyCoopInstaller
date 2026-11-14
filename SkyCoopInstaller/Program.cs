@@ -7,19 +7,12 @@ namespace SkyCoopInstaller;
 class Program
 {
     public static WebClient webClient = new WebClient();
+    public static MainWindow mainWindow;
     [STAThread]
     public static void Main(string[] args) 
-    { 
-        if (args.GetLength(0) == 0)
-        {
-            webClient = new WebClient();
-            BuildAvaloniaApp().StartWithClassicDesktopLifetime(args);
-        }
-        else if (args[0] == "-silent")
-        {
-            Console.WriteLine("Silent Mode");
-            Console.ReadKey();
-        }
+    {
+        webClient = new WebClient();
+        BuildAvaloniaApp().StartWithClassicDesktopLifetime(args);
     }
 
     // Avalonia configuration, don't remove; also used by visual designer.
