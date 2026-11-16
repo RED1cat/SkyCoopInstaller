@@ -95,12 +95,13 @@ public partial class MainWindow : Window
         {
             var files = await topLevel.StorageProvider.OpenFilePickerAsync(new FilePickerOpenOptions
             {
+                FileTypeFilter = [new FilePickerFileType("tld") {Patterns = ["*.exe", "*.x86_64"] }, FilePickerFileTypes.All],
                 Title = "",
                 AllowMultiple = false,
             });
             if (files.Count >= 1)
             {
-                string gamePath = Directory.GetParent(files[0].Path.AbsolutePath).FullName;
+                string gamePath = Directory.GetParent(files[0].Path.LocalPath).FullName;
                 GamePath_TextBox.Text = gamePath;
 
                 GameVersion_ComboBox.IsEnabled = true;
@@ -210,41 +211,39 @@ public partial class MainWindow : Window
 
     private async Task<bool> CheckingGameVersion(string gamePath)
     {
-        string gameVersionFile = gamePath + @"/tld_Data/StreamingAssets/version.txt";
+        string gameVersionFile = @$"{gamePath}/tld_Data/StreamingAssets/version.txt";
         bool thisVersionIsCompatible = false;
         string version = " ";
         string selectedCompatibleVersion = string.Empty;
 
-        if (File.Exists(gameVersionFile))
-        {
-            version = File.ReadAllText(gameVersionFile).Split(' ')[0];
-            if (GameVersion_ComboBox.Items.Count > 0)
-            {
-                foreach (string selectedVersion in GameVersion_ComboBox.Items)
-                {
-                    if (selectedVersion.Contains("-"))
-                    {
-                        string[] versionRange = selectedVersion.Split('-');
 
-                        int one = int.Parse(version.Split('.')[1]);
-                        int tho = int.Parse(versionRange[0].Split('.')[1]);
-                        int thre = int.Parse(versionRange[1].Split('.')[1]);
-                        if (one >= tho && one <= thre)
-                        {
-                            thisVersionIsCompatible = true;
-                            selectedCompatibleVersion = selectedVersion;
-                        }
-                    }
-                    else if (selectedVersion == version)
+        version = (await FileManager.ReadFileData(gameVersionFile)).Split(' ')[0];
+        if (GameVersion_ComboBox.Items.Count > 0 && version != string.Empty)
+        {
+            foreach (string selectedVersion in GameVersion_ComboBox.Items)
+            {
+                if (selectedVersion.Contains("-"))
+                {
+                    string[] versionRange = selectedVersion.Split('-');
+
+                    int one = int.Parse(version.Split('.')[1]);
+                    int tho = int.Parse(versionRange[0].Split('.')[1]);
+                    int thre = int.Parse(versionRange[1].Split('.')[1]);
+                    if (one >= tho && one <= thre)
                     {
                         thisVersionIsCompatible = true;
                         selectedCompatibleVersion = selectedVersion;
                     }
                 }
-                if (selectedCompatibleVersion != string.Empty)
+                else if (selectedVersion == version)
                 {
-                    GameVersion_ComboBox.SelectedItem = selectedCompatibleVersion;
+                    thisVersionIsCompatible = true;
+                    selectedCompatibleVersion = selectedVersion;
                 }
+            }
+            if (selectedCompatibleVersion != string.Empty)
+            {
+                GameVersion_ComboBox.SelectedItem = selectedCompatibleVersion;
             }
         }
 

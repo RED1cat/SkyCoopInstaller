@@ -120,7 +120,7 @@ namespace SkyCoopInstaller
                     await MessageBoxManager.GetMessageBoxStandard("ERROR",
                                 $"Error while reading file: {filePath}\n{e.Message}",
                                 ButtonEnum.Ok, Icon.Error).ShowAsPopupAsync(Program.mainWindow);
-                    return "";
+                    return string.Empty;
                 }
             }
             else
@@ -128,7 +128,7 @@ namespace SkyCoopInstaller
                 await MessageBoxManager.GetMessageBoxStandard("ERROR",
                             $"File({filePath}) didn't exist",
                             ButtonEnum.Ok, Icon.Error).ShowAsPopupAsync(Program.mainWindow);
-                return "";
+                return string.Empty;
             }
         }
 
